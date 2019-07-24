@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+    </div>
+    <div class="container" style="overflow-x:auto;">
+        <h4>Habitaciones listas</h4>
+        <table id="TablaHabitacionLista" style="width: 100%">
+            <tr>
+                <th>Código de habitación</th>
+                <th>Número</th>
+                <th>Detalle</th>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>50</td>
+                <td>Si</td>
+            </tr>
+            <tr>
+                <td>5678</td>
+                <td>30</td>
+                <td>No</td>
+            </tr>
+        </table>
+    </div>
+</header>

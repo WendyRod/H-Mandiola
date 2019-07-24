@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Precios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+        <div class="container" style="overflow-x: auto;">
+            <h4>Precios</h4>
+            <table id="TablaPrecios" style="width: 100%">
+                <tr>
+                    <th>Código</th>
+                    <th>Tipo de precio</th>
+                    <th>Monto</th>
+                    <th>Consecutivo</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>8002</td>
+                    <td>Condominio</td>
+                    <td>$200</td>
+                    <td></td>
+                    <td>
+                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8403</td>
+                    <td>Dulces</td>
+                    <td>$15</td>
+                    <td></td>
+                    <td>
+                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8005</td>
+                    <td>Flores</td>
+                    <td>$9.95</td>
+                    <td></td>
+                    <td>
+                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="nuevo"></label>
+                <div class="col-md-4">
+                    <button id="nuevo" name="nuevo" class="btn btn-primary">Agregar nuevo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

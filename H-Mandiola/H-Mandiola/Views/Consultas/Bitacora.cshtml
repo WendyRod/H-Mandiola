@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+    </div>
+    <div class="container" style="overflow-x:auto;">
+        <h4>Bitácora</h4>
+        <table id="TablaBitacora" style="width: 100%">
+            <tr>
+                <th>Código</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Descripción</th>
+                <th>Detalle</th>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>30/06/2019</td>
+                <td>17:44</td>
+                <td>Cambio contraseña</td>
+                <td><button>Ver más</button></td>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>29/06/2019</td>
+                <td>11:44</td>
+                <td>Registro de usuario</td>
+                <td><button>Ver más</button></td>
+            </tr>
+        </table>
+    </div>
+</header>

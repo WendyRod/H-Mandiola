@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "VerUsuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header>
+    <br />
+    <br />
+    <div class="container" style="margin-left: 350px;">
+        <div class="card-body">
+            <br />
+            <!-- Select Multiple -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="listaUsuario">Lista de Usuarios</label>
+                <div class="col-md-4">
+                    <select id="listaUsuario" name="listaUsuario" class="form-control" multiple="multiple">
+                        <option value="1">María</option>
+                        <option value="2">Wendy</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Multiple Radios -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="listaRol">Roles</label>
+                <div class="col-md-4">
+                    <div class="radio">
+                        <label for="listaRol-0">
+                            <input type="checkbox" name="listaRol" id="listaRol-0" value="1" checked="checked">
+                            Administrador
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="listaRol-1">
+                            <input type="checkbox" name="listaRol" id="listaRol-1" value="2">
+                            Seguridad
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="listaRol-2">
+                            <input type="checkbox" name="listaRol" id="listaRol-2" value="3">
+                            Consecutivo
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="listaRol-3">
+                            <input type="checkbox" name="listaRol" id="listaRol-3" value="4">
+                            Mantenimiento
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label for="listaRol-4">
+                            <input type="checkbox" name="listaRol" id="listaRol-4" value="5">
+                            Consulta
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="aceptar"></label>
+                <div class="col-md-8">
+                    <button id="aceptar" name="aceptar" class="btn btn-primary">Aceptar</button>
+                    <button id="cancelar" name="cancelar" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+    </div>
+    <div class="container" style="overflow-x:auto;">
+        <h4>Clientes activos</h4>
+        <table id="TablaClienteActivo" style="width: 100%">
+            <tr>
+                <th>Código del cliente</th>
+                <th>Nombre completo</th>
+                <th>Número de habitación</th>
+            </tr>
+            <tr>
+                <td>1234</td>
+                <td>Wendy</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>5678</td>
+                <td>María</td>
+                <td>30</td>
+            </tr>
+        </table>
+    </div>
+</header>

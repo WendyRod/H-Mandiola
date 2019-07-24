@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header>
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+    </div>
+
+    <div style="width: 900px; margin-left: 200px" id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div style="height: 300px;" class="carousel-inner" role="listbox">
+            <!-- Slide One - Set the background image for this slide in the line below -->
+            <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1551679337-5dca2a92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Terrazas</h2>
+                    <p class="lead">Actividades al aire libre alredor de la piscina.</p>
+                </div>
+            </div>
+            <!-- Slide Two - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('https://www.kabayanhotel.com.ph/wp-content/uploads/2016/03/kabayan-standardroom-03.jpg')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Habitaciones</h2>
+                    <p class="lead">Vea nuestra guía y elija la habitación que le sea adecuada.</p>
+                </div>
+            </div>
+            <!-- Slide Three - Set the background image for this slide in the line below -->
+            <div class="carousel-item" style="background-image: url('https://www.carltoncity.sg/sites/carltoncity/files/styles/home_header_slider_test/public/2018-01/graffiti%20sky%20bar.jpg?itok=yF3F-BYt')">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4">Restaurantes</h2>
+                    <p class="lead">Múltiples opciones en gastronomía cada noche.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</header>

@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "EstadoClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+        <div class="container" style="overflow-x: auto;">
+            <h4>Información de los clientes</h4>
+            <table id="TablaEstadoClientes" style="width: 100%">
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre del cliente</th>
+                    <th>Consecutivo</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>1456</td>
+                    <td>Wendy</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1200</td>
+                    <td>María</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</header>

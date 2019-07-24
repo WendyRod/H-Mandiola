@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="Inicio"  description="Inicio">
+    <siteMapNode url="" title="Seguridad"  description="Seguridad" >
+      <siteMapNode url="" title="Usuarios"  description="Usuarios" >
+      <siteMapNode url="~/CrearUsuario.aspx" title="Crear Usuario"  description="Crear Usuario" />
+      <siteMapNode url="~/VerUsuarios.aspx" title="Ver Usuarios"  description="Ver Usuarios" />
+    <siteMapNode url="~/CambiarContraseña.aspx" title="Cambiar Contraseña"  description="Cambiar Contraseña" >
+  </siteMapNode>
+  </siteMapNode>
+  </siteMapNode>
+
+  <siteMapNode url="" title="Administración" description="Administración">
+    <siteMapNode url="~/Consecutivos.aspx" title="Consecutivos" description="Consecutivos" />
+    <siteMapNode url="~/Actividades.aspx" title="Actividades" description="Actividades" />
+    <siteMapNode url="~/Habitaciones.aspx" title="Habitaciones" description="Habitaciones" />
+    <siteMapNode url="~/Precios.aspx" title="Precios" description="Precios" />
+    <siteMapNode url="~/EstadoClientes.aspx" title="Estado de los Clientes" description="Estado de los Clientes" />
+  </siteMapNode>
+
+    <!--<siteMapNode url="" title="Bitácora" description="Bitácora"/>-->
+
+    <siteMapNode url="" title="Consultas" description="Consultas">
+      <siteMapNode url="~/Bitacora.aspx" title="Bitácora" description="Bitácora"/>
+      <siteMapNode url="~/Errores.aspx" title="Errores" description="Errores"/>
+      <siteMapNode url="~/ClientesActivos.aspx" title="Clientes Activos" description="Clientes Activos"/>
+      <siteMapNode url="~/HabitacionesListas.aspx" title="Habitaciones Listas" description="Habitaciones Listas"/>
+    </siteMapNode>
+    
+  </siteMapNode>
+</siteMap>

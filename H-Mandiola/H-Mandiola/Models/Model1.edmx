@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dia" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="horainicio" Type="date" Nullable="false" />
+          <Property Name="horafinal" Type="date" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="articulo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo_articulo_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="reserva_reservaid" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_hora" Type="date" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bookingid">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="reserva_reservaid" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="habitacion_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="consecutivo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prefijo" Type="varchar" MaxLength="5" />
+          <Property Name="minimo" Type="numeric" Precision="5" Scale="0" />
+          <Property Name="maximo" Type="numeric" Precision="5" Scale="0" />
+        </EntityType>
+        <EntityType Name="emisor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="error">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_hora" Type="date" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado_habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="estado_habitacion_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="precio_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="historial_actividad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="usuario_cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="actividad_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="precio">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo_habitacion_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="reservaid" />
+          </Key>
+          <Property Name="reservaid" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fechaentrada" Type="date" Nullable="false" />
+          <Property Name="fechasalida" Type="date" Nullable="false" />
+          <Property Name="cantidaddias" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="codigopromocional" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="cantidadadultos" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="cantidadniños" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="mascota" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="metodopago" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="precio" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="usuario_cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tarjeta">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="numero_tarjeta" Type="numeric" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="fechaexp" Type="date" Nullable="false" />
+          <Property Name="usuario_cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="emisor_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_articulo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido1" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="apellido2" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="pregunta" Type="varchar" MaxLength="50" />
+          <Property Name="respuesta" Type="varchar" MaxLength="30" />
+          <Property Name="rol_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="estado_codigo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="actividad_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="actividad">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="articulo_reserva_fk">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="reservaid" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="reserva_reservaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="articulo_tipo_articulo_fk">
+          <End Role="tipo_articulo" Type="Self.tipo_articulo" Multiplicity="1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_articulo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="tipo_articulo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bitacora_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="bitacora" Type="Self.bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="bitacora">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookingid_habitacion_fk">
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
+          <End Role="bookingid" Type="Self.bookingid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="bookingid">
+              <PropertyRef Name="habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookingid_reserva_fk">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="bookingid" Type="Self.bookingid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="reservaid" />
+            </Principal>
+            <Dependent Role="bookingid">
+              <PropertyRef Name="reserva_reservaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_estHabitacion_fk">
+          <End Role="estado_habitacion" Type="Self.estado_habitacion" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="estado_habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_precio_fk">
+          <End Role="precio" Type="Self.precio" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="precio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="precio_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="histActividad_actividad_fk">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+          <End Role="historial_actividad" Type="Self.historial_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="historial_actividad">
+              <PropertyRef Name="actividad_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="historial_actividad_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="historial_actividad" Type="Self.historial_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="historial_actividad">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="precio_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="precio" Type="Self.precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="precio">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="precio_tipo_habitacion_fk">
+          <End Role="tipo_habitacion" Type="Self.tipo_habitacion" Multiplicity="1" />
+          <End Role="precio" Type="Self.precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="precio">
+              <PropertyRef Name="tipo_habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjeta_emisor_fk">
+          <End Role="emisor" Type="Self.emisor" Multiplicity="1" />
+          <End Role="tarjeta" Type="Self.tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emisor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tarjeta">
+              <PropertyRef Name="emisor_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjeta_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="tarjeta" Type="Self.tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="tarjeta">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_estado_fk">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="estado_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rol_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EXISTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCedula" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USUARIO_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCedula" Type="numeric" Mode="In" />
+          <Parameter Name="pNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="nvarchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pClave" Type="nvarchar" Mode="In" />
+          <Parameter Name="pRol" Type="numeric" Mode="In" />
+          <Parameter Name="pEstado" Type="numeric" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="numeric" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="actividad" EntityType="Self.actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="articulo" EntityType="Self.articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bookingid" EntityType="Self.bookingid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="consecutivo" EntityType="Self.consecutivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emisor" EntityType="Self.emisor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="error" EntityType="Self.error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado_habitacion" EntityType="Self.estado_habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="habitacion" EntityType="Self.habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historial_actividad" EntityType="Self.historial_actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="precio" EntityType="Self.precio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tarjeta" EntityType="Self.tarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_articulo" EntityType="Self.tipo_articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo_habitacion" EntityType="Self.tipo_habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="actividad_consecutivo_fk" Association="Self.actividad_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="actividad" EntitySet="actividad" />
+          </AssociationSet>
+          <AssociationSet Name="articulo_reserva_fk" Association="Self.articulo_reserva_fk">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="articulo_tipo_articulo_fk" Association="Self.articulo_tipo_articulo_fk">
+            <End Role="tipo_articulo" EntitySet="tipo_articulo" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="bitacora_consecutivo_fk" Association="Self.bitacora_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="bitacora" EntitySet="bitacora" />
+          </AssociationSet>
+          <AssociationSet Name="bookingid_habitacion_fk" Association="Self.bookingid_habitacion_fk">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="bookingid" EntitySet="bookingid" />
+          </AssociationSet>
+          <AssociationSet Name="bookingid_reserva_fk" Association="Self.bookingid_reserva_fk">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="bookingid" EntitySet="bookingid" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_consecutivo_fk" Association="Self.habitacion_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_estHabitacion_fk" Association="Self.habitacion_estHabitacion_fk">
+            <End Role="estado_habitacion" EntitySet="estado_habitacion" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_precio_fk" Association="Self.habitacion_precio_fk">
+            <End Role="precio" EntitySet="precio" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="histActividad_actividad_fk" Association="Self.histActividad_actividad_fk">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="historial_actividad" EntitySet="historial_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="historial_actividad_usuario_fk" Association="Self.historial_actividad_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="historial_actividad" EntitySet="historial_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="precio_consecutivo_fk" Association="Self.precio_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="precio" EntitySet="precio" />
+          </AssociationSet>
+          <AssociationSet Name="precio_tipo_habitacion_fk" Association="Self.precio_tipo_habitacion_fk">
+            <End Role="tipo_habitacion" EntitySet="tipo_habitacion" />
+            <End Role="precio" EntitySet="precio" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_consecutivo_fk" Association="Self.reserva_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_usuario_fk" Association="Self.reserva_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="tarjeta_emisor_fk" Association="Self.tarjeta_emisor_fk">
+            <End Role="emisor" EntitySet="emisor" />
+            <End Role="tarjeta" EntitySet="tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="tarjeta_usuario_fk" Association="Self.tarjeta_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="tarjeta" EntitySet="tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_consecutivo_fk" Association="Self.usuario_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_estado_fk" Association="Self.usuario_estado_fk">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_rol_fk" Association="Self.usuario_rol_fk">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="horainicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horafinal" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.actividad_consecutivo_fk" FromRole="actividad" ToRole="consecutivo" />
+          <NavigationProperty Name="historial_actividad" Relationship="Self.histActividad_actividad_fk" FromRole="actividad" ToRole="historial_actividad" />
+        </EntityType>
+        <EntityType Name="articulo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo_articulo_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="reserva_reservaid" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="reserva" Relationship="Self.articulo_reserva_fk" FromRole="articulo" ToRole="reserva" />
+          <NavigationProperty Name="tipo_articulo" Relationship="Self.articulo_tipo_articulo_fk" FromRole="articulo" ToRole="tipo_articulo" />
+        </EntityType>
+        <EntityType Name="bitacora">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.bitacora_consecutivo_fk" FromRole="bitacora" ToRole="consecutivo" />
+        </EntityType>
+        <EntityType Name="bookingid">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reserva_reservaid" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="habitacion_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="habitacion" Relationship="Self.bookingid_habitacion_fk" FromRole="bookingid" ToRole="habitacion" />
+          <NavigationProperty Name="reserva" Relationship="Self.bookingid_reserva_fk" FromRole="bookingid" ToRole="reserva" />
+        </EntityType>
+        <EntityType Name="consecutivo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prefijo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="minimo" Type="Decimal" Precision="5" Scale="0" />
+          <Property Name="maximo" Type="Decimal" Precision="5" Scale="0" />
+          <NavigationProperty Name="actividad" Relationship="Self.actividad_consecutivo_fk" FromRole="consecutivo" ToRole="actividad" />
+          <NavigationProperty Name="bitacora" Relationship="Self.bitacora_consecutivo_fk" FromRole="consecutivo" ToRole="bitacora" />
+          <NavigationProperty Name="habitacion" Relationship="Self.habitacion_consecutivo_fk" FromRole="consecutivo" ToRole="habitacion" />
+          <NavigationProperty Name="precio" Relationship="Self.precio_consecutivo_fk" FromRole="consecutivo" ToRole="precio" />
+          <NavigationProperty Name="reserva" Relationship="Self.reserva_consecutivo_fk" FromRole="consecutivo" ToRole="reserva" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_consecutivo_fk" FromRole="consecutivo" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="emisor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tarjeta" Relationship="Self.tarjeta_emisor_fk" FromRole="emisor" ToRole="tarjeta" />
+        </EntityType>
+        <EntityType Name="error">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fecha_hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_estado_fk" FromRole="estado" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="estado_habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="habitacion" Relationship="Self.habitacion_estHabitacion_fk" FromRole="estado_habitacion" ToRole="habitacion" />
+        </EntityType>
+        <EntityType Name="habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado_habitacion_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="precio_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="bookingid" Relationship="Self.bookingid_habitacion_fk" FromRole="habitacion" ToRole="bookingid" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.habitacion_consecutivo_fk" FromRole="habitacion" ToRole="consecutivo" />
+          <NavigationProperty Name="estado_habitacion" Relationship="Self.habitacion_estHabitacion_fk" FromRole="habitacion" ToRole="estado_habitacion" />
+          <NavigationProperty Name="precio" Relationship="Self.habitacion_precio_fk" FromRole="habitacion" ToRole="precio" />
+        </EntityType>
+        <EntityType Name="historial_actividad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="usuario_cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="actividad_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="actividad" Relationship="Self.histActividad_actividad_fk" FromRole="historial_actividad" ToRole="actividad" />
+          <NavigationProperty Name="usuario" Relationship="Self.historial_actividad_usuario_fk" FromRole="historial_actividad" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="precio">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo_habitacion_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="precio1" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.precio_consecutivo_fk" FromRole="precio" ToRole="consecutivo" />
+          <NavigationProperty Name="habitacion" Relationship="Self.habitacion_precio_fk" FromRole="precio" ToRole="habitacion" />
+          <NavigationProperty Name="tipo_habitacion" Relationship="Self.precio_tipo_habitacion_fk" FromRole="precio" ToRole="tipo_habitacion" />
+        </EntityType>
+        <EntityType Name="reserva">
+          <Key>
+            <PropertyRef Name="reservaid" />
+          </Key>
+          <Property Name="reservaid" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="fechaentrada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechasalida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cantidaddias" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="codigopromocional" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="cantidadadultos" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="cantidadniños" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="mascota" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="metodopago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="usuario_cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="articulo" Relationship="Self.articulo_reserva_fk" FromRole="reserva" ToRole="articulo" />
+          <NavigationProperty Name="bookingid" Relationship="Self.bookingid_reserva_fk" FromRole="reserva" ToRole="bookingid" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.reserva_consecutivo_fk" FromRole="reserva" ToRole="consecutivo" />
+          <NavigationProperty Name="usuario" Relationship="Self.reserva_usuario_fk" FromRole="reserva" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_rol_fk" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tarjeta">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="numero_tarjeta" Type="Decimal" Precision="16" Scale="0" Nullable="false" />
+          <Property Name="fechaexp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="usuario_cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="emisor_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="emisor" Relationship="Self.tarjeta_emisor_fk" FromRole="tarjeta" ToRole="emisor" />
+          <NavigationProperty Name="usuario" Relationship="Self.tarjeta_usuario_fk" FromRole="tarjeta" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tipo_articulo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="articulo" Relationship="Self.articulo_tipo_articulo_fk" FromRole="tipo_articulo" ToRole="articulo" />
+        </EntityType>
+        <EntityType Name="tipo_habitacion">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="precio" Relationship="Self.precio_tipo_habitacion_fk" FromRole="tipo_habitacion" ToRole="precio" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="respuesta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="rol_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="estado_codigo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="consecutivo_codigo" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="consecutivo" Relationship="Self.usuario_consecutivo_fk" FromRole="usuario" ToRole="consecutivo" />
+          <NavigationProperty Name="estado" Relationship="Self.usuario_estado_fk" FromRole="usuario" ToRole="estado" />
+          <NavigationProperty Name="historial_actividad" Relationship="Self.historial_actividad_usuario_fk" FromRole="usuario" ToRole="historial_actividad" />
+          <NavigationProperty Name="reserva" Relationship="Self.reserva_usuario_fk" FromRole="usuario" ToRole="reserva" />
+          <NavigationProperty Name="rol" Relationship="Self.usuario_rol_fk" FromRole="usuario" ToRole="rol" />
+          <NavigationProperty Name="tarjeta" Relationship="Self.tarjeta_usuario_fk" FromRole="usuario" ToRole="tarjeta" />
+        </EntityType>
+        <Association Name="actividad_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="actividad">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="histActividad_actividad_fk">
+          <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+          <End Role="historial_actividad" Type="Self.historial_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="actividad">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="historial_actividad">
+              <PropertyRef Name="actividad_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="articulo_reserva_fk">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="reservaid" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="reserva_reservaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="articulo_tipo_articulo_fk">
+          <End Role="tipo_articulo" Type="Self.tipo_articulo" Multiplicity="1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_articulo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="tipo_articulo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bitacora_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="bitacora" Type="Self.bitacora" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="bitacora">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookingid_habitacion_fk">
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="1" />
+          <End Role="bookingid" Type="Self.bookingid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="bookingid">
+              <PropertyRef Name="habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="bookingid_reserva_fk">
+          <End Role="reserva" Type="Self.reserva" Multiplicity="1" />
+          <End Role="bookingid" Type="Self.bookingid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reserva">
+              <PropertyRef Name="reservaid" />
+            </Principal>
+            <Dependent Role="bookingid">
+              <PropertyRef Name="reserva_reservaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="precio_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="precio" Type="Self.precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="precio">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_consecutivo_fk">
+          <End Role="consecutivo" Type="Self.consecutivo" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="consecutivo">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="consecutivo_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjeta_emisor_fk">
+          <End Role="emisor" Type="Self.emisor" Multiplicity="1" />
+          <End Role="tarjeta" Type="Self.tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emisor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tarjeta">
+              <PropertyRef Name="emisor_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_estado_fk">
+          <End Role="estado" Type="Self.estado" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="estado_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_estHabitacion_fk">
+          <End Role="estado_habitacion" Type="Self.estado_habitacion" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="estado_habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="habitacion_precio_fk">
+          <End Role="precio" Type="Self.precio" Multiplicity="1" />
+          <End Role="habitacion" Type="Self.habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="precio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="habitacion">
+              <PropertyRef Name="precio_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="historial_actividad_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="historial_actividad" Type="Self.historial_actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="historial_actividad">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="precio_tipo_habitacion_fk">
+          <End Role="tipo_habitacion" Type="Self.tipo_habitacion" Multiplicity="1" />
+          <End Role="precio" Type="Self.precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_habitacion">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="precio">
+              <PropertyRef Name="tipo_habitacion_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reserva_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_rol_fk">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rol_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tarjeta_usuario_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="tarjeta" Type="Self.tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="tarjeta">
+              <PropertyRef Name="usuario_cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividad" EntityType="Self.actividad" />
+          <EntitySet Name="articulo" EntityType="Self.articulo" />
+          <EntitySet Name="bitacora" EntityType="Self.bitacora" />
+          <EntitySet Name="bookingid" EntityType="Self.bookingid" />
+          <EntitySet Name="consecutivo" EntityType="Self.consecutivo" />
+          <EntitySet Name="emisor" EntityType="Self.emisor" />
+          <EntitySet Name="error" EntityType="Self.error" />
+          <EntitySet Name="estado" EntityType="Self.estado" />
+          <EntitySet Name="estado_habitacion" EntityType="Self.estado_habitacion" />
+          <EntitySet Name="habitacion" EntityType="Self.habitacion" />
+          <EntitySet Name="historial_actividad" EntityType="Self.historial_actividad" />
+          <EntitySet Name="precio" EntityType="Self.precio" />
+          <EntitySet Name="reserva" EntityType="Self.reserva" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tarjeta" EntityType="Self.tarjeta" />
+          <EntitySet Name="tipo_articulo" EntityType="Self.tipo_articulo" />
+          <EntitySet Name="tipo_habitacion" EntityType="Self.tipo_habitacion" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="actividad_consecutivo_fk" Association="Self.actividad_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="actividad" EntitySet="actividad" />
+          </AssociationSet>
+          <AssociationSet Name="histActividad_actividad_fk" Association="Self.histActividad_actividad_fk">
+            <End Role="actividad" EntitySet="actividad" />
+            <End Role="historial_actividad" EntitySet="historial_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="articulo_reserva_fk" Association="Self.articulo_reserva_fk">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="articulo_tipo_articulo_fk" Association="Self.articulo_tipo_articulo_fk">
+            <End Role="tipo_articulo" EntitySet="tipo_articulo" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="bitacora_consecutivo_fk" Association="Self.bitacora_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="bitacora" EntitySet="bitacora" />
+          </AssociationSet>
+          <AssociationSet Name="bookingid_habitacion_fk" Association="Self.bookingid_habitacion_fk">
+            <End Role="habitacion" EntitySet="habitacion" />
+            <End Role="bookingid" EntitySet="bookingid" />
+          </AssociationSet>
+          <AssociationSet Name="bookingid_reserva_fk" Association="Self.bookingid_reserva_fk">
+            <End Role="reserva" EntitySet="reserva" />
+            <End Role="bookingid" EntitySet="bookingid" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_consecutivo_fk" Association="Self.habitacion_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="precio_consecutivo_fk" Association="Self.precio_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="precio" EntitySet="precio" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_consecutivo_fk" Association="Self.reserva_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_consecutivo_fk" Association="Self.usuario_consecutivo_fk">
+            <End Role="consecutivo" EntitySet="consecutivo" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="tarjeta_emisor_fk" Association="Self.tarjeta_emisor_fk">
+            <End Role="emisor" EntitySet="emisor" />
+            <End Role="tarjeta" EntitySet="tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_estado_fk" Association="Self.usuario_estado_fk">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_estHabitacion_fk" Association="Self.habitacion_estHabitacion_fk">
+            <End Role="estado_habitacion" EntitySet="estado_habitacion" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="habitacion_precio_fk" Association="Self.habitacion_precio_fk">
+            <End Role="precio" EntitySet="precio" />
+            <End Role="habitacion" EntitySet="habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="historial_actividad_usuario_fk" Association="Self.historial_actividad_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="historial_actividad" EntitySet="historial_actividad" />
+          </AssociationSet>
+          <AssociationSet Name="precio_tipo_habitacion_fk" Association="Self.precio_tipo_habitacion_fk">
+            <End Role="tipo_habitacion" EntitySet="tipo_habitacion" />
+            <End Role="precio" EntitySet="precio" />
+          </AssociationSet>
+          <AssociationSet Name="reserva_usuario_fk" Association="Self.reserva_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="reserva" EntitySet="reserva" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_rol_fk" Association="Self.usuario_rol_fk">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="tarjeta_usuario_fk" Association="Self.tarjeta_usuario_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="tarjeta" EntitySet="tarjeta" />
+          </AssociationSet>
+          <FunctionImport Name="EXISTE">
+            <Parameter Name="pCedula" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="USUARIO_LOGIN" ReturnType="Collection(Decimal)">
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USUARIO_REGISTRO">
+            <Parameter Name="pCedula" Mode="In" Type="Decimal" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pRol" Mode="In" Type="Decimal" />
+            <Parameter Name="pEstado" Mode="In" Type="Decimal" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="actividad">
+            <EntityTypeMapping TypeName="Model.actividad">
+              <MappingFragment StoreEntitySet="actividad">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
+                <ScalarProperty Name="horainicio" ColumnName="horainicio" />
+                <ScalarProperty Name="horafinal" ColumnName="horafinal" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="articulo">
+            <EntityTypeMapping TypeName="Model.articulo">
+              <MappingFragment StoreEntitySet="articulo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="tipo_articulo_codigo" ColumnName="tipo_articulo_codigo" />
+                <ScalarProperty Name="reserva_reservaid" ColumnName="reserva_reservaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bitacora">
+            <EntityTypeMapping TypeName="Model.bitacora">
+              <MappingFragment StoreEntitySet="bitacora">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookingid">
+            <EntityTypeMapping TypeName="Model.bookingid">
+              <MappingFragment StoreEntitySet="bookingid">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="reserva_reservaid" ColumnName="reserva_reservaid" />
+                <ScalarProperty Name="habitacion_codigo" ColumnName="habitacion_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="consecutivo">
+            <EntityTypeMapping TypeName="Model.consecutivo">
+              <MappingFragment StoreEntitySet="consecutivo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="prefijo" ColumnName="prefijo" />
+                <ScalarProperty Name="minimo" ColumnName="minimo" />
+                <ScalarProperty Name="maximo" ColumnName="maximo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emisor">
+            <EntityTypeMapping TypeName="Model.emisor">
+              <MappingFragment StoreEntitySet="emisor">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="error">
+            <EntityTypeMapping TypeName="Model.error">
+              <MappingFragment StoreEntitySet="error">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha_hora" ColumnName="fecha_hora" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado">
+            <EntityTypeMapping TypeName="Model.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_habitacion">
+            <EntityTypeMapping TypeName="Model.estado_habitacion">
+              <MappingFragment StoreEntitySet="estado_habitacion">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="habitacion">
+            <EntityTypeMapping TypeName="Model.habitacion">
+              <MappingFragment StoreEntitySet="habitacion">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado_habitacion_codigo" ColumnName="estado_habitacion_codigo" />
+                <ScalarProperty Name="precio_codigo" ColumnName="precio_codigo" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historial_actividad">
+            <EntityTypeMapping TypeName="Model.historial_actividad">
+              <MappingFragment StoreEntitySet="historial_actividad">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="usuario_cedula" ColumnName="usuario_cedula" />
+                <ScalarProperty Name="actividad_codigo" ColumnName="actividad_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="precio">
+            <EntityTypeMapping TypeName="Model.precio">
+              <MappingFragment StoreEntitySet="precio">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo_habitacion_codigo" ColumnName="tipo_habitacion_codigo" />
+                <ScalarProperty Name="precio1" ColumnName="precio" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reserva">
+            <EntityTypeMapping TypeName="Model.reserva">
+              <MappingFragment StoreEntitySet="reserva">
+                <ScalarProperty Name="reservaid" ColumnName="reservaid" />
+                <ScalarProperty Name="fechaentrada" ColumnName="fechaentrada" />
+                <ScalarProperty Name="fechasalida" ColumnName="fechasalida" />
+                <ScalarProperty Name="cantidaddias" ColumnName="cantidaddias" />
+                <ScalarProperty Name="codigopromocional" ColumnName="codigopromocional" />
+                <ScalarProperty Name="cantidadadultos" ColumnName="cantidadadultos" />
+                <ScalarProperty Name="cantidadniños" ColumnName="cantidadniños" />
+                <ScalarProperty Name="mascota" ColumnName="mascota" />
+                <ScalarProperty Name="metodopago" ColumnName="metodopago" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="usuario_cedula" ColumnName="usuario_cedula" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="Model.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tarjeta">
+            <EntityTypeMapping TypeName="Model.tarjeta">
+              <MappingFragment StoreEntitySet="tarjeta">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="numero_tarjeta" ColumnName="numero_tarjeta" />
+                <ScalarProperty Name="fechaexp" ColumnName="fechaexp" />
+                <ScalarProperty Name="usuario_cedula" ColumnName="usuario_cedula" />
+                <ScalarProperty Name="emisor_codigo" ColumnName="emisor_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_articulo">
+            <EntityTypeMapping TypeName="Model.tipo_articulo">
+              <MappingFragment StoreEntitySet="tipo_articulo">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_habitacion">
+            <EntityTypeMapping TypeName="Model.tipo_habitacion">
+              <MappingFragment StoreEntitySet="tipo_habitacion">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="Model.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="pregunta" ColumnName="pregunta" />
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+                <ScalarProperty Name="rol_codigo" ColumnName="rol_codigo" />
+                <ScalarProperty Name="estado_codigo" ColumnName="estado_codigo" />
+                <ScalarProperty Name="consecutivo_codigo" ColumnName="consecutivo_codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EXISTE" FunctionName="Model.Store.EXISTE" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="USUARIO_LOGIN" FunctionName="Model.Store.USUARIO_LOGIN" />
+          <FunctionImportMapping FunctionImportName="USUARIO_REGISTRO" FunctionName="Model.Store.USUARIO_REGISTRO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
