@@ -1,26 +1,34 @@
 ﻿using System;
 using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Security;
 using DAL;
 using System.ComponentModel.DataAnnotations;
+
+
 
 namespace BLL
 {
     public class Usuario
     {
+
+        [Required(ErrorMessage = "Ingrese el usuario")]
+        [Display(Name = "Ingrese el usuario")]
+        public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Ingrese la contraseña")]
+        [Display(Name = "Ingrese la contraseña")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
         //public int UserID { get; set; }
         //[Required]
         //public string usernameL { get; set; }
         //[Required]
         //public string password { get; set; }
 
-        //private string _cedula;
+        private string _cedula;
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
@@ -28,11 +36,11 @@ namespace BLL
         private string _username;
         private string _clave;
 
-        //public string cedula
-        //{
-        //    get { return _cedula; }
-        //    set { _cedula = value; }
-        //}
+        public string cedula
+        {
+            get { return _cedula; }
+            set { _cedula = value; }
+        }
 
         public string nombre
         {
@@ -87,7 +95,7 @@ namespace BLL
                 using (SqlCommand comando = new SqlCommand("USUARIO_REGISTRO", objConn))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.Add("@pCedula", SqlDbType.Int).Value = 11265875;
+                    comando.Parameters.Add("@pCedula", SqlDbType.Int).Value = _cedula;
                     comando.Parameters.Add("@pNombre", SqlDbType.VarChar).Value = _nombre;
                     comando.Parameters.Add("@pApellido1", SqlDbType.VarChar).Value = _apellido1;
                     comando.Parameters.Add("@pApellido2", SqlDbType.VarChar).Value = _apellido2;
@@ -108,7 +116,7 @@ namespace BLL
             }
             if (result)
             {
-                Console.WriteLine("Datos Ingresados");
+                Console.WriteLine("Datos Ingresados correctamente");
             }
             else
             {
@@ -129,8 +137,8 @@ namespace BLL
             {
                 SqlCommand comando = new SqlCommand("USUARIO_LOGIN", conObj);
                 comando.CommandType = CommandType.StoredProcedure;
-                comando.Parameters.AddWithValue("@pUsuario", "");
-                comando.Parameters.AddWithValue("@pPassword", "");
+                comando.Parameters.AddWithValue("@pUsuario", UserName);
+                comando.Parameters.AddWithValue("@pPassword", Password);
                 DataBase.abrirConexion(conObj);
                 comando.ExecuteNonQuery();
                 DataBase.cerrarConexion(conObj);
@@ -150,6 +158,8 @@ namespace BLL
                 Console.WriteLine("Verifique los datos ingresados");
             }
         }
+
+
 
 
 

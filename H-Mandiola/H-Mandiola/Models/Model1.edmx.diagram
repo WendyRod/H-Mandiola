@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Model.bookingid" Width="1.5" PointX="10.25" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.consecutivo" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.emisor" Width="1.5" PointX="3" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.error" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.error" Width="1.5" PointX="1" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.estado" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.estado_habitacion" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.habitacion" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />

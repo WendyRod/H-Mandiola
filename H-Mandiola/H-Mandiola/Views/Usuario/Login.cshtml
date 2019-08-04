@@ -135,46 +135,47 @@
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="card card-signin my-5">
+                    
                     <div class="card-body">
                         <center>
                             <img src="../Imagenes/H-icono.png" width="60" height="60" />
                         </center>
                         <br />
                         <h5 class="card-title text-center">Iniciar sesión</h5>
-                        <form class="form-signin" />
-                        <div class="form-label-group">
-                            @*<label for="UsernameLabel" runat="server">Nombre de usuario</label>*@
-                            <input type="text" id="UserName" associatedcontrolid="UserName" class="form-control" placeholder="Nombre de usuario" required="required" />
-                        </div>
+                        <form class="form-signin" id="login">
+                            <div class="form-label-group">
+                                @*<label for="UsernameLabel" runat="server">Nombre de usuario</label>*@
+                                <input type="text" id="UserName" associatedcontrolid="UserName" class="form-control" placeholder="Nombre de usuario" />
+                            </div>
 
 
-                        <div class="form-label-group">
-                            @*<label for="PasswordLabel" runat="server">Contraseña</label>*@
-                            <input type="password" id="Password" associatedcontrolid="Password" class="form-control" placeholder="Contraseña" required="required" />
-                        </div>
+                            <div class="form-label-group">
+                                @*<label for="PasswordLabel" runat="server">Contraseña</label>*@
+                                <input type="password" id="Password" associatedcontrolid="Password" class="form-control" placeholder="Contraseña" />
+                            </div>
 
-                        <div class="custom-control custom-checkbox mb-3" />
-                        <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                        <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
-
+                            <div class="custom-control custom-checkbox mb-3" />
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                            </form>
                     </div>
 
 
-                    <input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                    <div class="text-center">
-                        <a class="small" href="#">Olvidó la contraseña?</a>
-                    </div>
-                    <label>¿No posee una cuenta?</label>
-                    <input id="LoginRegisterButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrarse" onclick="LoginRegistrese()" />
-                    <hr class="my-4" />
 
-                    <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-                    <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
+                        <input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
+                        <div class="text-center">
+                            <a class="small" href="#">Olvidó la contraseña?</a>
+                        </div>
+                        <label>¿No posee una cuenta?</label>
+                        <input id="LoginRegisterButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrarse" onclick="LoginRegister()" />
+                        <hr class="my-4" />
+
+                        <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
+                        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="~/Scripts/JQuery/UserJQuery.js"></script>
 </body>
 </html>

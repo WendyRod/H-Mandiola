@@ -1,57 +1,62 @@
 ﻿
 function Register() {
     var values = new Object();
-    //values.cedula = $('#cedula').val();
+    values.cedula = $('#cedula').val();
     values.nombre = $('#name').val();
     values.apellido1 = $('#surname1').val();
     values.apellido2 = $('#surname2').val();
     values.username = $('#username').val();
     values.clave = $('#password').val();
-    values.confirmPass = $('#confirm_password').val
+    values.confirmPass = $('#confirm_password').val();
     values.email = $('#email').val();
     
-    if (nombre == "" || apellido1 == "" || apellido2 == "" || username == "" || clave == "" || email == "") {
-        alert("Complete todos los campos");
-    } else if (clave != confirmPass) {
+    if (values.cedula == "" || values.nombre == "" || values.apellido1 == "" || values.apellido2 == "" || values.username == "" || values.clave == "" || values.email == "") {
+        alert("Complete todos los campos.");
+    } else if (values.clave != values.confirmPass) {
         alert("La contraseña y la confirmación de la contraseña no coinciden");
-        return false;
-    } else {
-        return true;
-    }
+    } 
+    
         $.ajax({
             type: 'POST',
             data: JSON.stringify(values),
-            contentType: 'application/json; charset=utf-8',
+            contentType: 'application/json',
             dataType: 'json',
             url: '/Usuario/SaveValues',
             success: function (result) {
+                alert(result)
                 alert('Datos guardados con exito!!');
+                console.log("Hola");
             }
         })
 }
 
-function Login() {
-    var values = new Object();
-    values.nombre = $('#UserName').val();
-    values.apellido1 = $('#Password').val();
+/*function Login() {
+    //var values = new Object();
+    var login = {
+        usuario : $('#UserName').val(),
+        clave : $('#Password').val()
+    };
     $.ajax({
         url: '/Usuario/LoginMethod',
         type: "POST",
-        data: JSON.stringify(values),
+        data: login,
         dataType: "json",
         success: function (result) {
-            if (result.toString() == "Success") {
-                alert(result);
-                window.location.href = "/Usuario/Default"
+            alert(result);
+            if (result == "Fail") {
+                alert("No se puede iniciar sesión")
+                //alert(result);
+                
             }
             else {
-                alert(result);
+                window.location.href = "/Usuario/Default"
             }
-        },
-        error: function (result) {
-            alert("Error");
         }
-    });
+        /*error: function (result) {
+            alert(result)
+            alert("Error");
+        }*/
+    //});*/
 //    var dataObject = { UserName: $("#UserName").val(), Password: $("#Password").val() };
 //    $.ajax({
 //        url: '@Url.Action("Login", "Usuario")',
@@ -69,7 +74,7 @@ function Login() {
 //        error: function (result) {
 //            alert("Error");
 //        }
-}
+//}
 
 function ChangePassword() {
     var pass = $("#pass").val();
@@ -98,9 +103,37 @@ function ChangePassword() {
         window.location.href = "/Usuario/Login"
     }
 
-function LoginRegistrese() {
-    window.location.href = "/Usuario/CrearUsuario"
+    function LoginRegister() {
+        window.location.href = "/Usuario/CrearUsuario"
 }
+
+var Login = function () {
+    var data = $("#login").serialize();
+        console.log("Reconoce la funcion");
+        //var data = $("#login").serialize();
+        //var username = $("#UserName").val();
+        //var pass = $("#Password").val();
+        console.log("no entra")
+        $.ajax({
+            type: "POST",
+            url: "/Usuario/LoginUser",
+            data: data,
+            success: function (result) {
+                console.log("NO")
+                if (result == "Fail") {
+                    $("#login")[0].reset();
+                    //$("#msg").show();
+                    console.log("Wendy")
+                }
+                else {
+                    console.log("Hola")
+                    alert("Hola");
+                    window.location.href = "/Usuario/Default";
+                    //$("#msg").hide();
+                }
+            }
+        })
+    }
 
 
 
