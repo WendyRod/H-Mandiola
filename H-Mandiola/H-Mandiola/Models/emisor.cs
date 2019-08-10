@@ -20,7 +20,7 @@ namespace H_Mandiola.Models
             this.tarjeta = new HashSet<tarjeta>();
         }
     
-        public decimal codigo { get; set; }
+        public int codigo_emisor { get; set; }
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

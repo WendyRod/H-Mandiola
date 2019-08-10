@@ -14,7 +14,7 @@ namespace H_Mandiola.Models
     
     public partial class error
     {
-        public decimal codigo { get; set; }
+        public int codigo_error { get; set; }
         public System.DateTime fecha_hora { get; set; }
         public string mensaje { get; set; }
     }

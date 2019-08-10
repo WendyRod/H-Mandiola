@@ -1,4 +1,6 @@
-﻿
+﻿$('#PregDiv').hide();
+$('#RespDiv').hide();
+
 function Register() {
     var values = new Object();
     values.cedula = $('#cedula').val();
@@ -23,80 +25,43 @@ function Register() {
             dataType: 'json',
             url: '/Usuario/SaveValues',
             success: function (result) {
-                alert(result)
                 alert('Datos guardados con exito!!');
                 console.log("Hola");
             }
         })
 }
 
-/*function Login() {
-    //var values = new Object();
-    var login = {
-        usuario : $('#UserName').val(),
-        clave : $('#Password').val()
-    };
-    $.ajax({
-        url: '/Usuario/LoginMethod',
-        type: "POST",
-        data: login,
-        dataType: "json",
-        success: function (result) {
-            alert(result);
-            if (result == "Fail") {
-                alert("No se puede iniciar sesión")
-                //alert(result);
-                
-            }
-            else {
-                window.location.href = "/Usuario/Default"
-            }
-        }
-        /*error: function (result) {
-            alert(result)
-            alert("Error");
-        }*/
-    //});*/
-//    var dataObject = { UserName: $("#UserName").val(), Password: $("#Password").val() };
-//    $.ajax({
-//        url: '@Url.Action("Login", "Usuario")',
-//        type: "POST",
-//        data: dataObject,
-//        dataType: "json",
-//        success: function (result) {
-//            if (result.toString() == "Success") {
-//                alert(result);
-//            }
-//            else {
-//                alert(result);
-//            }
-//        },
-//        error: function (result) {
-//            alert("Error");
-//        }
-//}
-
 function ChangePassword() {
-    var pass = $("#pass").val();
-    var newPass = $("#newPass").val();
-    var confirmNewPass = $("#confirmNewPass").val();
+    var PASS = $("#pass").val();
+    var NEWPASS = $("#newPass").val();
+    var CONFIRMNEWPASS = $("#confirmNewPass").val();
 
-    $.ajax({
-        type: "POST",
-        url: "/Usuario/ChangePassword", 
-        data: { pass: pass, newPass: newPass, confirmNewPass: confirmNewPass },
-        dataType: "json",
-        success: function (result) {
-            if (result == "fail") {
-                if ("#newPass" != "#confirmNewPass") {
-                    alert("Las contraseñas no coinciden")
+    if (PASS == "" || NEWPASS == "" || CONFIRMNEWPASS =="") {
+        alert("Complete todos los campos.");
+    } else {
+        
+        $.ajax({
+            type: "POST",
+            url: "/Usuario/CambiarContraseñaUser", 
+            data: { OldPass: PASS, newPass: NEWPASS, confirmPass: CONFIRMNEWPASS },
+            dataType: "json",
+            success: function (result) {
+                if (result == "fail") {
+                    $("#ChangePassForm")[0].reset();
+                    alert("El cambio de contraseña falló");
+                }
+                else {
+                    $("#ChangePassForm")[0].reset();
+                    alert("Cambio de contraseña exitoso");
+                    window.location.href = "/Usuario/Default"
                 }
             }
-            else {
-                alert("La contraseña se cambio exitosamente!");
-            }
-        }
-    })
+        })
+    }
+}
+
+    function Cancelar() {
+        window.location.href = "/Usuario/Default"
     }
 
     function InicioSesion() {
@@ -108,26 +73,22 @@ function ChangePassword() {
 }
 
 var Login = function () {
-    var data = $("#login").serialize();
-        console.log("Reconoce la funcion");
+    var data = $("#loginF").serialize();
         //var data = $("#login").serialize();
         //var username = $("#UserName").val();
         //var pass = $("#Password").val();
-        console.log("no entra")
         $.ajax({
             type: "POST",
             url: "/Usuario/LoginUser",
             data: data,
             success: function (result) {
-                console.log("NO")
                 if (result == "Fail") {
-                    $("#login")[0].reset();
+                    $("#loginF")[0].reset();
                     //$("#msg").show();
                     console.log("Wendy")
                 }
                 else {
-                    console.log("Hola")
-                    alert("Hola");
+                    console.log("Hola");
                     window.location.href = "/Usuario/Default";
                     //$("#msg").hide();
                 }

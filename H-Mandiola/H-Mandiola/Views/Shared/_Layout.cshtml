@@ -171,17 +171,12 @@
                     <li class="nav-item active">
                         <h6 style="margin: 0 150px 0 25px; margin-top: 10px;" href="#">
                             Usted está en:
-
-                            @*<asp:SiteMapPath ID="SiteMapPath1" runat="server">
-                                </asp:SiteMapPath>*@
                         </h6>
                     </li>
-                    <a class="nav-link" style="margin: 0 150px 0 5px; color: black;">Bienvenido:</a>
-                    @*<asp:LoginName ID="LoginName1" runat="server" />*@
+                    <a class="nav-link" style="margin: 0 150px 0 5px; color: black;">Bienvenido(a): @Session["username"]</a>
 
                     <input type="submit" value="Iniciar sesión" onclick="InicioSesion()" class="btn btn-default" />
                     <li class="nav-item active" style="margin: 7px; border-color:black">
-                        @*<asp:LoginStatus ID="LoginStatus1" runat="server" style="color: black; " />*@
                     </li>
 
                 </ul>

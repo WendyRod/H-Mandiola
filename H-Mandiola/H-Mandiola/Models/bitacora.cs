@@ -14,12 +14,9 @@ namespace H_Mandiola.Models
     
     public partial class bitacora
     {
-        public decimal codigo { get; set; }
+        public string codigo_bit { get; set; }
         public System.DateTime fecha_hora { get; set; }
         public string tipo { get; set; }
         public string descripcion { get; set; }
-        public decimal consecutivo_codigo { get; set; }
-    
-        public virtual consecutivo consecutivo { get; set; }
     }
 }

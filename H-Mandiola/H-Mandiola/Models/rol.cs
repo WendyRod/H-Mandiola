@@ -20,7 +20,7 @@ namespace H_Mandiola.Models
             this.usuario = new HashSet<usuario>();
         }
     
-        public decimal codigo { get; set; }
+        public int codigo_rol { get; set; }
         public string tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

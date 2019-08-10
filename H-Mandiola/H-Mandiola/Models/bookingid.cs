@@ -15,8 +15,9 @@ namespace H_Mandiola.Models
     public partial class bookingid
     {
         public string codigo { get; set; }
-        public decimal reserva_reservaid { get; set; }
-        public decimal habitacion_codigo { get; set; }
+        public string reserva_reservaid { get; set; }
+        public string habitacion_codigo_hab { get; set; }
+        public string reservaid { get; set; }
     
         public virtual habitacion habitacion { get; set; }
         public virtual reserva reserva { get; set; }

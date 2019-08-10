@@ -21,24 +21,22 @@ namespace H_Mandiola.Models
             this.bookingid = new HashSet<bookingid>();
         }
     
-        public decimal reservaid { get; set; }
+        public string reservaid { get; set; }
         public System.DateTime fechaentrada { get; set; }
         public System.DateTime fechasalida { get; set; }
-        public decimal cantidaddias { get; set; }
+        public int cantidaddias { get; set; }
         public string codigopromocional { get; set; }
-        public decimal cantidadadultos { get; set; }
-        public decimal cantidadniños { get; set; }
+        public int cantidadadultos { get; set; }
+        public int cantidadniños { get; set; }
         public string mascota { get; set; }
         public string metodopago { get; set; }
-        public Nullable<decimal> precio { get; set; }
-        public decimal usuario_cedula { get; set; }
-        public decimal consecutivo_codigo { get; set; }
+        public Nullable<int> precio { get; set; }
+        public string usuario_cedula { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bookingid> bookingid { get; set; }
-        public virtual consecutivo consecutivo { get; set; }
         public virtual usuario usuario { get; set; }
     }
 }

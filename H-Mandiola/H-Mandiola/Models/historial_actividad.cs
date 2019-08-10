@@ -14,9 +14,9 @@ namespace H_Mandiola.Models
     
     public partial class historial_actividad
     {
-        public decimal codigo { get; set; }
-        public decimal usuario_cedula { get; set; }
-        public decimal actividad_codigo { get; set; }
+        public int codigo_histact { get; set; }
+        public string usuario_cedula { get; set; }
+        public string actividad_codigo_act { get; set; }
     
         public virtual actividad actividad { get; set; }
         public virtual usuario usuario { get; set; }

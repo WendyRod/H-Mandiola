@@ -12,15 +12,15 @@ namespace H_Mandiola.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class estado_habitacion
+    public partial class est_hab
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public estado_habitacion()
+        public est_hab()
         {
             this.habitacion = new HashSet<habitacion>();
         }
     
-        public decimal codigo { get; set; }
+        public int codigo_esthab { get; set; }
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

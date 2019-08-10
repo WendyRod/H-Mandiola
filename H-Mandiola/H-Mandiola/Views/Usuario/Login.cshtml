@@ -1,4 +1,5 @@
-﻿
+﻿@model H_Mandiola.Models.usuario
+
 @{
     Layout = null;
 }
@@ -8,6 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8"/>
     <title></title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
@@ -118,6 +120,10 @@
                     color: #777;
                 }
 
+        .field-validation-error {
+            color: red;
+        }
+
         .btn-google {
             color: white;
             background-color: #ea4335;
@@ -131,36 +137,43 @@
 </head>
 
 <body>
+
     <div class="container">
-        <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                <div class="card card-signin my-5">
-                    
-                    <div class="card-body">
-                        <center>
-                            <img src="../Imagenes/H-icono.png" width="60" height="60" />
-                        </center>
-                        <br />
-                        <h5 class="card-title text-center">Iniciar sesión</h5>
-                        <form class="form-signin" id="login">
-                            <div class="form-label-group">
-                                @*<label for="UsernameLabel" runat="server">Nombre de usuario</label>*@
-                                <input type="text" id="UserName" associatedcontrolid="UserName" class="form-control" placeholder="Nombre de usuario" />
-                            </div>
+        @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
 
+                        <div class="card-body">
+                            <center>
+                                <img src="../Imagenes/H-icono.png" width="60" height="60" />
+                            </center>
+                            <br />
+                            <h5 class="card-title text-center">Iniciar sesión</h5>
+                            <form class="form-signin" id="loginF">
+                                <div class="form-label-group">
+                                    <label for="UsernameLabel" runat="server">Nombre de usuario:</label>
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.usuario1, new { htmlAttributes = new { @class = "form-control", type = "text" , required = "required" } })
+                                    <br />
+                                    @*@Html.ValidationMessageFor(model => model.usuario1)*@
+                                </div>
+                                <div class="form-label-group">
+                                    <label for="PasswordLabel" runat="server">Contraseña:</label>
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.clave, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.clave)
+                                </div>
 
-                            <div class="form-label-group">
-                                @*<label for="PasswordLabel" runat="server">Contraseña</label>*@
-                                <input type="password" id="Password" associatedcontrolid="Password" class="form-control" placeholder="Contraseña" />
-                            </div>
-
-                            <div class="custom-control custom-checkbox mb-3" />
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                                <div class="custom-control custom-checkbox mb-3" />
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
                             </form>
-                    </div>
-
-
+                        </div>
 
                         <input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
                         <div class="text-center">
@@ -172,10 +185,24 @@
 
                         <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
                         <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
-    <script src="~/Scripts/JQuery/UserJQuery.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @{ 
+        if (TempData["msg"] != null)
+        {
+            <script type="text/javascript">
+                alert("@TempData["msg"]");
+            </script>
+        }
+    }
 </body>
 </html>
+<script src="~/Scripts/JQuery/UserJQuery.js"></script>

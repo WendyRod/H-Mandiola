@@ -14,11 +14,11 @@ namespace H_Mandiola.Models
     
     public partial class articulo
     {
-        public decimal codigo { get; set; }
+        public string codigo_art { get; set; }
         public string nombre { get; set; }
-        public decimal precio { get; set; }
-        public decimal tipo_articulo_codigo { get; set; }
-        public decimal reserva_reservaid { get; set; }
+        public int precio { get; set; }
+        public int tipo_articulo_codigo_tipart { get; set; }
+        public string reserva_reservaid { get; set; }
     
         public virtual reserva reserva { get; set; }
         public virtual tipo_articulo tipo_articulo { get; set; }

@@ -14,34 +14,11 @@ namespace H_Mandiola.Models
     
     public partial class consecutivo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public consecutivo()
-        {
-            this.actividad = new HashSet<actividad>();
-            this.bitacora = new HashSet<bitacora>();
-            this.habitacion = new HashSet<habitacion>();
-            this.precio = new HashSet<precio>();
-            this.reserva = new HashSet<reserva>();
-            this.usuario = new HashSet<usuario>();
-        }
-    
-        public decimal codigo { get; set; }
+        public int codigo_cons { get; set; }
         public string descripcion { get; set; }
+        public string consecutivo1 { get; set; }
         public string prefijo { get; set; }
-        public Nullable<decimal> minimo { get; set; }
-        public Nullable<decimal> maximo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<actividad> actividad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<bitacora> bitacora { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<habitacion> habitacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<precio> precio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<reserva> reserva { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public Nullable<int> minimo { get; set; }
+        public Nullable<int> maximo { get; set; }
     }
 }

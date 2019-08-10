@@ -66,7 +66,6 @@
             display: block;
             width: 100%;
             margin-bottom: 0;
-            /* Override default `<label>` margin */
             line-height: 1.5;
             color: #495057;
             border: 1px solid transparent;
@@ -134,28 +133,28 @@
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Cedula:
-                                <input id="cedula" name="ced" type="text" placeholder="Cedula" class="form-control input-md" required="">
+                                <input id="cedula" name="ced" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Nombre:
-                                <input id="name" name="name" type="text" placeholder="Nombre" class="form-control input-md" required="">
+                                <input id="name" name="name" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Primer apellido:
-                                <input id="surname1" name="surname1" type="text" placeholder="Primer Apellido" class="form-control input-md" required="">
+                                <input id="surname1" name="surname1" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Segundo apellido:
-                                <input id="surname2" name="surname2" type="text" placeholder="Segundo Apellido" class="form-control input-md" required="">
+                                <input id="surname2" name="surname2" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
@@ -163,32 +162,32 @@
                             <div class="col-md-10">
                                 Nombre de usuario:
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input id="username" name="username" type="text" placeholder="Nombre de usuario" class="form-control input-md" required="">
+                                <input id="username" name="username" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Password input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Contraseña:
-                                <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control input-md" required="">
+                                <input id="password" name="password" type="password" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Password input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Confirmar contraseña:
-                                <input id="confirm_password" name="confirm_password" type="password" placeholder="Confirmar contraseña" class="form-control input-md" required="">
+                                <input id="confirm_password" name="confirm_password" type="password" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-label-group">
                             <div class="col-md-10">
                                 Correo electrónico:
-                                <input id="email" name="email" type="text" placeholder="Correo electrónico" class="form-control input-md" required="">
+                                <input id="email" name="email" type="text" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Select Basic -->
-                        <div class="form-label-group">
+                        <div class="form-label-group" id="PregDiv">
                             <div class="col-md-10">
                                 Pregunta de seguridad:
                                 <select id="pregunta" name="pregunta" class="form-control">
@@ -199,7 +198,7 @@
                             </div>
                         </div>
                         <!-- Text input-->
-                        <div class="form-label-group">
+                        <div class="form-label-group" id="RespDiv">
                             <div class="col-md-10">
                                 Respuesta:
                                 <input id="respuesta" name="respuesta" type="text" placeholder="Respuesta" class="form-control input-md">
@@ -211,7 +210,7 @@
 
                             <div class="col-md-7 control-label" style="margin-left:90px">
                                 <input id="aceptar" type="submit" name="aceptar" class="btn btn-lg btn-primary btn-block text-uppercase" value="Aceptar" onclick="Register()" />
-                                <input id="cancelar" name="cancelar" class="btn btn-lg btn-danger btn-block text-uppercase" value="Cancelar" />
+                                <input id="cancelar" type="submit" name="cancelar" class="btn btn-lg btn-danger btn-block text-uppercase" value="Cancelar" />
                             </div>
                             <hr>
                             <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-3"></i>Iniciar sesión con Google</button>

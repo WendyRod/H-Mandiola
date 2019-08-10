@@ -4,40 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a03c36ff171c40a991ad4ef46390bbc1" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="Model.actividad" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.articulo" Width="1.5" PointX="10.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.bitacora" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.bookingid" Width="1.5" PointX="10.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.consecutivo" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.emisor" Width="1.5" PointX="3" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.error" Width="1.5" PointX="1" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.estado" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.estado_habitacion" Width="1.5" PointX="3.75" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.habitacion" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.historial_actividad" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.precio" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.reserva" Width="1.5" PointX="8" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.rol" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.tarjeta" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.tipo_articulo" Width="1.5" PointX="8" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.tipo_habitacion" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.usuario" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
-        <AssociationConnector Association="Model.actividad_consecutivo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.histActividad_actividad_fk" ManuallyRouted="false" />
+      <Diagram DiagramId="8fc1ae75a2c34c8aa033b3950699a8a7" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.actividad" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.articulo" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.bitacora" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.bookingid" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.consecutivo" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.emisor" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.error" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.est_hab" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.estado" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.habitacion" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.historial_actividad" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.precio" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.reserva" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.rol" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tarjeta" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tipo_articulo" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tipo_habitacion" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.usuario" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.hist_act_act_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.articulo_reserva_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.articulo_tipo_articulo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.bitacora_consecutivo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.bookingid_habitacion_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.bookingid_reserva_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.habitacion_consecutivo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.precio_consecutivo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.reserva_consecutivo_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.usuario_consecutivo_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.tarjeta_emisor_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.habitacion_est_hab_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.usuario_estado_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.habitacion_estHabitacion_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.habitacion_precio_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.historial_actividad_usuario_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.precio_tipo_habitacion_fk" ManuallyRouted="false" />

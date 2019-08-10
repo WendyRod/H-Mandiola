@@ -14,11 +14,11 @@ namespace H_Mandiola.Models
     
     public partial class tarjeta
     {
-        public decimal codigo { get; set; }
-        public decimal numero_tarjeta { get; set; }
+        public int codigo_tarjeta { get; set; }
+        public int numero_tarjeta { get; set; }
         public System.DateTime fechaexp { get; set; }
-        public decimal usuario_cedula { get; set; }
-        public decimal emisor_codigo { get; set; }
+        public string usuario_cedula { get; set; }
+        public int emisor_codigo_emisor { get; set; }
     
         public virtual emisor emisor { get; set; }
         public virtual usuario usuario { get; set; }

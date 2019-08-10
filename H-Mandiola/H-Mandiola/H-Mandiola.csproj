@@ -164,7 +164,7 @@
     <Compile Include="Models\estado.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\estado_habitacion.cs">
+    <Compile Include="Models\est_hab.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\habitacion.cs">
@@ -196,12 +196,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rol.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -240,8 +234,8 @@
     <Content Include="Imagenes\yoga.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -302,6 +296,7 @@
     <Content Include="Views\Administrador\Actividades.cshtml" />
     <Content Include="Views\Administrador\Habitaciones.cshtml" />
     <Content Include="Views\Administrador\Precios.cshtml" />
+    <Content Include="Views\Consultas\Bitacora1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,6 +321,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{25ce6e53-d39b-4025-a7ea-f214ea50900a}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{81873133-c5b6-45ed-ad26-e5dd0129b88e}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

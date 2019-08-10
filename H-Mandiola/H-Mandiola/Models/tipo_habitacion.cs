@@ -20,7 +20,7 @@ namespace H_Mandiola.Models
             this.precio = new HashSet<precio>();
         }
     
-        public decimal codigo { get; set; }
+        public int codigo_tiphab { get; set; }
         public string tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -20,12 +20,10 @@ namespace H_Mandiola.Models
             this.habitacion = new HashSet<habitacion>();
         }
     
-        public decimal codigo { get; set; }
-        public decimal tipo_habitacion_codigo { get; set; }
-        public Nullable<decimal> precio1 { get; set; }
-        public decimal consecutivo_codigo { get; set; }
+        public string codigo_precio { get; set; }
+        public int tipo_habitacion_codigo_tiphab { get; set; }
+        public Nullable<int> precio1 { get; set; }
     
-        public virtual consecutivo consecutivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<habitacion> habitacion { get; set; }
         public virtual tipo_habitacion tipo_habitacion { get; set; }
