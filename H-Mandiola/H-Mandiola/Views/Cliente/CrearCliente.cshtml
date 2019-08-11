@@ -1,9 +1,9 @@
 ﻿
-
 @{
-    ViewBag.Title = "CrearUsuario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "CrearCliente";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
+
 <style>
 
     :root {
@@ -11,9 +11,7 @@
         --input-padding-y: .75rem;
     }
 
-    body {
-        background-image: url("https://www.thephoenician.com/wp-content/uploads/sites/8/2013/02/poolatdusk.jpg");
-    }
+body { background-image: url("https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/42/81/42817_v4.jpeg"); }
 
     .card-signin {
         border: 0;
@@ -180,23 +178,7 @@
                                 <label for="email">Email</label>
                             </div>
 
-                            <!-- Select Basic -->
-                            <div class="form-label-group">
-                                <select id="pregunta" name="pregunta" class="form-control">
-                                    <option value="1">¿Color favorito?</option>
-                                    <option value="2">¿Libro favorito?</option>
-                                    <option value="3">¿Nombre de la mascota?</option>
-                                </select>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-label-group">
-                                <input id="respuesta" name="respuesta" type="text" placeholder="Respuesta" class="form-control input-md" required="">
-                                <label for="respuesta">Respuesta seguridad</label>
-                            </div>
-
-
-                            <!-- Button (Double) -->
+                           <!-- Button (Double) -->
                             <input id="aceptar" type="submit" name="aceptar" class="btn btn-lg btn-primary btn-block text-uppercase" value="Aceptar" onclick="Register()" />
                             <input id="cancelar" type="submit" name="cancelar" class="btn btn-lg btn-danger btn-block text-uppercase" value="Cancelar" />
 
@@ -216,4 +198,5 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="~/Scripts/JQuery/UserJQuery.js"></script>
 </body>
+
 

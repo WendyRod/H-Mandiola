@@ -9,7 +9,6 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <meta charset="utf-8"/>
     <title></title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
@@ -120,10 +119,6 @@
                     color: #777;
                 }
 
-        .field-validation-error {
-            color: red;
-        }
-
         .btn-google {
             color: white;
             background-color: #ea4335;
@@ -136,7 +131,7 @@
     </style>
 </head>
 
-<body>
+@*<body>
 
     <div class="container">
         @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
@@ -158,51 +153,115 @@
                                     <br />
                                     @Html.EditorFor(model => model.usuario1, new { htmlAttributes = new { @class = "form-control", type = "text" , required = "required" } })
                                     <br />
-                                    @*@Html.ValidationMessageFor(model => model.usuario1)*@
-                                </div>
+                                   @**@*@Html.ValidationMessageFor(model => model.usuario1)*@*@
+                                    @*</div>
+                                    <div class="form-label-group">
+                                        <label for="PasswordLabel" runat="server">Contraseña:</label>
+                                        <br />
+                                        <br />
+                                        @Html.EditorFor(model => model.clave, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
+                                        <br />
+                                        @Html.ValidationMessageFor(model => model.clave)
+                                    </div>*@
+
+                                @*<div class="custom-control custom-checkbox mb-3" />
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                                        </form>
+                                    </div>*@
+
+                                @*<input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
+                                    <div class="text-center">
+                                        <a class="small" href="#">Olvidó la contraseña?</a>
+                                    </div>
+                                    <label>¿No posee una cuenta?</label>
+                                    <input id="LoginRegisterButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrarse" onclick="LoginRegister()" />
+                                    <hr class="my-4" />*@
+
+                                @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
+                                                    <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }*@
+                                @*</div>
+                                    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+                                    <script src="~/Scripts/jquery.validate.min.js"></script>
+                                    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+                                @*@{
+                                    if (TempData["msg"] != null)
+                                    {
+                                        <script type="text/javascript">
+                                            alert("@TempData["msg"]");
+                                        </script>
+                                    }*@
+                                @*}
+                                    </body>
+                                    </html>
+                                    <script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
+
+<body>
+    <div class="container">
+        @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <center>
+                                <img src="../Imagenes/H-icono.png" width="60" height="60" />
+                            </center>
+                            <br />
+                            <div class="form-label-group">
+                                <h5 class="card-title text-center">Iniciar sesión</h5>
+                                <form class="form-signin" id="loginF" />
+
+                                <!-- Text input-->
                                 <div class="form-label-group">
-                                    <label for="PasswordLabel" runat="server">Contraseña:</label>
-                                    <br />
-                                    <br />
-                                    @Html.EditorFor(model => model.clave, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
-                                    <br />
-                                    @Html.ValidationMessageFor(model => model.clave)
+                                    <input id="UserName" name="UserName" type="text" placeholder="Nombre de usuario" class="form-control input-md" required>
+                                    <label for="UserName" runat="server">Nombre de usuario</label>
+                                </div>
+
+                                <div class="form-label-group">
+                                    <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control input-md" required>
+                                    <label for="password" runat="server">Contraseña</label>
                                 </div>
 
                                 <div class="custom-control custom-checkbox mb-3" />
                                 <input type="checkbox" class="custom-control-input" id="customCheck1" />
                                 <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
-                            </form>
+
+                            </div>
+
+
+                            <input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
+                            <div class="text-center">
+                                <a class="small" id="LoginRegisterButton" value="Registrarse" onclick="LoginRegistrese()" href="#">¿No posee una cuenta?</a>
+                            </div>
+                            <hr class="my-4" />
+
+                            <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
+                            <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
                         </div>
-
-                        <input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                        <div class="text-center">
-                            <a class="small" href="#">Olvidó la contraseña?</a>
-                        </div>
-                        <label>¿No posee una cuenta?</label>
-                        <input id="LoginRegisterButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrarse" onclick="LoginRegister()" />
-                        <hr class="my-4" />
-
-                        <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-                        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
-
                     </div>
                 </div>
             </div>
         }
-    </div>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        </div>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-    @{ 
+        {
         if (TempData["msg"] != null)
         {
             <script type="text/javascript">
                 alert("@TempData["msg"]");
             </script>
         }
-    }
-</body>
-</html>
-<script src="~/Scripts/JQuery/UserJQuery.js"></script>
+        }
+        </body>
+        </html>
+        <script src="~/Scripts/JQuery/UserJQuery.js"></script>
