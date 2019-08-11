@@ -134,6 +134,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartupAuth.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -149,7 +150,6 @@
     <Compile Include="Models\bitacora.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BitacoraData.cs" />
     <Compile Include="Models\bookingid.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -286,7 +286,9 @@
     <Content Include="Views\Usuario\CrearUsuario.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Usuario\CambiarContraseña.cshtml" />
-    <Content Include="Views\Consultas\Bitacora.cshtml" />
+    <Content Include="Views\Consultas\Bitacora.cshtml">
+      <BrowseToURL>~/Consultas/Bitacora</BrowseToURL>
+    </Content>
     <Content Include="Views\Consultas\Errores.cshtml" />
     <Content Include="Views\Consultas\ClientesActivos.cshtml" />
     <Content Include="Views\Consultas\HabitacionesListas.cshtml" />
@@ -297,6 +299,15 @@
     <Content Include="Views\Administrador\Actividades.cshtml" />
     <Content Include="Views\Administrador\Habitaciones.cshtml" />
     <Content Include="Views\Administrador\Precios.cshtml" />
+    <Content Include="Views\Consultas\Bitacora1.cshtml">
+      <BrowseToURL>Consultas/Bitacora1</BrowseToURL>
+    </Content>
+    <Content Include="Views\Shared\_LayoutCliente.cshtml" />
+    <Content Include="Views\Cliente\Inicio.cshtml" />
+    <Content Include="Views\Cliente\CrearCliente.cshtml" />
+    <Content Include="Views\Cliente\Reserva.cshtml" />
+    <Content Include="Views\Cliente\CambiarPass.cshtml" />
+    <Content Include="Views\Cliente\CatalogoHab.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

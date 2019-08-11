@@ -22,7 +22,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            margin-top:auto;
+            margin-top: auto;
         }
 
         .nav li ul {
@@ -109,7 +109,6 @@
         ul, ol {
             list-style: none;
         }
-
     </style>
 </head>
 <body>
@@ -122,48 +121,16 @@
                 <li class="nav-item dropdown" />
 
                 <a class="nav-link dropdown-toggle" style="color: black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Inicio
+                    Menú principal
                 </a>
 
                 <ul class="dropdown-menu animate slideIn" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Seguridad</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="#">Usuarios</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/CrearUsuario">Crear Usuario</a></li>
-                                    <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/VerUsuarios">Ver Usuarios</a></li>
-                                </ul>
 
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="~/Usuario/CambiarContraseña">Cambiar Contraseña</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Administración</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="~/Administrador/Consecutivos">Consecutivos</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Habitaciones">Habitaciones</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Actividades">Actividades</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Precios">Precios</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/EstadoClientes">Estados de los clientes</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Consultas</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="~/Consultas/Bitacora">Bitácora</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/Errores">Errores</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/ClientesActivos">Clientes activos</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/HabitacionesListas">Habitaciones listas</a></li>
-                        </ul>
-                    </li>
-
-                    <a class="dropdown dropdown-item" href="~/Usuario/Default">Volver a inicio</a>
-                    <a class="dropdown dropdown-item" href="~/Cliente/Inicio">Salir modo administrador</a>
+                    <a class="dropdown dropdown-item" href="~/Cliente/CrearCliente">Crear cuenta</a>
+                    <a class="dropdown dropdown-item" href="~/Cliente/CatalogoHab">Reservación</a>
+                    <a class="dropdown dropdown-item" href="~/Cliente/CambiarPass">Cambiar contraseña</a>
+                    <a class="dropdown dropdown-item" href="~/Usuario/Login">Administrador</a>
+                    <a class="dropdown dropdown-item" href="~/Cliente/Inicio">Volver a inicio</a>
                 </ul>
             </div>
 
@@ -186,7 +153,6 @@
         </div>
 
     </nav>
-
 
     <div class="container body-content">
         @RenderBody()
