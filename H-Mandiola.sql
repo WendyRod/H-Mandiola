@@ -271,44 +271,40 @@ ALTER TABLE usuario
 
 
 
--- Informe de Resumen de Oracle SQL Developer Data Modeler: 
--- 
--- CREATE TABLE                            18
--- CREATE INDEX                             0
--- ALTER TABLE                             43
--- CREATE VIEW                              0
--- ALTER VIEW                               0
--- CREATE PACKAGE                           0
--- CREATE PACKAGE BODY                      0
--- CREATE PROCEDURE                         0
--- CREATE FUNCTION                          0
--- CREATE TRIGGER                           0
--- ALTER TRIGGER                            0
--- CREATE COLLECTION TYPE                   0
--- CREATE STRUCTURED TYPE                   0
--- CREATE STRUCTURED TYPE BODY              0
--- CREATE CLUSTER                           0
--- CREATE CONTEXT                           0
--- CREATE DATABASE                          0
--- CREATE DIMENSION                         0
--- CREATE DIRECTORY                         0
--- CREATE DISK GROUP                        0
--- CREATE ROLE                              0
--- CREATE ROLLBACK SEGMENT                  0
--- CREATE SEQUENCE                          0
--- CREATE MATERIALIZED VIEW                 0
--- CREATE SYNONYM                           0
--- CREATE TABLESPACE                        0
--- CREATE USER                              0
--- 
--- DROP TABLESPACE                          0
--- DROP DATABASE                            0
--- 
--- REDACTION POLICY                         0
--- 
--- ORDS DROP SCHEMA                         0
--- ORDS ENABLE SCHEMA                       0
--- ORDS ENABLE OBJECT                       0
--- 
--- ERRORS                                   0
--- WARNINGS                                 0
+----INSERT H-MANDIOLA HOTEL----
+
+
+--INSERT EST_HAB
+insert into est_hab (codigo_esthab, descripcion) values (1, 'Lista');
+insert into est_hab (codigo_esthab, descripcion) values (2, 'Pendiente');
+
+
+--INSERT ESTADO
+insert into estado (codigo_est, tipo) values (3, 'Activo');
+insert into estado (codigo_est, tipo) values (4, 'Inactivo');
+
+
+--INSERT ROL
+insert into rol (codigo_rol, tipo) values (5, 'Administrador');
+insert into rol (codigo_rol, tipo) values (6, 'Seguridad');
+insert into rol (codigo_rol, tipo) values (7, 'Consecutivo');
+insert into rol (codigo_rol, tipo) values (8, 'Mantenimiento');
+insert into rol (codigo_rol, tipo) values (9, 'Consulta');
+
+
+--INSERT TIPO_ARTICULO
+insert into tipo_articulo (codigo_tipart, tipo) values (10, 'Licor');
+insert into tipo_articulo (codigo_tipart, tipo) values (11, 'Bebidas Gaseosas');
+insert into tipo_articulo (codigo_tipart, tipo) values (12, 'Bebidas Naturales');
+insert into tipo_articulo (codigo_tipart, tipo) values (13, 'Dulces');
+insert into tipo_articulo (codigo_tipart, tipo) values (14, 'Helados');
+insert into tipo_articulo (codigo_tipart, tipo) values (15, 'Flores');
+insert into tipo_articulo (codigo_tipart, tipo) values (16, 'Tartas');
+
+
+--INSERT TIPO_HABITACION
+insert into tipo_habitacion (codigo_tiphab, tipo) values (17, 'Normal');
+insert into tipo_habitacion (codigo_tiphab, tipo) values (18, 'Deluxe');
+insert into tipo_habitacion (codigo_tiphab, tipo) values (19, 'Condominio');
+
+

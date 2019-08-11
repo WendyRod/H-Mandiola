@@ -6,29 +6,62 @@ using System.Web.Mvc;
 using System.ComponentModel;
 using H_Mandiola.Controllers;
 using H_Mandiola.Models;
+using BLL;
 
 namespace H_Mandiola.Controllers
 {
     public class ConsultasController : Controller
     {
+
+        BitacoraData objBit = new BitacoraData();
+
+        Bitacora bit = new Bitacora();
+
         // GET: Consultas
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Bitacora1()
+        public ActionResult Bitacora()
         {
-            return View(GetBitacoraDetails());
+            return View();
         }
 
-        IEnumerable<bitacora> GetBitacoraDetails()
+        [HttpGet]
+        public ActionResult Bitacora(int? id)
         {
-            using (Entities db = new Entities())
+            //return View(GetBitacoraDetails());
+            if (id == null)
+
             {
-                return db.bitacora.ToList<bitacora>();
+
+                return View();
+
             }
+
+            bitacora bit = objBit.BitacoraDetails(id);
+
+            if (bit == null)
+
+            {
+
+                return View();
+
+            }
+
+            return View(bit);
         }
+
+
+
+        //IEnumerable<bitacora> GetBitacoraDetails()
+        //{
+        //    using (Entities db = new Entities())
+        //    {
+        //        return db.bitacora.ToList<bitacora>();
+        //    }
+        //}
 
         public ActionResult ClientesActivos()
         {

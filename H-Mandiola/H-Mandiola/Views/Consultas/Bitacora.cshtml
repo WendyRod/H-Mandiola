@@ -1,4 +1,5 @@
-﻿@{
+﻿@model H_Mandiola.Models.bitacora
+    @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -32,24 +33,26 @@
         <table id="TablaBitacora" style="width: 100%">
             <tr>
                 <th>Código</th>
-                <th>Fecha</th>
-                <th>Hora</th>
+                @Html.DisplayFor(model => model.codigo_bit)
+                <th>Fecha-Hora</th>
+                @Html.DisplayFor(model => model.fecha_hora)
+                @*<th>Hora</th>*@
                 <th>Descripción</th>
+                @Html.DisplayFor(model => model.descripcion)
                 <th>Detalle</th>
             </tr>
-            <tr>
+            @*<tr>
                 <td>1234</td>
                 <td>30/06/2019</td>
                 <td>17:44</td>
                 <td>Cambio contraseña</td>
                 <td><button>Ver más</button></td>
-            </tr>
+            </tr>*@
             <tr>
-                <td>1234</td>
+                @*<td>1234</td>
                 <td>29/06/2019</td>
-                <td>11:44</td>
-                <td>Registro de usuario</td>
-                <td><button>Ver más</button></td>
+                <td>Registro de usuario</td>*@
+                @*<td><button>Ver más</button></td>*@
             </tr>
         </table>
     </div>

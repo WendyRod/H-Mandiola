@@ -53,6 +53,30 @@ namespace DAL
             }
         }
 
+        public static DataSet ejecuta_dataset(SqlConnection conexion, string sql, bool storedP, ref string mensaje_error, ref int numero_error)
+        {
+            SqlDataAdapter sql_data_adapter;
+            DataSet dataset = new DataSet();
+            try
+            {
+                sql_data_adapter = new SqlDataAdapter(sql, conexion);
+                if (storedP)
+                {
+                    sql_data_adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                }
+                sql_data_adapter.Fill(dataset);
+                numero_error = 0;
+                mensaje_error = "OK!";
+                return dataset;
+            }
+            catch (SqlException ex)
+            {
+                numero_error = ex.Number;
+                mensaje_error = ex.Message;
+                return null;
+            }
+        }
+
         public DataBase() { }
 
         /*string cadena = "Data Source=localhost\\SQLEXPRESS; Initial Catalog=H-Mandiola; Integrated Security=True";

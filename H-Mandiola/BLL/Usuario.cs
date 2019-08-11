@@ -83,7 +83,7 @@ namespace BLL
                     comando.Parameters.Add("@pUsuario", SqlDbType.VarChar).Value = _username;
                     comando.Parameters.Add("@pClave", SqlDbType.VarChar).Value = _clave;
                     comando.Parameters.Add("@pRol", SqlDbType.Int).Value = 4;
-                    comando.Parameters.Add("@pEstado", SqlDbType.Int).Value = 1;
+                    comando.Parameters.Add("@pEstado", SqlDbType.Int).Value = 3;
                     DataBase.abrirConexion(objConn);
                     comando.ExecuteNonQuery();
                     DataBase.cerrarConexion(objConn);
