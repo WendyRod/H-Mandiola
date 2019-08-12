@@ -23,39 +23,54 @@
     <br />
     <br />
     <br />
-    <div class="container">
+    <div class="table-responsive">
+
         <center>
             <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
         </center>
-        <div class="container" style="overflow-x: auto;">
-            <h4>Información de los clientes</h4>
-            <table id="TablaEstadoClientes" style="width: 100%">
+        <br />
+        <h4>Clientes</h4>
+        <br />
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th>Código</th>
-                    <th>Nombre del cliente</th>
-                    <th>Consecutivo</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre del cliente</th>
+                    <th scope="col">Consecutivo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"></th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
-                    <td>1456</td>
+                    <th scope="row">1</th>
                     <td>Wendy</td>
                     <td></td>
-                    <td></td>
+                    <td>Activo</td>
                     <td>
-                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                        <button id="editar" name="editar" class="btn btn-secondary">Editar</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>1200</td>
+                    <th scope="row">2</th>
                     <td>María</td>
                     <td></td>
-                    <td></td>
+                    <td>Inactivo</td>
                     <td>
-                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                        <button id="editar" name="editar" class="btn btn-secondary">Editar</button>
                     </td>
                 </tr>
-            </table>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="nuevo"></label>
+            <div class="col-md-4">
+                <button id="nuevo" name="nuevo" class="btn btn-primary">Agregar nuevo</button>
+            </div>
         </div>
     </div>
+    <br />
+    <br />
+
 </header>
+<br />
