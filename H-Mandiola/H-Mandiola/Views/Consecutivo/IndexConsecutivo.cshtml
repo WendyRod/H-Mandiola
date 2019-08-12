@@ -1,0 +1,76 @@
+﻿@model IEnumerable<H_Mandiola.Models.Consecutivo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="container">
+        <center>
+            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+    </div>
+
+    <div class="container" style="overflow-x:auto;">
+        <h4>Lista de Consecutivos</h4>
+        <table class="table" style="width: 100%">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Consecutivo1)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Consecutivo1)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
+                        @*@Html.ActionLink("Details", "Details", new { id=item.Codigo }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.Codigo })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <input type="submit" value="Nuevo" onclick="" />
+        </div>
+</header>

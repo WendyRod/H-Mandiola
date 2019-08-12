@@ -1,0 +1,73 @@
+﻿@model IEnumerable<H_Mandiola.Models.Error>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <center>
+            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+    </div>
+    <div class="container" style="overflow-x:auto;">
+        <h4>Errores del sistema</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha_Hora)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mensaje)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha_Hora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mensaje)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</header>

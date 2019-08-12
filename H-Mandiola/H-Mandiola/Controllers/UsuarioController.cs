@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
@@ -9,11 +11,13 @@ using H_Mandiola.Models;
 
 
 
+
 namespace H_Mandiola.Controllers
 {
     public class UsuarioController : Controller
-    {
-        Entities db = new Entities();
+    {   
+        //Usuario db = new Usuario();
+        private DataContext db= new DataContext();
         SqlConnection conn = new SqlConnection("Data Source=DESKTOP-WENDY\\SQLEXPRESS; Initial Catalog=H-Mandiola; Integrated Security=True");
         public static string pass = "", user = "";
 
@@ -42,9 +46,9 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginMethod(H_Mandiola.Models.usuario userModel)
+        public ActionResult LoginMethod(H_Mandiola.Models.Usuario userModel)
         {
-            var userDetails = db.usuario.Where(x => x.usuario1 == userModel.usuario1 && x.clave == userModel.clave).FirstOrDefault();
+            var userDetails = db.Usuario.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {
                 TempData["msg"] = "El usuario o la clave no son correctos.";
@@ -52,7 +56,7 @@ namespace H_Mandiola.Controllers
             }
             else
             {
-                Session["username"] = userDetails.usuario1;
+                Session["username"] = userDetails.Usuario1;
                 //TempData["msg"] = "Login exitoso!";
                 return RedirectToAction("Default", "Usuario");
             }
@@ -69,7 +73,7 @@ namespace H_Mandiola.Controllers
         public ActionResult CambiarContraseñaUser(string OldPass, string newPass, string confirmPass)
         {
             bool result = true;
-            usuario user = new usuario();
+            Usuario user = new Usuario();
 
             if (pass == "" || newPass == "" || confirmPass == "")
             {

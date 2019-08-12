@@ -1,0 +1,75 @@
+﻿@model H_Mandiola.Models.Consecutivo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Consecutivo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consecutivo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consecutivo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoseePrefijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoseePrefijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prefijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prefijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoseeRango)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoseeRango)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minimo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minimo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maximo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Maximo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

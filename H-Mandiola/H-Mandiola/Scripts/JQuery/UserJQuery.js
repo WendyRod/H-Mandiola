@@ -1,5 +1,6 @@
 ﻿$('#PregDiv').hide();
 $('#RespDiv').hide();
+$("#btnSalir").hide();
 
 function Register() {
     var values = new Object();
@@ -85,16 +86,23 @@ var Login = function () {
                 if (result == "Fail") {
                     $("#loginF")[0].reset();
                     //$("#msg").show();
-                    console.log("Wendy")
                 }
                 else {
-                    console.log("Hola");
                     window.location.href = "/Usuario/Default";
+                    $("#btnInicio").hide();
+                    $("#btnSalir").show();
                     //$("#msg").hide();
                 }
             }
         })
-    }
+}
+
+function CerrarSesion() {
+    window.location.href = "/Usuario/Login"
+    $("#btnSalir").hide();
+    $("#btnInicio").show();
+}
+
 
 
 

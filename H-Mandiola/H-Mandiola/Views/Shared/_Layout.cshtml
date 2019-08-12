@@ -155,10 +155,10 @@
                     <li class="dropdown-submenu">
                         <a class="dropdown-item" href="#">Consultas</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="~/Consultas/Bitacora">Bitácora</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/Errores">Errores</a></li>
+                            <li><a class="dropdown-item" @Html.ActionLink("Bitacora", "IndexBitacora", "Bitacora")</a></li>
+                            <li><a class="dropdown-item" @Html.ActionLink("Errores", "IndexError", "Error")</a></li>
                             <li><a class="dropdown-item" href="~/Consultas/ClientesActivos">Clientes activos</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/HabitacionesListas">Habitaciones listas</a></li>
+                            <li><a class="dropdown-item" @Html.ActionLink("Habitaciones Listas", "IndexHabitacion", "Habitacion")</a></li>
                         </ul>
                     </li>
 
@@ -176,7 +176,8 @@
                     </li>
                     <a class="nav-link" style="margin: 0 150px 0 5px; color: black;">Bienvenido(a): @Session["username"]</a>
 
-                    <input type="submit" value="Iniciar sesión" onclick="InicioSesion()" class="btn btn-default" />
+                    <input type="submit" id="btnInicio" value="Iniciar sesión" onclick="InicioSesion()" class="btn btn-default" />
+                    <input type="submit" id="btnSalir" value="Cerrar sesión" onclick="CerrarSesion()" class="btn btn-default" />
                     <li class="nav-item active" style="margin: 7px; border-color:black">
                     </li>
 

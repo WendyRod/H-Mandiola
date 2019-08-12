@@ -57,6 +57,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Dynamic" />
     <Reference Include="System.Runtime.Serialization" />
@@ -134,86 +135,36 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartupAuth.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
-    <Compile Include="Controllers\ConsultasController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ConsecutivoController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HabitacionController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\actividad.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\articulo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bitacora.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\bookingid.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\consecutivo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\emisor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\error.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\estado.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\est_hab.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\habitacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\historial_actividad.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Actividad.cs" />
+    <Compile Include="Models\Articulo.cs" />
+    <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\BookingID.cs" />
+    <Compile Include="Models\Consecutivo.cs" />
+    <Compile Include="Models\Emisor.cs" />
+    <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\Est_Hab.cs" />
+    <Compile Include="Models\DataContext.cs" />
+    <Compile Include="Models\Habitacion.cs" />
+    <Compile Include="Models\Historial_Actividad.cs" />
     <Compile Include="Models\LoginModelClass.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\precio.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\reserva.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\rol.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tarjeta.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tipo_articulo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tipo_habitacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usuario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Precio.cs" />
+    <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Rol.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\Tarjeta.cs" />
+    <Compile Include="Models\Tipo_Articulo.cs" />
+    <Compile Include="Models\Tipo_Habitacion.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
   </ItemGroup>
@@ -233,25 +184,8 @@
     <Content Include="Imagenes\H-Mandiola.png" />
     <Content Include="Imagenes\normal.jpg" />
     <Content Include="Imagenes\yoga.jpg" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -278,11 +212,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.sitemap" />
-    <Content Include="Views\usuarios\Create.cshtml" />
-    <Content Include="Views\usuarios\Delete.cshtml" />
-    <Content Include="Views\usuarios\Details.cshtml" />
-    <Content Include="Views\usuarios\Edit.cshtml" />
-    <Content Include="Views\usuarios\Index.cshtml" />
     <Content Include="Views\Usuario\CrearUsuario.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
     <Content Include="Views\Usuario\CambiarContraseña.cshtml" />
@@ -291,7 +220,6 @@
     </Content>
     <Content Include="Views\Consultas\Errores.cshtml" />
     <Content Include="Views\Consultas\ClientesActivos.cshtml" />
-    <Content Include="Views\Consultas\HabitacionesListas.cshtml" />
     <Content Include="Views\Usuario\Default.cshtml" />
     <Content Include="Views\Usuario\VerUsuarios.cshtml" />
     <Content Include="Views\Administrador\EstadoClientes.cshtml" />
@@ -308,6 +236,26 @@
     <Content Include="Views\Cliente\Reserva.cshtml" />
     <Content Include="Views\Cliente\CambiarPass.cshtml" />
     <Content Include="Views\Cliente\CatalogoHab.cshtml" />
+    <Content Include="Views\Bitacora\Create.cshtml" />
+    <Content Include="Views\Bitacora\Delete.cshtml" />
+    <Content Include="Views\Bitacora\Details.cshtml" />
+    <Content Include="Views\Bitacora\Edit.cshtml" />
+    <Content Include="Views\Bitacora\IndexBitacora.cshtml" />
+    <Content Include="Views\Error\Create.cshtml" />
+    <Content Include="Views\Error\Delete.cshtml" />
+    <Content Include="Views\Error\Details.cshtml" />
+    <Content Include="Views\Error\Edit.cshtml" />
+    <Content Include="Views\Error\IndexError.cshtml" />
+    <Content Include="Views\Habitacion\Create.cshtml" />
+    <Content Include="Views\Habitacion\Delete.cshtml" />
+    <Content Include="Views\Habitacion\Details.cshtml" />
+    <Content Include="Views\Habitacion\Edit.cshtml" />
+    <Content Include="Views\Habitacion\IndexHabitacion.cshtml" />
+    <Content Include="Views\Consecutivo\Create.cshtml" />
+    <Content Include="Views\Consecutivo\Delete.cshtml" />
+    <Content Include="Views\Consecutivo\Details.cshtml" />
+    <Content Include="Views\Consecutivo\Edit.cshtml" />
+    <Content Include="Views\Consecutivo\IndexConsecutivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
