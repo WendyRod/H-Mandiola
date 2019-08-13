@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using H_Mandiola.Models
+@*@{
+    Usuario usuario = (Usuario)Session["username"];
+    string Rol_Seguridad = "1,2";
+    string Rol_Consecutivo = "1,3,4";
+    string Rol_Mantenimiento = "1,4";
+    string Rol_Consulta = "1,5";
+}*@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,7 +31,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            margin-top:auto;
+            margin-top: auto;
         }
 
         .nav li ul {
@@ -109,7 +118,6 @@
         ul, ol {
             list-style: none;
         }
-
     </style>
 </head>
 <body>
@@ -117,55 +125,71 @@
 
         <div class="container">
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto" />
-                <li class="nav-item dropdown" />
+            @*@if (usuario != null)
+            {*@
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto" />
+                    <li class="nav-item dropdown" />
 
-                <a class="nav-link dropdown-toggle" style="color: black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Inicio
-                </a>
+                    <a class="nav-link dropdown-toggle" style="color: black" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Inicio
+                    </a>
 
-                <ul class="dropdown-menu animate slideIn" role="menu" aria-labelledby="dropdownMenu">
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Seguridad</a>
-                        <ul class="dropdown-menu">
+                    <ul class="dropdown-menu animate slideIn" role="menu" aria-labelledby="dropdownMenu">
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">Seguridad</a>
+                            <ul class="dropdown-menu">
+                                @*@if (Rol_Seguridad.IndexOf(usuario.Rol.ToString()) > -1)
+        {*@
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item" href="#">Usuarios</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/CrearUsuario">Crear Usuario</a></li>
+                                        <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/VerUsuarios">Ver Usuarios</a></li>
+                                    </ul>
+
+                                </li>
+                                @*}  *@
+                                <li>
+                                    <a class="dropdown-item" href="~/Usuario/CambiarContraseña">Cambiar Contraseña</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">Administración</a>
+                            <ul class="dropdown-menu">
+                                @*@if (Rol_Consecutivo.IndexOf(usuario.Rol.ToString()) > -1)
+                                {*@
+                                    <li><a class="dropdown-item" href="~/Administrador/Consecutivos">Consecutivos</a></li>
+                                @*}
+                                @if (Rol_Mantenimiento.IndexOf(usuario.Rol.ToString()) > -1)
+                                {*@
+                                    <li><a class="dropdown-item" href="~/Administrador/Habitaciones">Habitaciones</a></li>
+                                    <li><a class="dropdown-item" href="~/Administrador/Actividades">Actividades</a></li>
+                                    <li><a class="dropdown-item" href="~/Administrador/Precios">Precios</a></li>
+                                    <li><a class="dropdown-item" href="~/Administrador/EstadoClientes">Estados de los clientes</a></li>
+                                @*  *@}
+                            </ul>
+                        </li>
+                        @*@if (Rol_Consulta.IndexOf(usuario.Rol.ToString()) > -1)
+                        {*@
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="#">Usuarios</a>
+
+                                <a class="dropdown-item" href="#">Consultas</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/CrearUsuario">Crear Usuario</a></li>
-                                    <li><a class="dropdown-item" tabindex="-1" href="~/Usuario/VerUsuarios">Ver Usuarios</a></li>
+                                    <li><a class="dropdown-item"> @Html.ActionLink("Bitacora", "IndexBitacora", "Bitacora")</a></li>
+                                    <li><a class="dropdown-item"> @Html.ActionLink("Errores", "IndexError", "Error")</a></li>
+                                    <li><a class="dropdown-item" href="~/Consultas/ClientesActivos">Clientes activos</a></li>
+                                    <li><a class="dropdown-item"> @Html.ActionLink("Habitaciones Listas", "IndexHabitacion", "Habitacion")</a></li>
                                 </ul>
-
                             </li>
-                            <li>
-                                <a class="dropdown-item" href="~/Usuario/CambiarContraseña">Cambiar Contraseña</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Administración</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="~/Administrador/Consecutivos">Consecutivos</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Habitaciones">Habitaciones</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Actividades">Actividades</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/Precios">Precios</a></li>
-                            <li><a class="dropdown-item" href="~/Administrador/EstadoClientes">Estados de los clientes</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown-submenu">
-                        <a class="dropdown-item" href="#">Consultas</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" @Html.ActionLink("Bitacora", "IndexBitacora", "Bitacora")</a></li>
-                            <li><a class="dropdown-item" @Html.ActionLink("Errores", "IndexError", "Error")</a></li>
-                            <li><a class="dropdown-item" href="~/Consultas/ClientesActivos">Clientes activos</a></li>
-                            <li><a class="dropdown-item" @Html.ActionLink("Habitaciones Listas", "IndexHabitacion", "Habitacion")</a></li>
-                        </ul>
-                    </li>
+                        @*}*@
 
-                    <a class="dropdown dropdown-item" href="~/Usuario/Default">Volver a inicio</a>
-                    <a class="dropdown dropdown-item" href="~/Cliente/Inicio">Salir modo administrador</a>
-                </ul>
-            </div>
+                            <a class="dropdown dropdown-item" href="~/Usuario/Default">Volver a inicio</a>
+                            <a class="dropdown dropdown-item" href="~/Cliente/Inicio">Salir modo administrador</a>
+                        </ul>
+                </div>
+            @*}*@
 
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">

@@ -20,9 +20,10 @@ namespace H_Mandiola.Controllers
         private DataContext db= new DataContext();
         SqlConnection conn = new SqlConnection("Data Source=DESKTOP-WENDY\\SQLEXPRESS; Initial Catalog=H-Mandiola; Integrated Security=True");
         public static string pass = "", user = "";
+        //private string Rol_Seguridad = "1,2";
 
         // GET: Usuario
-        
+
 
         #region CrearUsuario
         public ActionResult CrearUsuario()
