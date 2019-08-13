@@ -12,7 +12,9 @@
             --input-padding-y: .75rem;
         }
 
-    body { background-image: url("https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/42/81/42817_v4.jpeg"); }
+        body {
+            background-image: url("https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/42/81/42817_v4.jpeg");
+        }
 
         .card-signin {
             border: 0;
@@ -154,13 +156,9 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1" />
                                 <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
                             </div>
-                            <hr />
-
-                            <input ID="ChangePasswordPushButton" type="submit" value="Cambiar Contraseña" class="btn btn-lg btn-primary btn-block text-uppercase" CommandName="ChangePassword" Text="Cambiar contraseña" onclick="ChangePassword()" ValidationGroup="ChangePassword1" />
-                            <input ID="CancelPushButton" type="submit" value="Cancelar" class="btn btn-lg btn-danger btn-block text-uppercase" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
-
-
                         </div>
+                        <input ID="ChangePasswordPushButton" type="submit" value="Guardar cambios" class="btn btn-primary" CommandName="ChangePassword" Text="Guardar cambios" onclick="ChangePassword()" ValidationGroup="ChangePassword1" />
+                        <input ID="CancelPushButton" type="submit" value="Cancelar" class="btn btn-danger" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
                     </div>
                 </div>
             </div>
@@ -172,4 +170,6 @@
 
 <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
 <script src="~/Scripts/JQuery/UserJQuery.js"></script>
+
+<br />
 

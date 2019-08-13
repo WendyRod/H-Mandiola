@@ -24,23 +24,28 @@
     <br />
     <br />
     <br />
-    <div class="container">
+    <div class="table-responsive">
+
         <center>
             <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
         </center>
-        <div class="container" style="overflow-x: auto;">
-            <h4>Actividades</h4>
-            <table id="TablaActividades" style="width: 100%">
+        <br />
+        <h4>Actividades</h4>
+        <br />
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Consecutivo</th>
-                    <th></th>
-                    <th></th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Consecutivo</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
-                    <td>4444</td>
+                    <th scope="row">1</th>
                     <td>Yoga</td>
                     <td>Clase para principiantes</td>
                     <td></td>
@@ -48,11 +53,11 @@
                         <img src="~/Imagenes/yoga.jpg" width="185" height="100" />
                     </td>
                     <td>
-                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                        <button id="editar" name="editar" class="btn btn-secondary">Editar</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>4002</td>
+                    <th scope="row">2</th>
                     <td>Cine</td>
                     <td>Tarde de películas para toda la familia</td>
                     <td></td>
@@ -60,18 +65,20 @@
                         <img src="~/Imagenes/cine.jpg" width="185" height="100" />
                     </td>
                     <td>
-                        <button id="more" name="more" class="btn btn-info">Editar</button>
+                        <button id="editar" name="editar" class="btn btn-secondary">Editar</button>
                     </td>
                 </tr>
-            </table>
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="nuevo"></label>
-                <div class="col-md-4">
-                    <button id="nuevo" name="nuevo" class="btn btn-primary">Agregar nuevo</button>
-                </div>
-                <br />
-                <br />
+            </tbody>
+        </table>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="nuevo"></label>
+            <div class="col-md-4">
+                <button id="nuevo" name="nuevo" class="btn btn-primary">Agregar nuevo</button>
             </div>
         </div>
     </div>
+    <br />
+    <br />
+
 </header>
+<br />
