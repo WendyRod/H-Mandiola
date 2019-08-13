@@ -1,6 +1,6 @@
+DROP TABLE Usuario;
 DROP TABLE Estado;
 DROP TABLE Rol;
-DROP TABLE Usuario;
 DROP TABLE Historial_Actividad;
 DROP TABLE BookingID;
 DROP TABLE Habitacion;
@@ -22,7 +22,7 @@ DROP TABLE Consecutivo;
 CREATE TABLE Consecutivo (
     Codigo        INT NOT NULL,
     Descripcion   VARCHAR(50) NOT NULL,
-    Consecutivo   VARCHAR(5) NOT NULL,
+    Consecutivo   INT NOT NULL,
     PoseePrefijo  BIT,
     Prefijo       VARCHAR(5),
     PoseeRango    BIT,
@@ -239,4 +239,27 @@ insert into Tipo_Articulo (Codigo, Tipo) values (7, 'Tartas');
 insert into Tipo_Habitacion (Codigo, Tipo) values (1, 'Normal');
 insert into Tipo_Habitacion (Codigo, Tipo) values (2, 'Deluxe');
 insert into Tipo_Habitacion (Codigo, Tipo) values (3, 'Condominio');
+
+
+--INSERT CONSECUTIVO
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (01 ,'Usuario', 1, 1, 'USR', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (02 ,'Habitación', 1, 1, 'HAB', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (03 ,'Actividad', 1, 1, 'ACT', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (04 ,'Precio', 1, 1, 'PRC', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (05 ,'Reservación', 1, 1, 'RES', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (06 ,'Bitácora', 1, 1, 'BIT', 1, 1, 100)
+
+
+--INSERT PRECIO
+insert into Precio (codigo, tipo_habitacion, precio) values (1, 1, 80);
+
+insert into Precio (codigo, tipo_habitacion, precio) values (2, 2, 95);
+
+insert into Precio (codigo, tipo_habitacion, precio) values (3, 3, 115);
 

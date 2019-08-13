@@ -53,7 +53,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Consecutivo.Add(consecutivo);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexConsecutivo");
             }
 
             return View(consecutivo);
@@ -85,7 +85,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(consecutivo).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexConsecutivo");
             }
             return View(consecutivo);
         }
@@ -113,7 +113,7 @@ namespace H_Mandiola.Controllers
             Consecutivo consecutivo = await db.Consecutivo.FindAsync(id);
             db.Consecutivo.Remove(consecutivo);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexConsecutivo");
         }
 
         protected override void Dispose(bool disposing)
