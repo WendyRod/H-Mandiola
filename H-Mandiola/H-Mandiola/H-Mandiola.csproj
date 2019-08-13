@@ -182,6 +182,7 @@
     <Content Include="Imagenes\deluxe.jpg" />
     <Content Include="Imagenes\H-icono.png" />
     <Content Include="Imagenes\H-Mandiola.png" />
+    <Content Include="Imagenes\inicio.png" />
     <Content Include="Imagenes\normal.jpg" />
     <Content Include="Imagenes\yoga.jpg" />
     <Content Include="Scripts\bootstrap.js" />

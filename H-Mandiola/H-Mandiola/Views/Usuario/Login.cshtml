@@ -131,7 +131,7 @@
     </style>
 </head>
 
-@*<body>
+<body>
 
     <div class="container">
         @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
@@ -151,58 +151,60 @@
                                     <label for="UsernameLabel" runat="server">Nombre de usuario:</label>
                                     <br />
                                     <br />
-                                    @Html.EditorFor(model => model.usuario1, new { htmlAttributes = new { @class = "form-control", type = "text" , required = "required" } })
+                                    @Html.EditorFor(model => model.Usuario1, new { htmlAttributes = new { @class = "form-control", type = "text", required = "required" } })
                                     <br />
-                                   @*Html.ValidationMessageFor(model => model.Usuario1)*@
-                                    @*</div>
-                                    <div class="form-label-group">
-                                        <label for="PasswordLabel" runat="server">Contraseña:</label>
-                                        <br />
-                                        <br />
-                                        @Html.EditorFor(model => model.clave, new { htmlAttributes = new { @class = "form-control", type = "Password" } })
-                                        <br />
-                                        @Html.ValidationMessageFor(model => model.clave)
-                                    </div>*@
+                                    @Html.ValidationMessageFor(model => model.Usuario1)
+                                </div>
+                                <div class="form-label-group">
+                                    <label for="PasswordLabel" runat="server">Contraseña:</label>
+                                    <br />
+                                    <br />
+                                    @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", type = "Password", required = "required"} })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.Clave)
+                                </div>
 
-                                @*<div class="custom-control custom-checkbox mb-3" />
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
-                                        </form>
-                                    </div>*@
+                                <div class="custom-control custom-checkbox mb-3" />
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                            </form>
+                        </div>
 
-                                @*<input id="LoginButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                                    <div class="text-center">
-                                        <a class="small" href="#">Olvidó la contraseña?</a>
-                                    </div>
-                                    <label>¿No posee una cuenta?</label>
-                                    <input id="LoginRegisterButton" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Registrarse" onclick="LoginRegister()" />
-                                    <hr class="my-4" />*@
+                        <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
+                        @*<div class="text-center">
+                            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
+                        </div>*@
+                        <div class="text-center">
+                            @*<label>¿No posee una cuenta?</label>*@
+                            <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
+                        </div>
+                            @*<hr class="my-4" />*@
 
-                                @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-                                                    <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>
+                            @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
+            <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }*@
-                                @*</div>
-                                    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-                                    <script src="~/Scripts/jquery.validate.min.js"></script>
-                                    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+                        </div>
+                    </div>
+            </div>
+        }
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-                                @*@{
-                                    if (TempData["msg"] != null)
-                                    {
-                                        <script type="text/javascript">
+    @{
+        if (TempData["msg"] != null)
+        {
+            <script type="text/javascript">
                                             alert("@TempData["msg"]");
-                                        </script>
-                                    }*@
-                                @*}
-                                    </body>
-                                    </html>
-                                    <script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
+            </script>
+        }
+    }
+</body>
+</html>
+<script src="~/Scripts/JQuery/UserJQuery.js"></script>
 
-<body>
+@*<body>
     <div class="container">
         @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
         {
@@ -243,23 +245,23 @@
 
                         <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
                         <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
-                    </div>
+                    @*</div>
                 </div>
             </div>
         }
         </div>
-        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
         {
         if (TempData["msg"] != null)
         {
-            <script type="text/javascript">
+<script type="text/javascript">
                 alert("@TempData["msg"]");
-            </script>
+</script>
         }
         }
         </body>
         </html>
-        <script src="~/Scripts/JQuery/UserJQuery.js"></script>
+<script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
