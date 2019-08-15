@@ -1,10 +1,11 @@
-﻿$('#PregDiv').hide();
-$('#RespDiv').hide();
+﻿$('#pregunta').hide();
+$('#respuesta').hide();
+$('#lblRespuesta').hide();
 $("#btnSalir").hide();
 
 function Register() {
     var values = new Object();
-    values.cedula = $('#cedula').val();
+    //values.cedula = $('#cedula').val();
     values.nombre = $('#name').val();
     values.apellido1 = $('#surname1').val();
     values.apellido2 = $('#surname2').val();
@@ -13,7 +14,7 @@ function Register() {
     values.confirmPass = $('#confirm_password').val();
     values.email = $('#email').val();
     
-    if (values.cedula == "" || values.nombre == "" || values.apellido1 == "" || values.apellido2 == "" || values.username == "" || values.clave == "" || values.email == "") {
+    if (/*values.cedula == "" || */ values.nombre == "" || values.apellido1 == "" || values.apellido2 == "" || values.username == "" || values.clave == "" || values.email == "") {
         alert("Complete todos los campos.");
     } else if (values.clave != values.confirmPass) {
         alert("La contraseña y la confirmación de la contraseña no coinciden");

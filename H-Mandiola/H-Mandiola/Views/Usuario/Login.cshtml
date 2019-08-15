@@ -159,7 +159,7 @@
                                     <label for="PasswordLabel" runat="server">Contraseña:</label>
                                     <br />
                                     <br />
-                                    @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", type = "Password", required = "required"} })
+                                    @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", type = "Password", required = "required" } })
                                     <br />
                                     @Html.ValidationMessageFor(model => model.Clave)
                                 </div>
@@ -172,18 +172,18 @@
 
                         <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
                         @*<div class="text-center">
-                            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
-                        </div>*@
-                        <div class="text-center">
-                            @*<label>¿No posee una cuenta?</label>*@
-                            <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
-                        </div>
-                            @*<hr class="my-4" />*@
+            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
+        </div>*@
+                        @*<div class="text-center">*@
+                        @*<label>¿No posee una cuenta?</label>*@
+                        <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
+                        @*</div>*@
+                        @*<hr class="my-4" />*@
 
-                            @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-            <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
+                        @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
+        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
 
-                        </div>
+                    </div>
                     </div>
             </div>
         }
@@ -196,7 +196,7 @@
         if (TempData["msg"] != null)
         {
             <script type="text/javascript">
-                                            alert("@TempData["msg"]");
+                alert("@TempData["msg"]");
             </script>
         }
     }

@@ -12,7 +12,7 @@ namespace BLL
     {
 
 
-        private string _cedula;
+        private string _codigo;
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
@@ -20,10 +20,10 @@ namespace BLL
         private string _username;
         private string _clave;
 
-        public string cedula
+        public string codigo
         {
-            get { return _cedula; }
-            set { _cedula = value; }
+            get { return codigo; }
+            set { codigo = value; }
         }
 
         public string nombre
@@ -68,14 +68,15 @@ namespace BLL
         {
             bool result = true;
             SqlConnection objConn = new SqlConnection();
-            objConn.ConnectionString = ConfigurationManager.ConnectionStrings["H-Mandiola"].ToString();
+            objConn.ConnectionString = ConfigurationManager.ConnectionStrings["Mandiola"].ToString();
             
             try
             {
                 using (SqlCommand comando = new SqlCommand("USUARIO_REGISTRO", objConn))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.Add("@pCedula", SqlDbType.VarChar).Value = _cedula;
+                    //comando.Parameters.Add("@pCedula", SqlDbType.VarChar).Value = _cedula;
+                    comando.Parameters.Add("@pCodigo", SqlDbType.VarChar).Value = _codigo;
                     comando.Parameters.Add("@pNombre", SqlDbType.VarChar).Value = _nombre;
                     comando.Parameters.Add("@pApellido1", SqlDbType.VarChar).Value = _apellido1;
                     comando.Parameters.Add("@pApellido2", SqlDbType.VarChar).Value = _apellido2;
@@ -83,7 +84,7 @@ namespace BLL
                     comando.Parameters.Add("@pUsuario", SqlDbType.VarChar).Value = _username;
                     comando.Parameters.Add("@pClave", SqlDbType.VarChar).Value = _clave;
                     comando.Parameters.Add("@pRol", SqlDbType.Int).Value = 4;
-                    comando.Parameters.Add("@pEstado", SqlDbType.Int).Value = 3;
+                    comando.Parameters.Add("@pEstado", SqlDbType.Int).Value = 1;
                     DataBase.abrirConexion(objConn);
                     comando.ExecuteNonQuery();
                     DataBase.cerrarConexion(objConn);
