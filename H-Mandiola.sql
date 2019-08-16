@@ -28,21 +28,21 @@ CREATE TABLE Consecutivo (
     PoseeRango    BIT,
     Minimo        INT,
     Maximo        INT,
-CONSTRAINT consecutivo_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Consecutivo_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Estado (
     Codigo       INT NOT NULL,
     Tipo         VARCHAR(30) NOT NULL,
-CONSTRAINT estado_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT estado_tipo_un UNIQUE ( Tipo )
+CONSTRAINT Estado_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Estado_tipo_un UNIQUE ( Tipo )
 );
 
 CREATE TABLE Rol (
     Codigo       INT NOT NULL,
     Tipo         VARCHAR(30) NOT NULL,
-CONSTRAINT rol_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT rol_tipo_un UNIQUE ( Tipo )
+CONSTRAINT Rol_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Rol_tipo_un UNIQUE ( Tipo )
 );
 
 CREATE TABLE Usuario (
@@ -57,13 +57,13 @@ CREATE TABLE Usuario (
     Respuesta                 VARCHAR(30),
     Rol                       INT NOT NULL,
     Estado       	      INT NOT NULL,
-CONSTRAINT usuario_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT usuario_email_un UNIQUE ( Email ),
-CONSTRAINT usuario_usuario_un UNIQUE ( Usuario ),
-CONSTRAINT usuario_estado_fk FOREIGN KEY ( Estado )
-        REFERENCES estado ( Codigo ),
-CONSTRAINT usuario_rol_fk FOREIGN KEY ( Rol )
-        REFERENCES rol ( Codigo )
+CONSTRAINT Usuario_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Usuario_email_un UNIQUE ( Email ),
+CONSTRAINT Usuario_usuario_un UNIQUE ( Usuario ),
+CONSTRAINT Usuario_estado_fk FOREIGN KEY ( Estado )
+        REFERENCES Estado ( Codigo ),
+CONSTRAINT Usuario_Rol_fk FOREIGN KEY ( Rol )
+        REFERENCES Rol ( Codigo )
 );
 
 CREATE TABLE Reserva (
@@ -78,8 +78,8 @@ CREATE TABLE Reserva (
     Metodo_Pago                CHAR(1) NOT NULL,
     Precio                     INT,
     Usuario	               VARCHAR(10) NOT NULL,
-CONSTRAINT reserva_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT reserva_usuario_fk FOREIGN KEY ( Usuario )
+CONSTRAINT Reserva_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Reserva_Usuario_fk FOREIGN KEY ( Usuario )
         REFERENCES Usuario ( Codigo )
 );
 
@@ -90,14 +90,14 @@ CREATE TABLE Actividad (
     Dia                       CHAR(1) NOT NULL,
     Horainicio                DATE NOT NULL,
     Horafinal                 DATE NOT NULL,
-CONSTRAINT actividad_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Actividad_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Tipo_Articulo (
     Codigo          INT NOT NULL,
     Tipo            VARCHAR(30) NOT NULL,
-CONSTRAINT tipo_articulo_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT tipo_articulo_tipo_un UNIQUE ( Tipo )
+CONSTRAINT Tipo_Articulo_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Tipo_Articulo_Tipo_un UNIQUE ( Tipo )
 );
 
 CREATE TABLE Articulo (
@@ -106,10 +106,10 @@ CREATE TABLE Articulo (
     Precio                        INT NOT NULL,
     Tipo_Articulo                 INT NOT NULL,
     Reserva                       VARCHAR(10) NOT NULL,
-CONSTRAINT articulo_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT articulo_reserva_fk FOREIGN KEY ( Reserva )
+CONSTRAINT Articulo_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Articulo_Reserva_fk FOREIGN KEY ( Reserva )
         REFERENCES Reserva ( Codigo ),
-CONSTRAINT articulo_tipo_articulo_fk FOREIGN KEY ( Tipo_Articulo )
+CONSTRAINT Articulo_Tipo_Articulo_fk FOREIGN KEY ( Tipo_Articulo )
         REFERENCES Tipo_Articulo ( Codigo )
 );
 
@@ -118,27 +118,27 @@ CREATE TABLE Bitacora (
     Fecha_Hora                DATE NOT NULL,
     Tipo                      VARCHAR(20) NOT NULL,
     Descripcion               VARCHAR(100) NOT NULL,
-CONSTRAINT bitacora_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Bitacora_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Est_Hab (
     Codigo          INT NOT NULL,
     Descripcion     VARCHAR(20) NOT NULL,
-CONSTRAINT est_hab_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Est_Hab_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Tipo_Habitacion (
     Codigo          INT NOT NULL,
     Tipo            VARCHAR(25) NOT NULL,
-CONSTRAINT tipo_habitacion_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Tipo_Habitacion_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Precio (
     Codigo                          VARCHAR(10) NOT NULL,
     Tipo_Habitacion 		    INT NOT NULL,
     Precio                          INT,
-CONSTRAINT precio_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT precio_tipo_habitacion_fk FOREIGN KEY ( Tipo_Habitacion )
+CONSTRAINT Precio_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Precio_Tipo_Habitacion_fk FOREIGN KEY ( Tipo_Habitacion )
         REFERENCES Tipo_Habitacion ( Codigo )
 );
 
@@ -148,10 +148,10 @@ CREATE TABLE Habitacion (
     Descripcion               VARCHAR(250) NOT NULL,
     Est_Hab     	      INT NOT NULL,
     Precio		      VARCHAR(10) NOT NULL,
-CONSTRAINT habitacion_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT habitacion_est_hab_fk FOREIGN KEY ( Est_Hab )
+CONSTRAINT Habitacion_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Habitacion_Est_Hab_fk FOREIGN KEY ( Est_Hab )
         REFERENCES Est_Hab ( Codigo ),
-CONSTRAINT habitacion_precio_fk FOREIGN KEY ( Precio )
+CONSTRAINT Habitacion_Precio_fk FOREIGN KEY ( Precio )
         REFERENCES Precio ( Codigo )
 );
 
@@ -159,34 +159,34 @@ CREATE TABLE BookingID (
     Codigo                  NVARCHAR(1) NOT NULL,
     Habitacion		    VARCHAR(10) NOT NULL,
     Reserva                 VARCHAR(10) NOT NULL,
-CONSTRAINT bookingid_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT bookingid_habitacion_fk FOREIGN KEY ( Habitacion )
+CONSTRAINT Bookingid_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Bookingid_Habitacion_fk FOREIGN KEY ( Habitacion )
         REFERENCES Habitacion ( Codigo ),
-CONSTRAINT bookingid_reserva_fk FOREIGN KEY ( Reserva )
+CONSTRAINT Bookingid_Reserva_fk FOREIGN KEY ( Reserva )
         REFERENCES Reserva ( Codigo )
 );
 
 CREATE TABLE Emisor (
     Codigo   INT NOT NULL,
     Descripcion     VARCHAR(30) NOT NULL,
-CONSTRAINT emisor_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Emisor_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Error (
     Codigo         INT NOT NULL,
     Fecha_Hora     DATE NOT NULL,
     Mensaje        VARCHAR(50) NOT NULL,
-CONSTRAINT error_pk PRIMARY KEY ( Codigo )
+CONSTRAINT Error_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Historial_Actividad (
     Codigo                 INT NOT NULL,
     Usuario	           VARCHAR(10) NOT NULL,
     Actividad   	   VARCHAR(10) NOT NULL,
-CONSTRAINT historial_actividad_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT hist_act_act_fk FOREIGN KEY ( Actividad )
+CONSTRAINT Historial_Actividad_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Hist_act_Act_fk FOREIGN KEY ( Actividad )
         REFERENCES Actividad ( Codigo ),
-CONSTRAINT hist_act_usuario_fk FOREIGN KEY ( Usuario )
+CONSTRAINT Hist_Act_Usuario_fk FOREIGN KEY ( Usuario )
         REFERENCES Usuario ( Codigo )
 );
 
@@ -196,10 +196,10 @@ CREATE TABLE Tarjeta (
     Fecha_Exp               DATE NOT NULL,
     Usuario	            VARCHAR(10) NOT NULL,
     Emisor		    INT NOT NULL,
-CONSTRAINT tarjeta_pk PRIMARY KEY ( Codigo ),
-CONSTRAINT tarjeta_emisor_fk FOREIGN KEY ( Emisor )
+CONSTRAINT Tarjeta_pk PRIMARY KEY ( Codigo ),
+CONSTRAINT Tarjeta_Emisor_fk FOREIGN KEY ( Emisor )
         REFERENCES Emisor ( Codigo ),
-CONSTRAINT tarjeta_usuario_fk FOREIGN KEY ( Usuario )
+CONSTRAINT Tarjeta_Usuario_fk FOREIGN KEY ( Usuario )
         REFERENCES Usuario ( Codigo )
 );
 
