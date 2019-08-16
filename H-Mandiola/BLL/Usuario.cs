@@ -10,21 +10,13 @@ namespace BLL
 {
     public class Usuario
     {
-
-
-        //private string _codigo;
+        
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
         private string _email;
         private string _username;
         private string _clave;
-
-        //public string codigo
-        //{
-        //    get { return codigo; }
-        //    set { codigo = value; }
-        //}
 
         public string nombre
         {
@@ -62,8 +54,7 @@ namespace BLL
             set { _clave = value; }
         }
 
-
-
+        
         public void GuardaUsuario()
         {
             bool result = true;
@@ -75,8 +66,6 @@ namespace BLL
                 using (SqlCommand comando = new SqlCommand("USUARIO_REGISTRO", objConn))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
-                    //comando.Parameters.Add("@pCedula", SqlDbType.VarChar).Value = _cedula;
-                    //comando.Parameters.Add("@pCodigo", SqlDbType.VarChar).Value = _codigo;
                     comando.Parameters.Add("@pNombre", SqlDbType.VarChar).Value = _nombre;
                     comando.Parameters.Add("@pApellido1", SqlDbType.VarChar).Value = _apellido1;
                     comando.Parameters.Add("@pApellido2", SqlDbType.VarChar).Value = _apellido2;
