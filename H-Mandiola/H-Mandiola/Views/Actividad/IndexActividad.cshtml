@@ -1,4 +1,4 @@
-﻿@model IEnumerable<H_Mandiola.Models.Habitacion>
+﻿@model IEnumerable<H_Mandiola.Models.Actividad>
 
 @{
     ViewBag.Title = "Index";
@@ -26,24 +26,22 @@
     <br />
     <br />
     <br />
-    <div class="container">
-        <center>
-            <img src="../Imagenes/H-Mandiola.png" width="300" height="100" />
-        </center>
-    </div>
-    <div class="container" style="overflow-x:auto;">
-        <h4>Habitaciones listas</h4>
+    <div class="table-responsive">
 
-        <table class="table"  style="width: 100%">
+        <center>
+            <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+        <br />
+        <h4>Actividades</h4>
+        <br />
+
+        <table class="table table-hover">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Codigo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Numero)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
+                    @Html.DisplayNameFor(model => model.Nombre)
                 </th>
                 <th></th>
             </tr>
@@ -55,14 +53,22 @@
                         @Html.DisplayFor(modelItem => item.Codigo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Numero)
+                        @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Codigo, @class = "btn btn-secondary" })
+                        @*@Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })*@
                     </td>
                 </tr>
             }
 
         </table>
-</div>
+        <br />
+
+        @Html.ActionLink("Nuevo", "Create", new { @class = "btn btn-primary" })
+        @*<input type="submit" value="Nuevo" onclick="" class="btn btn-primary" />*@
+    </div>
+    <br />
+    <br />
     </header>

@@ -12,7 +12,7 @@ namespace BLL
     {
 
 
-        private string _codigo;
+        //private string _codigo;
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
@@ -20,11 +20,11 @@ namespace BLL
         private string _username;
         private string _clave;
 
-        public string codigo
-        {
-            get { return codigo; }
-            set { codigo = value; }
-        }
+        //public string codigo
+        //{
+        //    get { return codigo; }
+        //    set { codigo = value; }
+        //}
 
         public string nombre
         {
@@ -76,7 +76,7 @@ namespace BLL
                 {
                     comando.CommandType = CommandType.StoredProcedure;
                     //comando.Parameters.Add("@pCedula", SqlDbType.VarChar).Value = _cedula;
-                    comando.Parameters.Add("@pCodigo", SqlDbType.VarChar).Value = _codigo;
+                    //comando.Parameters.Add("@pCodigo", SqlDbType.VarChar).Value = _codigo;
                     comando.Parameters.Add("@pNombre", SqlDbType.VarChar).Value = _nombre;
                     comando.Parameters.Add("@pApellido1", SqlDbType.VarChar).Value = _apellido1;
                     comando.Parameters.Add("@pApellido2", SqlDbType.VarChar).Value = _apellido2;

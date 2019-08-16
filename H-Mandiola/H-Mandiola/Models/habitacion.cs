@@ -19,14 +19,12 @@ namespace H_Mandiola.Models
         [StringLength(10)]
         public string Codigo { get; set; }
 
-        [Required]
         public int Numero { get; set; }
 
         [Required]
         [StringLength(250)]
         public string Descripcion { get; set; }
 
-        [Display(Name = "Detalle")]
         public int Est_Hab { get; set; }
 
         [Required]

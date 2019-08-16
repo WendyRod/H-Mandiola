@@ -1,0 +1,74 @@
+﻿@model IEnumerable<H_Mandiola.Models.Precio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #b89133;
+        color: white;
+    }
+</style>
+<header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="table-responsive">
+
+        <center>
+            <img src="~/Imagenes/H-Mandiola.png" width="300" height="100" />
+        </center>
+        <br />
+        <h4>Precios</h4>
+        <br />
+
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Codigo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo_Habitacion1.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio1)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Habitacion1.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio1)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })
+                </td>
+            </tr>
+            }
+
+        </table>
+        </div>
+    </header>

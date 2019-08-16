@@ -159,16 +159,16 @@
                             <a class="dropdown-item" href="#">Administración</a>
                             <ul class="dropdown-menu">
                                 @*@if (Rol_Consecutivo.IndexOf(usuario.Rol.ToString()) > -1)
-                                {*@
-                                    <li><a class="dropdown-item" href="~/Administrador/Consecutivos">Consecutivos</a></li>
+        {*@
+                                <li><a class="dropdown-item" href="~/Consecutivo/IndexConsecutivo">Consecutivos</a></li>
                                 @*}
-                                @if (Rol_Mantenimiento.IndexOf(usuario.Rol.ToString()) > -1)
-                                {*@
-                                    <li><a class="dropdown-item" href="~/Administrador/Habitaciones">Habitaciones</a></li>
-                                    <li><a class="dropdown-item" href="~/Administrador/Actividades">Actividades</a></li>
-                                    <li><a class="dropdown-item" href="~/Administrador/Precios">Precios</a></li>
-                                    <li><a class="dropdown-item" href="~/Administrador/EstadoClientes">Estados de los clientes</a></li>
-                                @*  *@}
+        @if (Rol_Mantenimiento.IndexOf(usuario.Rol.ToString()) > -1)
+        {*@
+                                <li><a class="dropdown-item" href="~/Habitacion/IndexHabitacion">Habitaciones</a></li>
+                                <li><a class="dropdown-item" href="~/Actividad/IndexActividad">Actividades</a></li>
+                                <li><a class="dropdown-item" href="~/Precio/IndexPrecio">Precios</a></li>
+                                <li><a class="dropdown-item" href="~/Administrador/EstadoClientes">Estados de los clientes</a></li>
+                                @*  }*@
                             </ul>
                         </li>
                         @*@if (Rol_Consulta.IndexOf(usuario.Rol.ToString()) > -1)

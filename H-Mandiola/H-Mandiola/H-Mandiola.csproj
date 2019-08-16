@@ -134,12 +134,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StartupAuth.cs" />
+    <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ConsecutivoController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HabitacionController.cs" />
+    <Compile Include="Controllers\PrecioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -149,11 +151,11 @@
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\BookingID.cs" />
     <Compile Include="Models\Consecutivo.cs" />
+    <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Emisor.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\Est_Hab.cs" />
-    <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Historial_Actividad.cs" />
     <Compile Include="Models\LoginModelClass.cs" />
@@ -257,6 +259,16 @@
     <Content Include="Views\Consecutivo\Details.cshtml" />
     <Content Include="Views\Consecutivo\Edit.cshtml" />
     <Content Include="Views\Consecutivo\IndexConsecutivo.cshtml" />
+    <Content Include="Views\Actividad\Create.cshtml" />
+    <Content Include="Views\Actividad\Delete.cshtml" />
+    <Content Include="Views\Actividad\Details.cshtml" />
+    <Content Include="Views\Actividad\Edit.cshtml" />
+    <Content Include="Views\Actividad\IndexActividad.cshtml" />
+    <Content Include="Views\Precio\Create.cshtml" />
+    <Content Include="Views\Precio\Delete.cshtml" />
+    <Content Include="Views\Precio\Details.cshtml" />
+    <Content Include="Views\Precio\Edit.cshtml" />
+    <Content Include="Views\Precio\IndexPrecio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

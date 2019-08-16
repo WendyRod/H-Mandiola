@@ -11,109 +11,114 @@ using H_Mandiola.Models;
 
 namespace H_Mandiola.Controllers
 {
-    public class ConsecutivoController : Controller
+    public class PrecioController : Controller
     {
         private DataContext db = new DataContext();
 
-        // GET: Consecutivo
-        public async Task<ActionResult> IndexConsecutivo()
+        // GET: Precio
+        public async Task<ActionResult> IndexPrecio()
         {
-            return View(await db.Consecutivo.ToListAsync());
+            var precio = db.Precio.Include(p => p.Tipo_Habitacion1);
+            return View(await precio.ToListAsync());
         }
 
-        // GET: Consecutivo/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Precio/Details/5
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
-            if (consecutivo == null)
+            Precio precio = await db.Precio.FindAsync(id);
+            if (precio == null)
             {
                 return HttpNotFound();
             }
-            return View(consecutivo);
+            return View(precio);
         }
 
-        // GET: Consecutivo/Create
+        // GET: Precio/Create
         public ActionResult Create()
         {
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo");
             return View();
         }
 
-        // POST: Consecutivo/Create
+        // POST: Precio/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Consecutivos consecutivo)
+        public async Task<ActionResult> Create(Precio precio)
         {
             if (ModelState.IsValid)
             {
-                db.Consecutivo.Add(consecutivo);
+                db.Precio.Add(precio);
                 await db.SaveChangesAsync();
-                return RedirectToAction("IndexConsecutivo");
+                return RedirectToAction("IndexPrecio");
             }
 
-            return View(consecutivo);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            return View(precio);
         }
 
-        // GET: Consecutivo/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Precio/Edit/5
+        public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
-            if (consecutivo == null)
+            Precio precio = await db.Precio.FindAsync(id);
+            if (precio == null)
             {
                 return HttpNotFound();
             }
-            return View(consecutivo);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            return View(precio);
         }
 
-        // POST: Consecutivo/Edit/5
+        // POST: Precio/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Consecutivos consecutivo)
+        public async Task<ActionResult> Edit(Precio precio)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(consecutivo).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(precio).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("IndexConsecutivo");
+                return RedirectToAction("IndexPrecio");
             }
-            return View(consecutivo);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            return View(precio);
         }
 
-        // GET: Consecutivo/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Precio/Delete/5
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
-            if (consecutivo == null)
+            Precio precio = await db.Precio.FindAsync(id);
+            if (precio == null)
             {
                 return HttpNotFound();
             }
-            return View(consecutivo);
+            return View(precio);
         }
 
-        // POST: Consecutivo/Delete/5
+        // POST: Precio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
-            db.Consecutivo.Remove(consecutivo);
+            Precio precio = await db.Precio.FindAsync(id);
+            db.Precio.Remove(precio);
             await db.SaveChangesAsync();
-            return RedirectToAction("IndexConsecutivo");
+            return RedirectToAction("IndexPrecio");
         }
 
         protected override void Dispose(bool disposing)

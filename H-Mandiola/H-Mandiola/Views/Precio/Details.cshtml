@@ -1,0 +1,35 @@
+﻿@model H_Mandiola.Models.Precio
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Precio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Habitacion1.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Habitacion1.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

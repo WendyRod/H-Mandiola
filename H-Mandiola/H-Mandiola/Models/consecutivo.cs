@@ -7,7 +7,7 @@ namespace H_Mandiola.Models
     using System.Data.Entity.Spatial;
 
     [Table("Consecutivo")]
-    public partial class Consecutivo
+    public partial class Consecutivos
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -18,9 +18,7 @@ namespace H_Mandiola.Models
         public string Descripcion { get; set; }
 
         [Column("Consecutivo")]
-        [Required]
-        [StringLength(5)]
-        public string Consecutivo1 { get; set; }
+        public int Consecutivo { get; set; }
 
         public bool? PoseePrefijo { get; set; }
 
