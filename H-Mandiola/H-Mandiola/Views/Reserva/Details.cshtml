@@ -1,0 +1,99 @@
+﻿@model H_Mandiola.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Entrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Entrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad_Dias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad_Dias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo_Promocional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo_Promocional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad_Adultos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad_Adultos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad_Niños)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad_Niños)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mascota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mascota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Metodo_Pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Metodo_Pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
