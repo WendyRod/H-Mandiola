@@ -17,7 +17,7 @@ DROP TABLE Bitacora;
 DROP TABLE Error;
 DROP TABLE Consecutivo;
 
-
+--USE [H-Mandiola V2] 
 
 CREATE TABLE Consecutivo (
     Codigo        INT NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE Usuario (
     Apellido2                 VARCHAR(30) NOT NULL,
     Email                     VARCHAR(50) NOT NULL,
     Usuario                   VARCHAR(30) NOT NULL,
-    Clave                     VARCHAR(15) NOT NULL,
+    Clave                     VARCHAR(30) NOT NULL,
     Pregunta                  VARCHAR(50),
     Respuesta                 VARCHAR(30),
     Rol                       INT NOT NULL,
@@ -116,20 +116,20 @@ CONSTRAINT Articulo_Tipo_Articulo_fk FOREIGN KEY ( Tipo_Articulo )
 CREATE TABLE Bitacora (
     Codigo                   VARCHAR(10) NOT NULL,
     Fecha_Hora                DATE NOT NULL,
-    Tipo                      VARCHAR(20) NOT NULL,
+    Tipo                      VARCHAR(30) NOT NULL,
     Descripcion               VARCHAR(100) NOT NULL,
 CONSTRAINT Bitacora_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Est_Hab (
     Codigo          INT NOT NULL,
-    Descripcion     VARCHAR(20) NOT NULL,
+    Descripcion     VARCHAR(30) NOT NULL,
 CONSTRAINT Est_Hab_pk PRIMARY KEY ( Codigo )
 );
 
 CREATE TABLE Tipo_Habitacion (
     Codigo          INT NOT NULL,
-    Tipo            VARCHAR(25) NOT NULL,
+    Tipo            VARCHAR(30) NOT NULL,
 CONSTRAINT Tipo_Habitacion_pk PRIMARY KEY ( Codigo )
 );
 
