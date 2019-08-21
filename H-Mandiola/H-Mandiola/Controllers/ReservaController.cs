@@ -49,17 +49,22 @@ namespace H_Mandiola.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Reserva reserva)
+        public async Task<ActionResult> Create(Reserva res)
         {
+
+            // var reserva = db.Database.SqlQuery<Reserva>("INSERTA_RESERVA");
+            //var datos = db.Reserva.SqlQuery("[dbo].[INSERT_RESERVA]");
+            
+
             if (ModelState.IsValid)
             {
-                db.Reserva.Add(reserva);
-                await db.SaveChangesAsync();
+                db.Reserva.Add(res);
+               await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", reserva.Usuario);
-            return View(reserva);
+            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", res.Usuario);
+            return View(res);
         }
 
         // GET: Reserva/Edit/5

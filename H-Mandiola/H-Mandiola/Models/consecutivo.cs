@@ -18,7 +18,7 @@ namespace H_Mandiola.Models
         public string Descripcion { get; set; }
 
         [Column("Consecutivo")]
-        public int Consecutivo { get; set; }
+        public int Consecutivo1 { get; set; }
 
         public bool? PoseePrefijo { get; set; }
 

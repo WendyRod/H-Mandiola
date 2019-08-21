@@ -17,7 +17,7 @@ namespace H_Mandiola.Models
         public DateTime Fecha_Hora { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(30)]
         public string Tipo { get; set; }
 
         [Required]

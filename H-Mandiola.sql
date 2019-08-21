@@ -17,7 +17,7 @@ DROP TABLE Bitacora;
 DROP TABLE Error;
 DROP TABLE Consecutivo;
 
---USE [H-Mandiola V2] 
+--USE [H-Mandiola] 
 
 CREATE TABLE Consecutivo (
     Codigo        INT NOT NULL,
@@ -254,6 +254,8 @@ INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo
      VALUES (05 ,'Reservación', 1, 1, 'RES', 1, 1, 100)
 INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
      VALUES (06 ,'Bitácora', 1, 1, 'BIT', 1, 1, 100)
+INSERT INTO Consecutivo (Codigo, Descripcion, Consecutivo, PoseePrefijo, Prefijo, PoseeRango, Minimo, Maximo)
+     VALUES (07 ,'Cliente', 1, 1, 'CLI', 1, 1, 100)
 
 
 --INSERT PRECIO

@@ -43,7 +43,7 @@ namespace H_Mandiola.Models
         public string Usuario1 { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(30)]
         public string Clave { get; set; }
 
         [StringLength(50)]

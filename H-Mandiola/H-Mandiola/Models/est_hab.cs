@@ -19,7 +19,7 @@ namespace H_Mandiola.Models
         public int Codigo { get; set; }
 
         [Required]
-        [StringLength(20)]
+        [StringLength(30)]
         public string Descripcion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
