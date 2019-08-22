@@ -8,18 +8,17 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using H_Mandiola.Models;
-
-
-
+using System.Configuration;
 
 namespace H_Mandiola.Controllers
 {
     public class UsuarioController : Controller
-    {   
+    {
         //Usuario db = new Usuario();
-        private DataContext db= new DataContext();
-        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-WENDY\\SQLEXPRESS; Initial Catalog=H-Mandiola; Integrated Security=True");
-        public static string pass = "", user = "";
+        private DataContext db = new DataContext();
+        private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
+        private SqlConnection conn = new SqlConnection(connStr);
+        public static string pass = string.Empty, user = string.Empty;
         //private string Rol_Seguridad = "1,2";
 
         // GET: Usuario
@@ -70,7 +69,7 @@ namespace H_Mandiola.Controllers
         {
             return View();
         }
-         
+
         public ActionResult CambiarContraseñaUser(string OldPass, string newPass, string confirmPass)
         {
             bool result = true;
