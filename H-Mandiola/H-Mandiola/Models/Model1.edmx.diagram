@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="63321b2503ab42928ccc376489181e71" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Actividad" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Articulo" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Bitacora" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.BookingID" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Consecutivo" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Emisor" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Error" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Est_Hab" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Estado" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Habitacion" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Historial_Actividad" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Precio" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Reserva" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Rol" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tarjeta" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tipo_Articulo" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Tipo_Habitacion" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.Hist_act_Act_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Articulo_Reserva_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Articulo_Tipo_Articulo_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Bookingid_Habitacion_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Bookingid_Reserva_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Tarjeta_Emisor_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Habitacion_Est_Hab_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Usuario_estado_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Habitacion_Precio_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Hist_Act_Usuario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Precio_Tipo_Habitacion_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Reserva_Usuario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Usuario_Rol_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Tarjeta_Usuario_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -10,15 +10,10 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Historial_Actividad
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Codigo { get; set; }
-        public string Usuario { get; set; }
-        public string Actividad { get; set; }
-    
-        public virtual Actividad Actividad1 { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -10,15 +10,18 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Historial_Actividad
+    public partial class CONSULTA_USUARIO_Result
     {
-        public int Codigo { get; set; }
+        public string Email { get; set; }
         public string Usuario { get; set; }
-        public string Actividad { get; set; }
-    
-        public virtual Actividad Actividad1 { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
+        public string Contrasena { get; set; }
+        public string Pregunta_seguridad { get; set; }
+        public string Respuesta_seguridad { get; set; }
+        public string Nombre { get; set; }
+        public string Primer_apellido { get; set; }
+        public string Segundo_apellido { get; set; }
+        public int Rol { get; set; }
+        public int Estado { get; set; }
     }
 }

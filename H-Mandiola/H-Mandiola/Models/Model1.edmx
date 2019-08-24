@@ -1,0 +1,1889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Dia" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Horainicio" Type="date" Nullable="false" />
+          <Property Name="Horafinal" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Precio" Type="int" Nullable="false" />
+          <Property Name="Tipo_Articulo" Type="int" Nullable="false" />
+          <Property Name="Reserva" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="date" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingID">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Habitacion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Reserva" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consecutivo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Consecutivo" Type="int" Nullable="false" />
+          <Property Name="PoseePrefijo" Type="bit" />
+          <Property Name="Prefijo" Type="varchar" MaxLength="5" />
+          <Property Name="PoseeRango" Type="bit" />
+          <Property Name="Minimo" Type="int" />
+          <Property Name="Maximo" Type="int" />
+        </EntityType>
+        <EntityType Name="Emisor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="date" Nullable="false" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Est_Hab">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habitacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Est_Hab" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Historial_Actividad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Actividad" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Precio">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tipo_Habitacion" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="int" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Fecha_Entrada" Type="date" Nullable="false" />
+          <Property Name="Fecha_Salida" Type="date" Nullable="false" />
+          <Property Name="Cantidad_Dias" Type="int" Nullable="false" />
+          <Property Name="Codigo_Promocional" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Cantidad_Adultos" Type="int" Nullable="false" />
+          <Property Name="Cantidad_Niños" Type="int" Nullable="false" />
+          <Property Name="Mascota" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Metodo_Pago" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Precio" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Numero_Tarjeta" Type="int" Nullable="false" />
+          <Property Name="Fecha_Exp" Type="date" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Emisor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Habitacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellido1" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellido2" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pregunta" Type="varchar" MaxLength="50" />
+          <Property Name="Respuesta" Type="varchar" MaxLength="30" />
+          <Property Name="Rol" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Articulo_Reserva_fk">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Articulo_Tipo_Articulo_fk">
+          <End Role="Tipo_Articulo" Type="Self.Tipo_Articulo" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Articulo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Tipo_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bookingid_Habitacion_fk">
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="1" />
+          <End Role="BookingID" Type="Self.BookingID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="BookingID">
+              <PropertyRef Name="Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bookingid_Reserva_fk">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="BookingID" Type="Self.BookingID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="BookingID">
+              <PropertyRef Name="Reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Habitacion_Est_Hab_fk">
+          <End Role="Est_Hab" Type="Self.Est_Hab" Multiplicity="1" />
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Est_Hab">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="Est_Hab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Habitacion_Precio_fk">
+          <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="Precio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Hist_act_Act_fk">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Historial_Actividad">
+              <PropertyRef Name="Actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Hist_Act_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Historial_Actividad">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Precio_Tipo_Habitacion_fk">
+          <End Role="Tipo_Habitacion" Type="Self.Tipo_Habitacion" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Habitacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="Tipo_Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reserva_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tarjeta_Emisor_fk">
+          <End Role="Emisor" Type="Self.Emisor" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emisor">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="Emisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tarjeta_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_estado_fk">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_Rol_fk">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ACTUALIZA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pDia" Type="char" Mode="In" />
+          <Parameter Name="pHorainicio" Type="datetime" Mode="In" />
+          <Parameter Name="pHorafinal" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pReserva" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="datetime" Mode="In" />
+          <Parameter Name="pTipo" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pTipo_habitacion" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pRol" Type="int" Mode="In" />
+          <Parameter Name="pPregunta" Type="varchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CAMBIO_PASS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsername" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CLIENTE_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="nvarchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pClave" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPregunta" Type="nvarchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="nvarchar" Mode="In" />
+          <Parameter Name="pRol" Type="int" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pReserva" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CONSULTA_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pDia" Type="char" Mode="In" />
+          <Parameter Name="pHorainicio" Type="datetime" Mode="In" />
+          <Parameter Name="pHorafinal" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pReservaid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="datetime" Mode="In" />
+          <Parameter Name="pTipo" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="consecutivo" Type="varchar" Mode="In" />
+          <Parameter Name="prefijo" Type="varchar" Mode="In" />
+          <Parameter Name="minimo" Type="int" Mode="In" />
+          <Parameter Name="maximo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pMensaje" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pTipo_habitacion" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pReserva" Type="varchar" Mode="In" />
+          <Parameter Name="pFechaentrada" Type="date" Mode="In" />
+          <Parameter Name="pFechasalida" Type="date" Mode="In" />
+          <Parameter Name="pCantidaddias" Type="int" Mode="In" />
+          <Parameter Name="pCodigopromocional" Type="char" Mode="In" />
+          <Parameter Name="pCantidadultos" Type="int" Mode="In" />
+          <Parameter Name="pCantidniños" Type="int" Mode="In" />
+          <Parameter Name="pMascota" Type="char" Mode="In" />
+          <Parameter Name="pMetodopago" Type="char" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pRol" Type="int" Mode="In" />
+          <Parameter Name="pPregunta" Type="varchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EXISTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="INSERTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pDia" Type="char" Mode="In" />
+          <Parameter Name="pHorainicio" Type="date" Mode="In" />
+          <Parameter Name="pHorafinal" Type="date" Mode="In" />
+        </Function>
+        <Function Name="INSERTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="varchar" Mode="In" />
+          <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
+          <Parameter Name="pPrefijo" Type="varchar" Mode="In" />
+          <Parameter Name="pPoseeRango" Type="bit" Mode="In" />
+          <Parameter Name="pMinimo" Type="int" Mode="In" />
+          <Parameter Name="pMaximo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="INSERTA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pMensaje" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="INSERTA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNumero" Type="int" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pEst_Hab" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="INSERTA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pFecha_Entrada" Type="date" Mode="In" />
+          <Parameter Name="pFecha_Salida" Type="date" Mode="In" />
+          <Parameter Name="pCantidad_Dias" Type="int" Mode="In" />
+          <Parameter Name="pCodigo_Promocional" Type="char" Mode="In" />
+          <Parameter Name="pCantidad_Adultos" Type="int" Mode="In" />
+          <Parameter Name="pCantidad_Niños" Type="int" Mode="In" />
+          <Parameter Name="pMascota" Type="char" Mode="In" />
+          <Parameter Name="pMetodo_Pago" Type="char" Mode="In" />
+          <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="MODIFICA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pDescripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="varchar" Mode="In" />
+          <Parameter Name="pPrefijo" Type="varchar" Mode="In" />
+          <Parameter Name="pPoseeRango" Type="bit" Mode="In" />
+          <Parameter Name="pMinimo" Type="int" Mode="In" />
+          <Parameter Name="pMaximo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MODIFICA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="int" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pMensaje" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USUARIO_CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="nvarchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pClave" Type="nvarchar" Mode="In" />
+          <Parameter Name="pRol" Type="int" Mode="In" />
+          <Parameter Name="pEstado" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingID" EntityType="Self.BookingID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consecutivo" EntityType="Self.Consecutivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emisor" EntityType="Self.Emisor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Est_Hab" EntityType="Self.Est_Hab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habitacion" EntityType="Self.Habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historial_Actividad" EntityType="Self.Historial_Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Precio" EntityType="Self.Precio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Articulo" EntityType="Self.Tipo_Articulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Habitacion" EntityType="Self.Tipo_Habitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Articulo_Reserva_fk" Association="Self.Articulo_Reserva_fk">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="Articulo_Tipo_Articulo_fk" Association="Self.Articulo_Tipo_Articulo_fk">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="Bookingid_Habitacion_fk" Association="Self.Bookingid_Habitacion_fk">
+            <End Role="Habitacion" EntitySet="Habitacion" />
+            <End Role="BookingID" EntitySet="BookingID" />
+          </AssociationSet>
+          <AssociationSet Name="Bookingid_Reserva_fk" Association="Self.Bookingid_Reserva_fk">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="BookingID" EntitySet="BookingID" />
+          </AssociationSet>
+          <AssociationSet Name="Habitacion_Est_Hab_fk" Association="Self.Habitacion_Est_Hab_fk">
+            <End Role="Est_Hab" EntitySet="Est_Hab" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="Habitacion_Precio_fk" Association="Self.Habitacion_Precio_fk">
+            <End Role="Precio" EntitySet="Precio" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="Hist_act_Act_fk" Association="Self.Hist_act_Act_fk">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="Hist_Act_Usuario_fk" Association="Self.Hist_Act_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="Precio_Tipo_Habitacion_fk" Association="Self.Precio_Tipo_Habitacion_fk">
+            <End Role="Tipo_Habitacion" EntitySet="Tipo_Habitacion" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="Reserva_Usuario_fk" Association="Self.Reserva_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="Tarjeta_Emisor_fk" Association="Self.Tarjeta_Emisor_fk">
+            <End Role="Emisor" EntitySet="Emisor" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="Tarjeta_Usuario_fk" Association="Self.Tarjeta_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_estado_fk" Association="Self.Usuario_estado_fk">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_Rol_fk" Association="Self.Usuario_Rol_fk">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actividad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Horainicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Horafinal" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Historial_Actividad" Relationship="Self.Hist_act_Act_fk" FromRole="Actividad" ToRole="Historial_Actividad" />
+        </EntityType>
+        <EntityType Name="Articulo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_Articulo" Type="Int32" Nullable="false" />
+          <Property Name="Reserva" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reserva1" Relationship="Self.Articulo_Reserva_fk" FromRole="Articulo" ToRole="Reserva" />
+          <NavigationProperty Name="Tipo_Articulo1" Relationship="Self.Articulo_Tipo_Articulo_fk" FromRole="Articulo" ToRole="Tipo_Articulo" />
+        </EntityType>
+        <EntityType Name="Bitacora">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingID">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Habitacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Reserva" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Habitacion1" Relationship="Self.Bookingid_Habitacion_fk" FromRole="BookingID" ToRole="Habitacion" />
+          <NavigationProperty Name="Reserva1" Relationship="Self.Bookingid_Reserva_fk" FromRole="BookingID" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Consecutivo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Consecutivo1" Type="Int32" Nullable="false" />
+          <Property Name="PoseePrefijo" Type="Boolean" />
+          <Property Name="Prefijo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PoseeRango" Type="Boolean" />
+          <Property Name="Minimo" Type="Int32" />
+          <Property Name="Maximo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Emisor">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.Tarjeta_Emisor_fk" FromRole="Emisor" ToRole="Tarjeta" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Est_Hab">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Habitacion" Relationship="Self.Habitacion_Est_Hab_fk" FromRole="Est_Hab" ToRole="Habitacion" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_estado_fk" FromRole="Estado" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Habitacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Est_Hab" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="BookingID" Relationship="Self.Bookingid_Habitacion_fk" FromRole="Habitacion" ToRole="BookingID" />
+          <NavigationProperty Name="Est_Hab1" Relationship="Self.Habitacion_Est_Hab_fk" FromRole="Habitacion" ToRole="Est_Hab" />
+          <NavigationProperty Name="Precio1" Relationship="Self.Habitacion_Precio_fk" FromRole="Habitacion" ToRole="Precio" />
+        </EntityType>
+        <EntityType Name="Historial_Actividad">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Actividad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actividad1" Relationship="Self.Hist_act_Act_fk" FromRole="Historial_Actividad" ToRole="Actividad" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Historial_Actividad" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Precio">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_Habitacion" Type="Int32" Nullable="false" />
+          <Property Name="Precio1" Type="Int32" />
+          <NavigationProperty Name="Habitacion" Relationship="Self.Habitacion_Precio_fk" FromRole="Precio" ToRole="Habitacion" />
+          <NavigationProperty Name="Tipo_Habitacion1" Relationship="Self.Precio_Tipo_Habitacion_fk" FromRole="Precio" ToRole="Tipo_Habitacion" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Entrada" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Salida" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cantidad_Dias" Type="Int32" Nullable="false" />
+          <Property Name="Codigo_Promocional" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Cantidad_Adultos" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad_Niños" Type="Int32" Nullable="false" />
+          <Property Name="Mascota" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Metodo_Pago" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Int32" />
+          <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.Articulo_Reserva_fk" FromRole="Reserva" ToRole="Articulo" />
+          <NavigationProperty Name="BookingID" Relationship="Self.Bookingid_Reserva_fk" FromRole="Reserva" ToRole="BookingID" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.Reserva_Usuario_fk" FromRole="Reserva" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_Rol_fk" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tarjeta">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Numero_Tarjeta" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Exp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Emisor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emisor1" Relationship="Self.Tarjeta_Emisor_fk" FromRole="Tarjeta" ToRole="Emisor" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Tarjeta" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Tipo_Articulo">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Articulo" Relationship="Self.Articulo_Tipo_Articulo_fk" FromRole="Tipo_Articulo" ToRole="Articulo" />
+        </EntityType>
+        <EntityType Name="Tipo_Habitacion">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Precio" Relationship="Self.Precio_Tipo_Habitacion_fk" FromRole="Tipo_Habitacion" ToRole="Precio" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Respuesta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Rol" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado1" Relationship="Self.Usuario_estado_fk" FromRole="Usuario" ToRole="Estado" />
+          <NavigationProperty Name="Historial_Actividad" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Usuario" ToRole="Historial_Actividad" />
+          <NavigationProperty Name="Reserva" Relationship="Self.Reserva_Usuario_fk" FromRole="Usuario" ToRole="Reserva" />
+          <NavigationProperty Name="Rol1" Relationship="Self.Usuario_Rol_fk" FromRole="Usuario" ToRole="Rol" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Usuario" ToRole="Tarjeta" />
+        </EntityType>
+        <Association Name="Hist_act_Act_fk">
+          <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+          <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actividad">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Historial_Actividad">
+              <PropertyRef Name="Actividad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Articulo_Reserva_fk">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Articulo_Tipo_Articulo_fk">
+          <End Role="Tipo_Articulo" Type="Self.Tipo_Articulo" Multiplicity="1" />
+          <End Role="Articulo" Type="Self.Articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Articulo">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Articulo">
+              <PropertyRef Name="Tipo_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bookingid_Habitacion_fk">
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="1" />
+          <End Role="BookingID" Type="Self.BookingID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Habitacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="BookingID">
+              <PropertyRef Name="Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bookingid_Reserva_fk">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+          <End Role="BookingID" Type="Self.BookingID" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="BookingID">
+              <PropertyRef Name="Reserva" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tarjeta_Emisor_fk">
+          <End Role="Emisor" Type="Self.Emisor" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emisor">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="Emisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Habitacion_Est_Hab_fk">
+          <End Role="Est_Hab" Type="Self.Est_Hab" Multiplicity="1" />
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Est_Hab">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="Est_Hab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_estado_fk">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Habitacion_Precio_fk">
+          <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
+          <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Precio">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Habitacion">
+              <PropertyRef Name="Precio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Hist_Act_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Historial_Actividad">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Precio_Tipo_Habitacion_fk">
+          <End Role="Tipo_Habitacion" Type="Self.Tipo_Habitacion" Multiplicity="1" />
+          <End Role="Precio" Type="Self.Precio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Habitacion">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Precio">
+              <PropertyRef Name="Tipo_Habitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reserva_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuario_Rol_fk">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="Rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Tarjeta_Usuario_fk">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="Tarjeta">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+          <EntitySet Name="Articulo" EntityType="Self.Articulo" />
+          <EntitySet Name="Bitacora" EntityType="Self.Bitacora" />
+          <EntitySet Name="BookingID" EntityType="Self.BookingID" />
+          <EntitySet Name="Consecutivo" EntityType="Self.Consecutivo" />
+          <EntitySet Name="Emisor" EntityType="Self.Emisor" />
+          <EntitySet Name="Error" EntityType="Self.Error" />
+          <EntitySet Name="Est_Hab" EntityType="Self.Est_Hab" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="Habitacion" EntityType="Self.Habitacion" />
+          <EntitySet Name="Historial_Actividad" EntityType="Self.Historial_Actividad" />
+          <EntitySet Name="Precio" EntityType="Self.Precio" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Rol" EntityType="Self.Rol" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
+          <EntitySet Name="Tipo_Articulo" EntityType="Self.Tipo_Articulo" />
+          <EntitySet Name="Tipo_Habitacion" EntityType="Self.Tipo_Habitacion" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="Hist_act_Act_fk" Association="Self.Hist_act_Act_fk">
+            <End Role="Actividad" EntitySet="Actividad" />
+            <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="Articulo_Reserva_fk" Association="Self.Articulo_Reserva_fk">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="Articulo_Tipo_Articulo_fk" Association="Self.Articulo_Tipo_Articulo_fk">
+            <End Role="Tipo_Articulo" EntitySet="Tipo_Articulo" />
+            <End Role="Articulo" EntitySet="Articulo" />
+          </AssociationSet>
+          <AssociationSet Name="Bookingid_Habitacion_fk" Association="Self.Bookingid_Habitacion_fk">
+            <End Role="Habitacion" EntitySet="Habitacion" />
+            <End Role="BookingID" EntitySet="BookingID" />
+          </AssociationSet>
+          <AssociationSet Name="Bookingid_Reserva_fk" Association="Self.Bookingid_Reserva_fk">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="BookingID" EntitySet="BookingID" />
+          </AssociationSet>
+          <AssociationSet Name="Tarjeta_Emisor_fk" Association="Self.Tarjeta_Emisor_fk">
+            <End Role="Emisor" EntitySet="Emisor" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <AssociationSet Name="Habitacion_Est_Hab_fk" Association="Self.Habitacion_Est_Hab_fk">
+            <End Role="Est_Hab" EntitySet="Est_Hab" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_estado_fk" Association="Self.Usuario_estado_fk">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Habitacion_Precio_fk" Association="Self.Habitacion_Precio_fk">
+            <End Role="Precio" EntitySet="Precio" />
+            <End Role="Habitacion" EntitySet="Habitacion" />
+          </AssociationSet>
+          <AssociationSet Name="Hist_Act_Usuario_fk" Association="Self.Hist_Act_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="Precio_Tipo_Habitacion_fk" Association="Self.Precio_Tipo_Habitacion_fk">
+            <End Role="Tipo_Habitacion" EntitySet="Tipo_Habitacion" />
+            <End Role="Precio" EntitySet="Precio" />
+          </AssociationSet>
+          <AssociationSet Name="Reserva_Usuario_fk" Association="Self.Reserva_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="Usuario_Rol_fk" Association="Self.Usuario_Rol_fk">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="Tarjeta_Usuario_fk" Association="Self.Tarjeta_Usuario_fk">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Tarjeta" EntitySet="Tarjeta" />
+          </AssociationSet>
+          <FunctionImport Name="ACTUALIZA_ACTIVIDAD">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pDia" Mode="In" Type="String" />
+            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
+            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_ARTICULO">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pReserva" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_BITACORA">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
+            <Parameter Name="pTipo" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_HABITACION">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_PRECIO">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pTipo_habitacion" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_USUARIO">
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pRol" Mode="In" Type="Int32" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CAMBIO_PASS">
+            <Parameter Name="pUsername" Mode="In" Type="String" />
+            <Parameter Name="pPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CLIENTE_REGISTRO">
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pRol" Mode="In" Type="Int32" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ACTIVIDAD" ReturnType="Collection(Model.CONSULTA_ACTIVIDAD_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ARTICULO" ReturnType="Collection(Model.CONSULTA_ARTICULO_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_BITACORA" ReturnType="Collection(Model.CONSULTA_BITACORA_Result)" />
+          <FunctionImport Name="CONSULTA_CONSECUTIVO" ReturnType="Collection(Model.CONSULTA_CONSECUTIVO_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ERROR" ReturnType="Collection(Model.CONSULTA_ERROR_Result)" />
+          <FunctionImport Name="CONSULTA_HABITACION" ReturnType="Collection(Model.CONSULTA_HABITACION_Result)" />
+          <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_RESERVA" ReturnType="Collection(Model.CONSULTA_RESERVA_Result)">
+            <Parameter Name="pReserva" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ROL" ReturnType="Collection(Model.CONSULTA_ROL_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CONSULTA_USUARIO" ReturnType="Collection(Model.CONSULTA_USUARIO_Result)">
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_ACTIVIDAD">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pDia" Mode="In" Type="String" />
+            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
+            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_ARTICULO">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pReservaid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_BITACORA">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
+            <Parameter Name="pTipo" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_CONSECUTIVO">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="consecutivo" Mode="In" Type="String" />
+            <Parameter Name="prefijo" Mode="In" Type="String" />
+            <Parameter Name="minimo" Mode="In" Type="Int32" />
+            <Parameter Name="maximo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_ERROR">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
+            <Parameter Name="pMensaje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_HABITACION">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_PRECIO">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pTipo_habitacion" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_RESERVA">
+            <Parameter Name="pReserva" Mode="In" Type="String" />
+            <Parameter Name="pFechaentrada" Mode="In" Type="DateTime" />
+            <Parameter Name="pFechasalida" Mode="In" Type="DateTime" />
+            <Parameter Name="pCantidaddias" Mode="In" Type="Int32" />
+            <Parameter Name="pCodigopromocional" Mode="In" Type="String" />
+            <Parameter Name="pCantidadultos" Mode="In" Type="Int32" />
+            <Parameter Name="pCantidniños" Mode="In" Type="Int32" />
+            <Parameter Name="pMascota" Mode="In" Type="String" />
+            <Parameter Name="pMetodopago" Mode="In" Type="String" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_USUARIO">
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pRol" Mode="In" Type="Int32" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EXISTE">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_ACTIVIDAD">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pDia" Mode="In" Type="String" />
+            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
+            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_CONSECUTIVO">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="String" />
+            <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
+            <Parameter Name="pPrefijo" Mode="In" Type="String" />
+            <Parameter Name="pPoseeRango" Mode="In" Type="Boolean" />
+            <Parameter Name="pMinimo" Mode="In" Type="Int32" />
+            <Parameter Name="pMaximo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_ERROR">
+            <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
+            <Parameter Name="pMensaje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_HABITACION">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNumero" Mode="In" Type="Int32" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pEst_Hab" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_RESERVA">
+            <Parameter Name="pFecha_Entrada" Mode="In" Type="DateTime" />
+            <Parameter Name="pFecha_Salida" Mode="In" Type="DateTime" />
+            <Parameter Name="pCantidad_Dias" Mode="In" Type="Int32" />
+            <Parameter Name="pCodigo_Promocional" Mode="In" Type="String" />
+            <Parameter Name="pCantidad_Adultos" Mode="In" Type="Int32" />
+            <Parameter Name="pCantidad_Niños" Mode="In" Type="Int32" />
+            <Parameter Name="pMascota" Mode="In" Type="String" />
+            <Parameter Name="pMetodo_Pago" Mode="In" Type="String" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICA_CONSECUTIVO">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="String" />
+            <Parameter Name="pPrefijo" Mode="In" Type="String" />
+            <Parameter Name="pPoseeRango" Mode="In" Type="Boolean" />
+            <Parameter Name="pMinimo" Mode="In" Type="Int32" />
+            <Parameter Name="pMaximo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MODIFICA_ERROR">
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
+            <Parameter Name="pMensaje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="USUARIO_CONSULTA_ROL">
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USUARIO_LOGIN" ReturnType="Collection(Model.USUARIO_LOGIN_Result)">
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USUARIO_REGISTRO">
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pRol" Mode="In" Type="Int32" />
+            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="CONSULTA_ACTIVIDAD_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Dia" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="Horainicio" Nullable="false" />
+          <Property Type="DateTime" Name="Horafinal" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_ARTICULO_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Reservaid" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Precio" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_BITACORA_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" />
+          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_CONSECUTIVO_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Prefijo" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="Minimo" Nullable="true" />
+          <Property Type="Int32" Name="Maximo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_ERROR_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" />
+          <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_HABITACION_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Numero" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="Est_Hab" Nullable="false" />
+          <Property Type="String" Name="Precio" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_PRECIO_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Tipo_Habitacion" Nullable="false" />
+          <Property Type="Int32" Name="Precio" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_RESERVA_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Codigo_Promocional" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Mascota" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="Metodopago" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="Fecha_Entrada" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Salida" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad_Adultos" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad_Adultos1" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad_Niños" Nullable="false" />
+          <Property Type="Int32" Name="Precio" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_ROL_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_USUARIO_Result">
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Contrasena" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Pregunta_seguridad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Respuesta_seguridad" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Primer_apellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Segundo_apellido" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Rol" Nullable="false" />
+          <Property Type="Int32" Name="Estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="USUARIO_LOGIN_Result">
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Actividad">
+            <EntityTypeMapping TypeName="Model.Actividad">
+              <MappingFragment StoreEntitySet="Actividad">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Horainicio" ColumnName="Horainicio" />
+                <ScalarProperty Name="Horafinal" ColumnName="Horafinal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articulo">
+            <EntityTypeMapping TypeName="Model.Articulo">
+              <MappingFragment StoreEntitySet="Articulo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Tipo_Articulo" ColumnName="Tipo_Articulo" />
+                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bitacora">
+            <EntityTypeMapping TypeName="Model.Bitacora">
+              <MappingFragment StoreEntitySet="Bitacora">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingID">
+            <EntityTypeMapping TypeName="Model.BookingID">
+              <MappingFragment StoreEntitySet="BookingID">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Habitacion" ColumnName="Habitacion" />
+                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consecutivo">
+            <EntityTypeMapping TypeName="Model.Consecutivo">
+              <MappingFragment StoreEntitySet="Consecutivo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Consecutivo1" ColumnName="Consecutivo" />
+                <ScalarProperty Name="PoseePrefijo" ColumnName="PoseePrefijo" />
+                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="PoseeRango" ColumnName="PoseeRango" />
+                <ScalarProperty Name="Minimo" ColumnName="Minimo" />
+                <ScalarProperty Name="Maximo" ColumnName="Maximo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emisor">
+            <EntityTypeMapping TypeName="Model.Emisor">
+              <MappingFragment StoreEntitySet="Emisor">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Error">
+            <EntityTypeMapping TypeName="Model.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Est_Hab">
+            <EntityTypeMapping TypeName="Model.Est_Hab">
+              <MappingFragment StoreEntitySet="Est_Hab">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="Model.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habitacion">
+            <EntityTypeMapping TypeName="Model.Habitacion">
+              <MappingFragment StoreEntitySet="Habitacion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Est_Hab" ColumnName="Est_Hab" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historial_Actividad">
+            <EntityTypeMapping TypeName="Model.Historial_Actividad">
+              <MappingFragment StoreEntitySet="Historial_Actividad">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Precio">
+            <EntityTypeMapping TypeName="Model.Precio">
+              <MappingFragment StoreEntitySet="Precio">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo_Habitacion" ColumnName="Tipo_Habitacion" />
+                <ScalarProperty Name="Precio1" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="Model.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Fecha_Entrada" ColumnName="Fecha_Entrada" />
+                <ScalarProperty Name="Fecha_Salida" ColumnName="Fecha_Salida" />
+                <ScalarProperty Name="Cantidad_Dias" ColumnName="Cantidad_Dias" />
+                <ScalarProperty Name="Codigo_Promocional" ColumnName="Codigo_Promocional" />
+                <ScalarProperty Name="Cantidad_Adultos" ColumnName="Cantidad_Adultos" />
+                <ScalarProperty Name="Cantidad_Niños" ColumnName="Cantidad_Niños" />
+                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
+                <ScalarProperty Name="Metodo_Pago" ColumnName="Metodo_Pago" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="Model.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarjeta">
+            <EntityTypeMapping TypeName="Model.Tarjeta">
+              <MappingFragment StoreEntitySet="Tarjeta">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero_Tarjeta" ColumnName="Numero_Tarjeta" />
+                <ScalarProperty Name="Fecha_Exp" ColumnName="Fecha_Exp" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Articulo">
+            <EntityTypeMapping TypeName="Model.Tipo_Articulo">
+              <MappingFragment StoreEntitySet="Tipo_Articulo">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Habitacion">
+            <EntityTypeMapping TypeName="Model.Tipo_Habitacion">
+              <MappingFragment StoreEntitySet="Tipo_Habitacion">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_ACTIVIDAD" FunctionName="Model.Store.ACTUALIZA_ACTIVIDAD" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_ARTICULO" FunctionName="Model.Store.ACTUALIZA_ARTICULO" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_BITACORA" FunctionName="Model.Store.ACTUALIZA_BITACORA" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_HABITACION" FunctionName="Model.Store.ACTUALIZA_HABITACION" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_PRECIO" FunctionName="Model.Store.ACTUALIZA_PRECIO" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_USUARIO" FunctionName="Model.Store.ACTUALIZA_USUARIO" />
+          <FunctionImportMapping FunctionImportName="CAMBIO_PASS" FunctionName="Model.Store.CAMBIO_PASS" />
+          <FunctionImportMapping FunctionImportName="CLIENTE_REGISTRO" FunctionName="Model.Store.CLIENTE_REGISTRO" />
+          <FunctionImportMapping FunctionImportName="CONSULTA_ACTIVIDAD" FunctionName="Model.Store.CONSULTA_ACTIVIDAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_ACTIVIDAD_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Horainicio" ColumnName="Horainicio" />
+                <ScalarProperty Name="Horafinal" ColumnName="Horafinal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_ARTICULO" FunctionName="Model.Store.CONSULTA_ARTICULO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_ARTICULO_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Reservaid" ColumnName="Reservaid" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_BITACORA" FunctionName="Model.Store.CONSULTA_BITACORA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_BITACORA_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_CONSECUTIVO" FunctionName="Model.Store.CONSULTA_CONSECUTIVO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_CONSECUTIVO_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="Minimo" ColumnName="Minimo" />
+                <ScalarProperty Name="Maximo" ColumnName="Maximo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_ERROR" FunctionName="Model.Store.CONSULTA_ERROR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_ERROR_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_HABITACION" FunctionName="Model.Store.CONSULTA_HABITACION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_HABITACION_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Est_Hab" ColumnName="Est_Hab" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_PRECIO" FunctionName="Model.Store.CONSULTA_PRECIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_PRECIO_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo_Habitacion" ColumnName="Tipo_Habitacion" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_RESERVA" FunctionName="Model.Store.CONSULTA_RESERVA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_RESERVA_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Codigo_Promocional" ColumnName="Codigo Promocional" />
+                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
+                <ScalarProperty Name="Metodopago" ColumnName="Metodopago" />
+                <ScalarProperty Name="Fecha_Entrada" ColumnName="Fecha_Entrada" />
+                <ScalarProperty Name="Fecha_Salida" ColumnName="Fecha_Salida" />
+                <ScalarProperty Name="Cantidad_Adultos" ColumnName="Cantidad_Adultos" />
+                <ScalarProperty Name="Cantidad_Adultos1" ColumnName="Cantidad_Adultos1" />
+                <ScalarProperty Name="Cantidad_Niños" ColumnName="Cantidad_Niños" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_ROL" FunctionName="Model.Store.CONSULTA_ROL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_ROL_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_USUARIO" FunctionName="Model.Store.CONSULTA_USUARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_USUARIO_Result">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Pregunta_seguridad" ColumnName="Pregunta_seguridad" />
+                <ScalarProperty Name="Respuesta_seguridad" ColumnName="Respuesta_seguridad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Primer_apellido" ColumnName="Primer_apellido" />
+                <ScalarProperty Name="Segundo_apellido" ColumnName="Segundo_apellido" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ELIMINA_ACTIVIDAD" FunctionName="Model.Store.ELIMINA_ACTIVIDAD" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_ARTICULO" FunctionName="Model.Store.ELIMINA_ARTICULO" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_BITACORA" FunctionName="Model.Store.ELIMINA_BITACORA" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_CONSECUTIVO" FunctionName="Model.Store.ELIMINA_CONSECUTIVO" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_ERROR" FunctionName="Model.Store.ELIMINA_ERROR" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_HABITACION" FunctionName="Model.Store.ELIMINA_HABITACION" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_PRECIO" FunctionName="Model.Store.ELIMINA_PRECIO" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_RESERVA" FunctionName="Model.Store.ELIMINA_RESERVA" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_USUARIO" FunctionName="Model.Store.ELIMINA_USUARIO" />
+          <FunctionImportMapping FunctionImportName="EXISTE" FunctionName="Model.Store.EXISTE" />
+          <FunctionImportMapping FunctionImportName="INSERTA_ACTIVIDAD" FunctionName="Model.Store.INSERTA_ACTIVIDAD" />
+          <FunctionImportMapping FunctionImportName="INSERTA_CONSECUTIVO" FunctionName="Model.Store.INSERTA_CONSECUTIVO" />
+          <FunctionImportMapping FunctionImportName="INSERTA_ERROR" FunctionName="Model.Store.INSERTA_ERROR" />
+          <FunctionImportMapping FunctionImportName="INSERTA_HABITACION" FunctionName="Model.Store.INSERTA_HABITACION" />
+          <FunctionImportMapping FunctionImportName="INSERTA_RESERVA" FunctionName="Model.Store.INSERTA_RESERVA" />
+          <FunctionImportMapping FunctionImportName="MODIFICA_CONSECUTIVO" FunctionName="Model.Store.MODIFICA_CONSECUTIVO" />
+          <FunctionImportMapping FunctionImportName="MODIFICA_ERROR" FunctionName="Model.Store.MODIFICA_ERROR" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Model.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Model.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="USUARIO_CONSULTA_ROL" FunctionName="Model.Store.USUARIO_CONSULTA_ROL" />
+          <FunctionImportMapping FunctionImportName="USUARIO_LOGIN" FunctionName="Model.Store.USUARIO_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.USUARIO_LOGIN_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USUARIO_REGISTRO" FunctionName="Model.Store.USUARIO_REGISTRO" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -10,15 +10,14 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Historial_Actividad
+    public partial class CONSULTA_ACTIVIDAD_Result
     {
-        public int Codigo { get; set; }
-        public string Usuario { get; set; }
-        public string Actividad { get; set; }
-    
-        public virtual Actividad Actividad1 { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
+        public string Codigo { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string Dia { get; set; }
+        public System.DateTime Horainicio { get; set; }
+        public System.DateTime Horafinal { get; set; }
     }
 }

@@ -10,15 +10,13 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Historial_Actividad
+    public partial class sp_helpdiagrams_Result
     {
-        public int Codigo { get; set; }
-        public string Usuario { get; set; }
-        public string Actividad { get; set; }
-    
-        public virtual Actividad Actividad1 { get; set; }
-        public virtual Usuario Usuario1 { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

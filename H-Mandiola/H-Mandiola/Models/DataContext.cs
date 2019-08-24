@@ -16,7 +16,7 @@ namespace H_Mandiola.Models
         public virtual DbSet<Articulo> Articulo { get; set; }
         public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<BookingID> BookingID { get; set; }
-        public virtual DbSet<Consecutivos> Consecutivo { get; set; }
+        public virtual DbSet<Consecutivo> Consecutivo { get; set; }
         public virtual DbSet<Emisor> Emisor { get; set; }
         public virtual DbSet<Error> Error { get; set; }
         public virtual DbSet<Est_Hab> Est_Hab { get; set; }
@@ -89,11 +89,11 @@ namespace H_Mandiola.Models
                 .Property(e => e.Reserva)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Consecutivos>()
+            modelBuilder.Entity<Consecutivo>()
                 .Property(e => e.Descripcion)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Consecutivos>()
+            modelBuilder.Entity<Consecutivo>()
                 .Property(e => e.Prefijo)
                 .IsUnicode(false);
 
