@@ -28,7 +28,7 @@ namespace H_Mandiola.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
+            Consecutivo consecutivo = await db.Consecutivo.FindAsync(id);
             if (consecutivo == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace H_Mandiola.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Consecutivos consecutivo)
+        public async Task<ActionResult> Create(Consecutivo consecutivo)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace H_Mandiola.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
+            Consecutivo consecutivo = await db.Consecutivo.FindAsync(id);
             if (consecutivo == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace H_Mandiola.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Consecutivos consecutivo)
+        public async Task<ActionResult> Edit(Consecutivo consecutivo)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace H_Mandiola.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
+            Consecutivo consecutivo = await db.Consecutivo.FindAsync(id);
             if (consecutivo == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace H_Mandiola.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Consecutivos consecutivo = await db.Consecutivo.FindAsync(id);
+            Consecutivo consecutivo = await db.Consecutivo.FindAsync(id);
             db.Consecutivo.Remove(consecutivo);
             await db.SaveChangesAsync();
             return RedirectToAction("IndexConsecutivo");
