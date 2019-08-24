@@ -21,7 +21,6 @@ namespace DAL
             try
             {
                 string cadConexion = "";
-
                 cadConexion = ConfigurationManager.ConnectionStrings[nombre_conexion].ToString();
                 objConexion = new SqlConnection(cadConexion);
                 return objConexion;
