@@ -15,7 +15,7 @@ namespace H_Mandiola.Controllers
     public class UsuarioController : Controller
     {
         //Usuario db = new Usuario();
-        private DataContext db = new DataContext();
+        private Entities db = new Entities();
         private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
         private SqlConnection conn = new SqlConnection(connStr);
         public static string pass = string.Empty, user = string.Empty;
@@ -48,6 +48,7 @@ namespace H_Mandiola.Controllers
         [HttpPost]
         public ActionResult LoginMethod(H_Mandiola.Models.Usuario userModel)
         {
+            //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
             var userDetails = db.Usuario.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {

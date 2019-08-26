@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class ConsecutivoController : Controller
     {
-        private DataContext db = new DataContext();
+        private Entities db = new Entities();
 
         // GET: Consecutivo
         public async Task<ActionResult> IndexConsecutivo()

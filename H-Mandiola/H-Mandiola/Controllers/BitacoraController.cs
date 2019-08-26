@@ -15,7 +15,7 @@ namespace H_Mandiola.Controllers
 {
     public class BitacoraController : Controller
     {
-        private DataContext db = new DataContext();
+        private Entities db = new Entities();
 
         // GET: Bitacora
         public async Task<ActionResult> IndexBitacora()

@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class ActividadController : Controller
     {
-        private DataContext db = new DataContext();
+        private Entities db = new Entities();
 
         // GET: Actividad
         public async Task<ActionResult> IndexActividad()
@@ -52,9 +52,11 @@ namespace H_Mandiola.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Actividad.Add(actividad);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                //db.Actividad.Add(actividad);
+                //await db.SaveChangesAsync();
+                db.INSERTA_ACTIVIDAD(actividad.Nombre, actividad.Descripcion);
+                db.SaveChanges();
+                return RedirectToAction("IndexActividad");
             }
 
             return View(actividad);
@@ -86,7 +88,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(actividad).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexActividad");
             }
             return View(actividad);
         }
@@ -114,7 +116,7 @@ namespace H_Mandiola.Controllers
             Actividad actividad = await db.Actividad.FindAsync(id);
             db.Actividad.Remove(actividad);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexActividad");
         }
 
         protected override void Dispose(bool disposing)
