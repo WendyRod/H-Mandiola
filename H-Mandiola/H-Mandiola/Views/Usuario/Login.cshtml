@@ -135,6 +135,16 @@
 
 <body>
 
+    @*FACEBOOK*@
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v4.0&appId=500521697439684&autoLogAppEvents=1"></script>
+    @*FIN*@
+
+    @*GOOGLE*@
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="568085675674-2hpag6sutceap4qcrvhllsb6qtfbu15c.apps.googleusercontent.com">
+    @*FIN*@
+
     <div class="container">
         @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
         {
@@ -173,26 +183,25 @@
                         </div>
 
                         <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                        @*<div class="text-center">
-            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
-        </div>*@
-                        @*<div class="text-center">*@
-                        @*<label>¿No posee una cuenta?</label>*@
+
                         <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
-                        @*</div>*@
-                        @*<hr class="my-4" />*@
 
-                        @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
+                        @*FACEBOOK*@
+                        <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                        @*FIN*@
 
+                        @*GOOGLE*@
+                        <div class="g-signin2 text-center" data-width="205" data-height="35" data-longtitle="true" data-onsuccess="onSignIn"></div>
+                        @*FIN*@
                     </div>
-                    </div>
+                </div>
             </div>
         }
     </div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 
     @{
         if (TempData["msg"] != null)
@@ -205,6 +214,65 @@
 </body>
 </html>
 <script src="~/Scripts/JQuery/UserJQuery.js"></script>
+
+@*FACEBOOK / GOOGLE*@
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+    {
+        status: 'connected',
+            authResponse: {
+            accessToken: '...',
+                expiresIn: '...',
+                    signedRequest: '...',
+                        userID: '...'
+        }
+    }
+
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId());
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+        window.location.href = "/Cliente/Inicio";
+        
+    }
+
+</script>
+
+
+
+
+
+@*FIN*@
+
+
 
 @*<body>
     <div class="container">
@@ -247,23 +315,23 @@
 
                         <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
                         <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
-                    @*</div>
+@*</div>
+                    </div>
                 </div>
+            }
             </div>
-        }
-        </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-        {
-        if (TempData["msg"] != null)
-        {
-<script type="text/javascript">
-                alert("@TempData["msg"]");
-</script>
-        }
-        }
-        </body>
-        </html>
-<script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
+            {
+            if (TempData["msg"] != null)
+            {
+    <script type="text/javascript">
+                    alert("@TempData["msg"]");
+    </script>
+            }
+            }
+            </body>
+            </html>
+    <script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
