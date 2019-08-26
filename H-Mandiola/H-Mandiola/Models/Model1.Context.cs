@@ -259,13 +259,9 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLIENTE_REGISTRO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pRolParameter, pEstadoParameter);
         }
     
-        public virtual ObjectResult<CONSULTA_ACTIVIDAD_Result> CONSULTA_ACTIVIDAD(Nullable<int> pCodigo)
+        public virtual ObjectResult<CONSULTA_ACTIVIDAD_Result> CONSULTA_ACTIVIDAD()
         {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ACTIVIDAD_Result>("CONSULTA_ACTIVIDAD", pCodigoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ACTIVIDAD_Result>("CONSULTA_ACTIVIDAD");
         }
     
         public virtual ObjectResult<CONSULTA_ARTICULO_Result> CONSULTA_ARTICULO(Nullable<int> pCodigo)
@@ -591,12 +587,8 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE", pCodigoParameter);
         }
     
-        public virtual int INSERTA_ACTIVIDAD(string pCodigo, string pNombre, string pDescripcion, string pDia, Nullable<System.DateTime> pHorainicio, Nullable<System.DateTime> pHorafinal)
+        public virtual int INSERTA_ACTIVIDAD(string pNombre, string pDescripcion)
         {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
             var pNombreParameter = pNombre != null ?
                 new ObjectParameter("pNombre", pNombre) :
                 new ObjectParameter("pNombre", typeof(string));
@@ -605,19 +597,7 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pDescripcion", pDescripcion) :
                 new ObjectParameter("pDescripcion", typeof(string));
     
-            var pDiaParameter = pDia != null ?
-                new ObjectParameter("pDia", pDia) :
-                new ObjectParameter("pDia", typeof(string));
-    
-            var pHorainicioParameter = pHorainicio.HasValue ?
-                new ObjectParameter("pHorainicio", pHorainicio) :
-                new ObjectParameter("pHorainicio", typeof(System.DateTime));
-    
-            var pHorafinalParameter = pHorafinal.HasValue ?
-                new ObjectParameter("pHorafinal", pHorafinal) :
-                new ObjectParameter("pHorafinal", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ACTIVIDAD", pCodigoParameter, pNombreParameter, pDescripcionParameter, pDiaParameter, pHorainicioParameter, pHorafinalParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ACTIVIDAD", pNombreParameter, pDescripcionParameter);
         }
     
         public virtual int INSERTA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, string pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
@@ -670,12 +650,8 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ERROR", pFecha_horaParameter, pMensajeParameter);
         }
     
-        public virtual int INSERTA_HABITACION(string pCodigo, Nullable<int> pNumero, string pDescripcion, Nullable<int> pEst_Hab, string pPrecio)
+        public virtual int INSERTA_HABITACION(Nullable<int> pNumero, string pDescripcion, Nullable<int> pEst_Hab, string pPrecio)
         {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
             var pNumeroParameter = pNumero.HasValue ?
                 new ObjectParameter("pNumero", pNumero) :
                 new ObjectParameter("pNumero", typeof(int));
@@ -692,7 +668,7 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pPrecio", pPrecio) :
                 new ObjectParameter("pPrecio", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pCodigoParameter, pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter);
         }
     
         public virtual int INSERTA_RESERVA(Nullable<System.DateTime> pFecha_Entrada, Nullable<System.DateTime> pFecha_Salida, Nullable<int> pCantidad_Dias, string pCodigo_Promocional, Nullable<int> pCantidad_Adultos, Nullable<int> pCantidad_Niños, string pMascota, string pMetodo_Pago, Nullable<int> pPrecio, string pUsuario)

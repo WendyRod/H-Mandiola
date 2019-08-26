@@ -16,8 +16,5 @@ namespace H_Mandiola.Models
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public string Dia { get; set; }
-        public System.DateTime Horainicio { get; set; }
-        public System.DateTime Horafinal { get; set; }
     }
 }

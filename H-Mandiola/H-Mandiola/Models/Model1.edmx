@@ -12,9 +12,6 @@
           <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Dia" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Horainicio" Type="date" Nullable="false" />
-          <Property Name="Horafinal" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Articulo">
           <Key>
@@ -411,9 +408,7 @@
           <Parameter Name="pRol" Type="int" Mode="In" />
           <Parameter Name="pEstado" Type="int" Mode="In" />
         </Function>
-        <Function Name="CONSULTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="int" Mode="In" />
-        </Function>
+        <Function Name="CONSULTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CONSULTA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
         </Function>
@@ -508,12 +503,8 @@
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="INSERTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
-          <Parameter Name="pDia" Type="char" Mode="In" />
-          <Parameter Name="pHorainicio" Type="date" Mode="In" />
-          <Parameter Name="pHorafinal" Type="date" Mode="In" />
         </Function>
         <Function Name="INSERTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
@@ -530,7 +521,6 @@
           <Parameter Name="pMensaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="INSERTA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
           <Parameter Name="pNumero" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
           <Parameter Name="pEst_Hab" Type="int" Mode="In" />
@@ -699,9 +689,6 @@
           <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Dia" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Horainicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Horafinal" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Historial_Actividad" Relationship="Self.Hist_act_Act_fk" FromRole="Actividad" ToRole="Historial_Actividad" />
         </EntityType>
         <EntityType Name="Articulo">
@@ -1202,9 +1189,7 @@
             <Parameter Name="pRol" Mode="In" Type="Int32" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTA_ACTIVIDAD" ReturnType="Collection(Model.CONSULTA_ACTIVIDAD_Result)">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ACTIVIDAD" ReturnType="Collection(Model.CONSULTA_ACTIVIDAD_Result)" />
           <FunctionImport Name="CONSULTA_ARTICULO" ReturnType="Collection(Model.CONSULTA_ARTICULO_Result)">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1298,12 +1283,8 @@
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_ACTIVIDAD">
-            <Parameter Name="pCodigo" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
-            <Parameter Name="pDia" Mode="In" Type="String" />
-            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
-            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_CONSECUTIVO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
@@ -1320,7 +1301,6 @@
             <Parameter Name="pMensaje" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_HABITACION">
-            <Parameter Name="pCodigo" Mode="In" Type="String" />
             <Parameter Name="pNumero" Mode="In" Type="Int32" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
             <Parameter Name="pEst_Hab" Mode="In" Type="Int32" />
@@ -1403,11 +1383,8 @@
         </EntityContainer>
         <ComplexType Name="CONSULTA_ACTIVIDAD_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Dia" Nullable="true" MaxLength="1" />
-          <Property Type="DateTime" Name="Horainicio" Nullable="false" />
-          <Property Type="DateTime" Name="Horafinal" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="30" />
         </ComplexType>
         <ComplexType Name="CONSULTA_ARTICULO_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
@@ -1500,9 +1477,6 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Dia" ColumnName="Dia" />
-                <ScalarProperty Name="Horainicio" ColumnName="Horainicio" />
-                <ScalarProperty Name="Horafinal" ColumnName="Horafinal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1706,9 +1680,6 @@
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Dia" ColumnName="Dia" />
-                <ScalarProperty Name="Horainicio" ColumnName="Horainicio" />
-                <ScalarProperty Name="Horafinal" ColumnName="Horafinal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
