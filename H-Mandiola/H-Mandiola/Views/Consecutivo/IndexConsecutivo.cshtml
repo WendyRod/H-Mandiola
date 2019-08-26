@@ -1,4 +1,4 @@
-﻿@model IEnumerable<H_Mandiola.Models.Consecutivos>
+﻿@model IEnumerable<H_Mandiola.Models.Consecutivo>
 
 @{
     ViewBag.Title = "Index";
@@ -44,7 +44,7 @@
                     @Html.DisplayNameFor(model => model.Descripcion)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Consecutivo)
+                    @Html.DisplayNameFor(model => model.Consecutivo1)
                 </th>
                 <th></th>
             </tr>
@@ -59,20 +59,22 @@
                         @Html.DisplayFor(modelItem => item.Descripcion)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Consecutivo)
+                        @Html.DisplayFor(modelItem => item.Consecutivo1)
                     </td>
 
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Codigo })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Codigo }, new { @class = "btn btn-secondary" })
                         @*@Html.ActionLink("Details", "Details", new { id=item.Codigo }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.Codigo })*@
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Codigo })*@
                     </td>
                 </tr>
             }
 
         </table>
-        <input type="submit" value="Nuevo" onclick="" class="btn btn-primary" />
-        </div>
+        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+        
+    </div>
+    <br />
     <br />
     <br />
 </header>

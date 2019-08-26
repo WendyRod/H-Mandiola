@@ -51,24 +51,28 @@
 
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tipo_Habitacion1.Tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Precio1)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo_Habitacion1.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Codigo }, new { @class= "btn btn-primary" })
+                    </td>
+                </tr>
             }
 
         </table>
-        </div>
-    </header>
+        <br />
+        @Html.ActionLink("Nuevo", "Create", null,  new { @class = "btn btn-primary" })
+
+    </div>
+    <br />
+    <br />
+    <br />
+</header>
