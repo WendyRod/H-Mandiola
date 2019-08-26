@@ -57,6 +57,7 @@ namespace H_Mandiola.Controllers
                 db.INSERTA_ACTIVIDAD(actividad.Nombre, actividad.Descripcion);
                 db.SaveChanges();
                 return RedirectToAction("IndexActividad");
+                
             }
 
             return View(actividad);

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -506,6 +506,10 @@
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="INSERTA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pTipo" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="INSERTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
@@ -677,8 +681,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1191,25 +1194,25 @@
           </FunctionImport>
           <FunctionImport Name="CONSULTA_ACTIVIDAD" ReturnType="Collection(Model.CONSULTA_ACTIVIDAD_Result)" />
           <FunctionImport Name="CONSULTA_ARTICULO" ReturnType="Collection(Model.CONSULTA_ARTICULO_Result)">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_BITACORA" ReturnType="Collection(Model.CONSULTA_BITACORA_Result)" />
           <FunctionImport Name="CONSULTA_CONSECUTIVO" ReturnType="Collection(Model.CONSULTA_CONSECUTIVO_Result)">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_ERROR" ReturnType="Collection(Model.CONSULTA_ERROR_Result)" />
           <FunctionImport Name="CONSULTA_HABITACION" ReturnType="Collection(Model.CONSULTA_HABITACION_Result)" />
           <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_RESERVA" ReturnType="Collection(Model.CONSULTA_RESERVA_Result)">
-            <Parameter Name="pReserva" Mode="In" Type="Int32" />
+          <Parameter Name="pReserva" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_ROL" ReturnType="Collection(Model.CONSULTA_ROL_Result)">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_USUARIO" ReturnType="Collection(Model.CONSULTA_USUARIO_Result)">
-            <Parameter Name="pCorreo" Mode="In" Type="String" />
+          <Parameter Name="pCorreo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_ACTIVIDAD">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
@@ -1280,7 +1283,7 @@
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EXISTE">
-            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_ACTIVIDAD">
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -1364,7 +1367,7 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="USUARIO_CONSULTA_ROL">
-            <Parameter Name="pCorreo" Mode="In" Type="String" />
+          <Parameter Name="pCorreo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USUARIO_LOGIN" ReturnType="Collection(Model.USUARIO_LOGIN_Result)">
             <Parameter Name="pUsuario" Mode="In" Type="String" />
@@ -1379,6 +1382,10 @@
             <Parameter Name="pClave" Mode="In" Type="String" />
             <Parameter Name="pRol" Mode="In" Type="Int32" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_BITACORA">
+            <Parameter Name="pTipo" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CONSULTA_ACTIVIDAD_Result">
@@ -1834,6 +1841,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="USUARIO_REGISTRO" FunctionName="Model.Store.USUARIO_REGISTRO" />
+          <FunctionImportMapping FunctionImportName="INSERTA_BITACORA" FunctionName="Model.Store.INSERTA_BITACORA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

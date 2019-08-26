@@ -931,5 +931,18 @@ namespace H_Mandiola.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USUARIO_REGISTRO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pRolParameter, pEstadoParameter);
         }
+    
+        public virtual int INSERTA_BITACORA(string pTipo, string pDescripcion)
+        {
+            var pTipoParameter = pTipo != null ?
+                new ObjectParameter("pTipo", pTipo) :
+                new ObjectParameter("pTipo", typeof(string));
+    
+            var pDescripcionParameter = pDescripcion != null ?
+                new ObjectParameter("pDescripcion", pDescripcion) :
+                new ObjectParameter("pDescripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_BITACORA", pTipoParameter, pDescripcionParameter);
+        }
     }
 }
