@@ -61,6 +61,7 @@ namespace H_Mandiola.Controllers
                 Usuario usuario = (Usuario)Session["username"];
                 db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Nombre);
                 db.SaveChanges();
+                db.INSERTA_BITACORA("Agregar", "Se insertó una nueva reserva");
                 return RedirectToAction("Index");
             }
 
@@ -95,6 +96,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(reserva).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Modificar", "Se modificó una reserva");
                 return RedirectToAction("Index");
             }
             ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", reserva.Usuario);
