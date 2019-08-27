@@ -58,8 +58,9 @@ namespace H_Mandiola.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Reserva.Add(res);
-               await db.SaveChangesAsync();
+                Usuario usuario = (Usuario)Session["username"];
+                db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Nombre);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
