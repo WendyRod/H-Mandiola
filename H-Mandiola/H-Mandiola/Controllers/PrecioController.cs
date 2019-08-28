@@ -55,6 +55,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Precio.Add(precio);
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Agregar", "Se insertó un nuevo precio");
                 return RedirectToAction("IndexPrecio");
             }
 
@@ -89,6 +90,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(precio).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Modificar", "Se modificó un precio");
                 return RedirectToAction("IndexPrecio");
             }
             ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);

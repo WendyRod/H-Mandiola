@@ -57,6 +57,7 @@ namespace H_Mandiola.Controllers
             {
                 db.INSERTA_HABITACION(habitacion.Numero,habitacion.Descripcion,habitacion.Est_Hab, habitacion.Precio);
                 db.SaveChanges();
+                db.INSERTA_BITACORA("Agregar", "Se insertó una nueva habitación");
             }
 
             ViewBag.Est_Hab = new SelectList(db.Est_Hab, "Codigo", "Descripcion", habitacion.Est_Hab);
@@ -92,6 +93,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(habitacion).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Modificar", "Se modificó una habitación");
                 return RedirectToAction("IndexHabitacion");
             }
             ViewBag.Est_Hab = new SelectList(db.Est_Hab, "Codigo", "Descripcion", habitacion.Est_Hab);
