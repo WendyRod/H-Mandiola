@@ -81,11 +81,40 @@ function LoginRegister() {
     window.location.href = "/Usuario/CrearUsuario"
 }
 
-var Login = function () {
+function LoginAdminView() {
+    window.location.href = "/Usuario/LoginAdmin"
+}
+
+function LoginClientView() {
+    window.location.href = "/Cliente/LoginCliente"
+}
+
+var LoginCliente = function () {
     var data = $("#loginF").serialize();
     $.ajax({
         type: "POST",
-        url: "/Usuario/LoginUser",
+        url: "/Cliente/LoginCliente",
+        data: data,
+        success: function (result) {
+            if (result == "Fail") {
+                $("#loginF")[0].reset();
+                //$("#msg").show();
+            }
+            else {
+                window.location.href = "/Cliente/Inicio";
+                $("#btnInicio").hide();
+                $("#btnSalir").show();
+                //$("#msg").hide();
+            }
+        }
+    })
+}
+
+var LoginAdmin = function () {
+    var data = $("#loginF").serialize();
+    $.ajax({
+        type: "POST",
+        url: "/Usuario/LoginAdmin",
         data: data,
         success: function (result) {
             if (result == "Fail") {

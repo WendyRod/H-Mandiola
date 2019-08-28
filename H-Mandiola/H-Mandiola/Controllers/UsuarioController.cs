@@ -26,7 +26,7 @@ namespace H_Mandiola.Controllers
         /// Constructor de la pagina Usuario/CrearUsuario
         /// </summary>
         /// <returns>Retorna la pagina.</returns>
-        public ActionResult CrearUsuario()
+        public ActionResult CrearUsuarioAdmin()
         {
             return View();
         }
@@ -41,9 +41,9 @@ namespace H_Mandiola.Controllers
             {
                 //Variable que indica si existe o no el usuario.
                 var result = 0; //Valor 0 es que no existe el usuario.
-                foreach (var item in db.Usuario) //Verificamos la lista.
+                foreach (var item in db.Usuario_Admin) //Verificamos la lista.
                 {
-                    if (item.Usuario1.Equals(user.username) || item.Email.Equals(user.email))    //Comparamos los datos con los ya existentes.
+                    if (item.Usuario.Equals(user.username) || item.Email.Equals(user.email))    //Comparamos los datos con los ya existentes.
                     {
                         result = 1; //Si ya existe, se cambia el valor.
                     }
@@ -62,7 +62,7 @@ namespace H_Mandiola.Controllers
                 else  //En caso de que ya exista el dato.
                 {
                     // Datos ya exixtentes //
-                    return Json(new { success = false, responseText = "Usuario y/o coreo ya existen." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                    return Json(new { success = false, responseText = "Usuario y/o correo ya existen." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
                 }
             }
             catch (Exception)
@@ -78,27 +78,11 @@ namespace H_Mandiola.Controllers
         /// Constructor de la pagina Usuario/Login.
         /// </summary>
         /// <returns>Retorna la pagina.</returns>
-        public ActionResult Login()
+        public ActionResult LoginAdmin()
         {
             return View();
         }
-
-        [HttpPost]
-        public ActionResult LoginMethod(H_Mandiola.Models.Usuario userModel)
-        {
-            var userDetails = db.Usuario.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
-            if (userDetails == null)
-            {
-                TempData["msg"] = "El usuario o la clave no son correctos.";
-                return RedirectToAction("Login", "Usuario");
-            }
-            else
-            {
-                Session["username"] = userDetails.Usuario1;
-                //TempData["msg"] = "Login exitoso!"
-                return RedirectToAction("Default", "Usuario");
-            }
-        }
+        
 
         #endregion
 
@@ -111,7 +95,7 @@ namespace H_Mandiola.Controllers
         [HttpPost]
         public ActionResult CambiarClaveUser(string OldPass, string NewPass, string ConfirmPass)
         {
-            Usuario user = new Usuario();
+            Usuario_Admin user = new Usuario_Admin();
             return Json(new { success = true, responseText = "Exito. " + OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
             //if (NewPass.Equals(OldPass)) //Las contraseñas nuevas deben de ser iguales.
             //{
@@ -169,19 +153,37 @@ namespace H_Mandiola.Controllers
         {
             return View();
         }
-    }
 
-    public class PassClass
-    {
-        public string OldPass { get; set; }
-        public string NewPass { get; set; }
-        public string ConfirmedPass { get; set; }
-
-        public PassClass(string oldPass, string newPass, string confirmedPass)
+        public class PassClass
         {
-            OldPass = oldPass;
-            NewPass = newPass;
-            ConfirmedPass = confirmedPass;
+            public string OldPass { get; set; }
+            public string NewPass { get; set; }
+            public string ConfirmedPass { get; set; }
+
+            public PassClass(string oldPass, string newPass, string confirmedPass)
+            {
+                OldPass = oldPass;
+                NewPass = newPass;
+                ConfirmedPass = confirmedPass;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult LoginAdmin(H_Mandiola.Models.Usuario_Admin userModel)
+        {
+            //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
+            var userDetails = db.Usuario_Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
+            if (userDetails == null)
+            {
+                TempData["msg"] = "El usuario o la clave no son correctos.";
+                return RedirectToAction("LoginAdmin", "Usuario");
+            }
+            else
+            {
+                Session["username"] = userDetails.Usuario;
+                //TempData["msg"] = "Login exitoso!";
+                return RedirectToAction("Default", "Usuario");
+            }
         }
     }
 }

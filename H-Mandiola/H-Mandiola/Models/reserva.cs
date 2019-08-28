@@ -25,10 +25,10 @@ namespace H_Mandiola.Models
         public System.DateTime Fecha_Entrada { get; set; }
         public System.DateTime Fecha_Salida { get; set; }
         public int Cantidad_Dias { get; set; }
-        public bool Codigo_Promocional { get; set; }
+        public string Codigo_Promocional { get; set; }
         public int Cantidad_Adultos { get; set; }
         public int Cantidad_Niños { get; set; }
-        public bool Mascota { get; set; }
+        public string Mascota { get; set; }
         public string Metodo_Pago { get; set; }
         public Nullable<int> Precio { get; set; }
         public string Usuario { get; set; }
