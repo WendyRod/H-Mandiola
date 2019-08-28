@@ -56,6 +56,7 @@ namespace H_Mandiola.Controllers
                 //await db.SaveChangesAsync();
                 db.INSERTA_ACTIVIDAD(actividad.Nombre, actividad.Descripcion);
                 db.SaveChanges();
+                db.INSERTA_BITACORA("Agregar", "Se insertó una nueva actividad");
                 return RedirectToAction("IndexActividad");
                 
             }
@@ -89,6 +90,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(actividad).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Modificar", "Se modificó una actividad");
                 return RedirectToAction("IndexActividad");
             }
             return View(actividad);

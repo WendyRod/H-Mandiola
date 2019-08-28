@@ -53,6 +53,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Consecutivo.Add(consecutivo);
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Agregar", "Se insertó un nuevo consecutivo");
                 return RedirectToAction("IndexConsecutivo");
             }
 
@@ -85,6 +86,7 @@ namespace H_Mandiola.Controllers
             {
                 db.Entry(consecutivo).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+                db.INSERTA_BITACORA("Modificar", "Se modificó un consecutivo");
                 return RedirectToAction("IndexConsecutivo");
             }
             return View(consecutivo);
