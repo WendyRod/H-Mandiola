@@ -1,4 +1,4 @@
-﻿@model H_Mandiola.Models.Usuario
+﻿@model H_Mandiola.Models.Usuario_Cliente
 
 @{
     Layout = null;
@@ -136,7 +136,7 @@
 <body>
 
     <div class="container">
-        @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
+        @using (Html.BeginForm("LoginCliente", "Cliente", FormMethod.Post))
         {
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -153,9 +153,9 @@
                                     <label for="UsernameLabel" runat="server">Nombre de usuario:</label>
                                     <br />
                                     <br />
-                                    @Html.EditorFor(model => model.Usuario1, new { htmlAttributes = new { @class = "form-control", type = "text", required = "required" } })
+                                    @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control", type = "text", required = "required" } })
                                     <br />
-                                    @Html.ValidationMessageFor(model => model.Usuario1)
+                                    @Html.ValidationMessageFor(model => model.Usuario)
                                 </div>
                                 <div class="form-label-group">
                                     <label for="PasswordLabel" runat="server">Contraseña:</label>
@@ -172,13 +172,15 @@
                             </form>
                         </div>
 
-                        <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
+                        <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="LoginCliente()" />
                         @*<div class="text-center">
             <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
         </div>*@
                         @*<div class="text-center">*@
                         @*<label>¿No posee una cuenta?</label>*@
                         <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
+                        <br />
+                        <input id="NoAdmin" class="btn btn-link" type="submit" value="Ir a administrador" onclick="LoginAdminView()" />
                         @*</div>*@
                         @*<hr class="my-4" />*@
 

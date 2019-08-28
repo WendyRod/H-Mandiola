@@ -67,21 +67,29 @@ function ChangePassword() {
     }
 
     function InicioSesion() {
-        window.location.href = "/Usuario/Login"
+        window.location.href = "/Usuario/LoginAdmin"
     }
 
     function LoginRegister() {
         window.location.href = "/Usuario/CrearUsuario"
 }
 
-var Login = function () {
+function LoginClientView() {
+    window.location.href = "/Cliente/LoginCliente"
+}
+
+function LoginAdminView() {
+    window.location.href = "/Usuario/Default"
+}
+
+var LoginAdmin = function () {
     var data = $("#loginF").serialize();
         //var data = $("#login").serialize();
         //var username = $("#UserName").val();
         //var pass = $("#Password").val();
         $.ajax({
             type: "POST",
-            url: "/Usuario/LoginUser",
+            url: "/Usuario/LoginAdmin",
             data: data,
             success: function (result) {
                 if (result == "Fail") {
@@ -96,6 +104,30 @@ var Login = function () {
                 }
             }
         })
+}
+
+var LoginCliente = function () {
+    var data = $("#loginF").serialize();
+    //var data = $("#login").serialize();
+    //var username = $("#UserName").val();
+    //var pass = $("#Password").val();
+    $.ajax({
+        type: "POST",
+        url: "/Cliente/LoginCliente",
+        data: data,
+        success: function (result) {
+            if (result == "Fail") {
+                $("#loginF")[0].reset();
+                //$("#msg").show();
+            }
+            else {
+                window.location.href = "/Cliente/Inicio";
+                $("#btnInicio").hide();
+                $("#btnSalir").show();
+                //$("#msg").hide();
+            }
+        }
+    })
 }
 
 function CerrarSesion() {

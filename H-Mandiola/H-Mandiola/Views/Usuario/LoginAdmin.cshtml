@@ -174,19 +174,21 @@
 
                         <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="LoginAdmin()" />
                         @*<div class="text-center">
-            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
-        </div>*@
+                                <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
+                            </div>*@
                         @*<div class="text-center">*@
                         @*<label>¿No posee una cuenta?</label>*@
                         <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
+                        <br />
+                        <input id="NoAdmin" class="btn btn-link" type="submit" value="¿No eres administrador? Ingresa aquí" onclick="LoginClientView()" />
                         @*</div>*@
                         @*<hr class="my-4" />*@
 
                         @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
+                            <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
 
                     </div>
-                    </div>
+                </div>
             </div>
         }
     </div>
@@ -247,23 +249,23 @@
 
                         <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
                         <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
-                    @*</div>
+@*</div>
+                    </div>
                 </div>
+            }
             </div>
-        }
-        </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-        {
-        if (TempData["msg"] != null)
-        {
-<script type="text/javascript">
-                alert("@TempData["msg"]");
-</script>
-        }
-        }
-        </body>
-        </html>
-<script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
+            {
+            if (TempData["msg"] != null)
+            {
+    <script type="text/javascript">
+                    alert("@TempData["msg"]");
+    </script>
+            }
+            }
+            </body>
+            </html>
+    <script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
