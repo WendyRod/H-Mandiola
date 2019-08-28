@@ -5,12 +5,15 @@ using System.Data.SqlClient;
 using System.Security;
 using DAL;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace BLL
 {
     public class Usuario
     {
-        
+
+        private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
+
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
@@ -92,6 +95,66 @@ namespace BLL
                 Console.WriteLine("Los datos no se ingresaron");
             }
         }
+
+        public List<bool> SearchRoles(int Codigo)
+        {
+            var rolesList = new List<bool>();
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("ObtenertRoles", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@pCodigo", Codigo);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    rolesList.Add(Convert.ToBoolean(dr["Administrador"].ToString()));
+
+                    rolesList.Add(Convert.ToBoolean(dr["Consecutivo"].ToString()));
+
+                    rolesList.Add(Convert.ToBoolean(dr["Consulta"].ToString()));
+
+                    rolesList.Add(Convert.ToBoolean(dr["Mantenimiento"].ToString()));
+
+                    rolesList.Add(Convert.ToBoolean(dr["Seguridad"].ToString()));
+                    
+                }
+                conn.Close();
+            }
+            return rolesList;
         }
+
+        public void SaveRoles(bool Conse, bool Consul, bool Mante, bool Admi, bool Segu, int currentUseRol)
+        {
+            SqlConnection conn = new SqlConnection();
+
+            SqlCommand com;
+
+            com = conn.CreateCommand();
+
+            com.CommandText = "Execute usp_modifica_usuario_admi  @Administrador, @Consecutivo, @Consulta,@Mantenimiento, @Seguridad, @ID";
+            com.Parameters.Add("@Administrador", SqlDbType.Bit).Value = Admi;
+            com.Parameters.Add("@Consecutivo", SqlDbType.Bit).Value = Conse;
+            com.Parameters.Add("@Consulta", SqlDbType.Bit).Value = Consul;
+            com.Parameters.Add("@Mantenimiento", SqlDbType.Bit).Value = Mante;
+            com.Parameters.Add("@Seguridad", SqlDbType.Bit).Value = Segu;
+            com.Parameters.Add("@ID", SqlDbType.Int).Value = currentUseRol;
+
+            conn.Open();
+            com.ExecuteNonQuery();
+
+            conn.Close();
+
+
+
+        }
+
+    }
 
 }

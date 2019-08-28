@@ -18,7 +18,7 @@ namespace H_Mandiola.Controllers
         // GET: Reserva
         public async Task<ActionResult> Index()
         {
-            var reserva = db.Reserva.Include(r => r.Usuario1);
+            var reserva = db.Reserva.Include(r => r.Usuario);
             return View(await reserva.ToListAsync());
         }
 
@@ -40,7 +40,7 @@ namespace H_Mandiola.Controllers
         // GET: Reserva/Create
         public ActionResult Create()
         {
-            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre");
+            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre");
             return View();
         }
 
@@ -58,14 +58,14 @@ namespace H_Mandiola.Controllers
 
             if (ModelState.IsValid)
             {
-                Usuario usuario = (Usuario)Session["username"];
-                db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Nombre);
+                Usuario_Cliente usuario = (Usuario_Cliente)Session["username"];
+                db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Codigo);
                 db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó una nueva reserva");
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", res.Usuario);
+            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", res.Usuario);
             return View(res);
         }
 
@@ -81,7 +81,7 @@ namespace H_Mandiola.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", reserva.Usuario);
+            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", reserva.Usuario);
             return View(reserva);
         }
 
@@ -99,7 +99,7 @@ namespace H_Mandiola.Controllers
                 db.INSERTA_BITACORA("Modificar", "Se modificó una reserva");
                 return RedirectToAction("Index");
             }
-            ViewBag.Usuario = new SelectList(db.Usuario, "Codigo", "Nombre", reserva.Usuario);
+            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", reserva.Usuario);
             return View(reserva);
         }
 
