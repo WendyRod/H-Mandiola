@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -28,7 +28,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Fecha_Hora" Type="date" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -65,7 +65,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="int" Nullable="false" />
-          <Property Name="Fecha_Hora" Type="date" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
           <Property Name="Mensaje" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Est_Hab">
@@ -74,13 +74,6 @@
           </Key>
           <Property Name="Codigo" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Estado">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="int" Nullable="false" />
-          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Habitacion">
           <Key>
@@ -124,13 +117,6 @@
           <Property Name="Precio" Type="int" />
           <Property Name="Usuario" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <EntityType Name="Rol">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="int" Nullable="false" />
-          <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -165,7 +151,7 @@
           <Property Name="Codigo" Type="int" Nullable="false" />
           <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="Usuario_Admin">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
@@ -176,10 +162,26 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Clave" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Pregunta" Type="varchar" MaxLength="50" />
-          <Property Name="Respuesta" Type="varchar" MaxLength="30" />
-          <Property Name="Rol" Type="int" Nullable="false" />
-          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="Administrador" Type="bit" />
+          <Property Name="Seguridad" Type="bit" />
+          <Property Name="Consecutivo" Type="bit" />
+          <Property Name="Mantenimiento" Type="bit" />
+          <Property Name="Consulta" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usuario_Cliente">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellido1" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Apellido2" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Pregunta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Respuesta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="30" />
         </EntityType>
         <Association Name="Articulo_Reserva_fk">
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
@@ -266,10 +268,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Hist_Act_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Historial_Actividad">
@@ -290,10 +292,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Reserva_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Reserva">
@@ -314,10 +316,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Tarjeta_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Tarjeta">
@@ -325,43 +327,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Usuario_estado_fk">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Usuario_Rol_fk">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Rol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="ACTUALIZA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
-          <Parameter Name="pDia" Type="char" Mode="In" />
-          <Parameter Name="pHorainicio" Type="datetime" Mode="In" />
-          <Parameter Name="pHorafinal" Type="datetime" Mode="In" />
         </Function>
         <Function Name="ACTUALIZA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pPrecio" Type="int" Mode="In" />
-          <Parameter Name="pReserva" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ACTUALIZA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
@@ -371,6 +345,7 @@
         </Function>
         <Function Name="ACTUALIZA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNumero" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
           <Parameter Name="pEstado" Type="int" Mode="In" />
           <Parameter Name="pPrecio" Type="int" Mode="In" />
@@ -392,7 +367,37 @@
           <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
           <Parameter Name="pEstado" Type="int" Mode="In" />
         </Function>
-        <Function Name="CAMBIO_PASS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ACTUALIZA_USUARIO_ADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pAdministrador" Type="bit" Mode="In" />
+          <Parameter Name="pSeguridad" Type="bit" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="bit" Mode="In" />
+          <Parameter Name="pMantenimiento" Type="bit" Mode="In" />
+          <Parameter Name="pConsulta" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ACTUALIZA_USUARIO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pPregunta" Type="varchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CAMBIO_PASS_ADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsername" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="CAMBIO_PASS_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pUsername" Type="nvarchar" Mode="In" />
           <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
         </Function>
@@ -405,43 +410,29 @@
           <Parameter Name="pClave" Type="nvarchar" Mode="In" />
           <Parameter Name="pPregunta" Type="nvarchar" Mode="In" />
           <Parameter Name="pRespuesta" Type="nvarchar" Mode="In" />
-          <Parameter Name="pRol" Type="int" Mode="In" />
-          <Parameter Name="pEstado" Type="int" Mode="In" />
+          <Parameter Name="pEstado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="CONSULTA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="CONSULTA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="int" Mode="In" />
-        </Function>
+        <Function Name="CONSULTA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CONSULTA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="CONSULTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="int" Mode="In" />
-        </Function>
+        <Function Name="CONSULTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CONSULTA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="CONSULTA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="CONSULTA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="int" Mode="In" />
-        </Function>
-        <Function Name="CONSULTA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pReserva" Type="int" Mode="In" />
-        </Function>
-        <Function Name="CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCodigo" Type="int" Mode="In" />
-        </Function>
-        <Function Name="CONSULTA_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
-        </Function>
+        <Function Name="CONSULTA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_USUARIO_ADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CONSULTA_USUARIO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ELIMINA_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
-          <Parameter Name="pDia" Type="char" Mode="In" />
-          <Parameter Name="pHorainicio" Type="datetime" Mode="In" />
-          <Parameter Name="pHorafinal" Type="datetime" Mode="In" />
         </Function>
         <Function Name="ELIMINA_ARTICULO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
           <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pTipo_Articulo" Type="int" Mode="In" />
           <Parameter Name="pReservaid" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ELIMINA_BITACORA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -452,22 +443,25 @@
         </Function>
         <Function Name="ELIMINA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
-          <Parameter Name="descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="consecutivo" Type="varchar" Mode="In" />
-          <Parameter Name="prefijo" Type="varchar" Mode="In" />
-          <Parameter Name="minimo" Type="int" Mode="In" />
-          <Parameter Name="maximo" Type="int" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="int" Mode="In" />
+          <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
+          <Parameter Name="pPrefijo" Type="varchar" Mode="In" />
+          <Parameter Name="pPoseeRango" Type="bit" Mode="In" />
+          <Parameter Name="pMinimo" Type="int" Mode="In" />
+          <Parameter Name="pMaximo" Type="int" Mode="In" />
         </Function>
         <Function Name="ELIMINA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
-          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="datetime" Mode="In" />
           <Parameter Name="pMensaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ELIMINA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNumero" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
           <Parameter Name="pEstado" Type="int" Mode="In" />
-          <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pPrecio" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ELIMINA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
@@ -475,16 +469,17 @@
           <Parameter Name="pPrecio" Type="int" Mode="In" />
         </Function>
         <Function Name="ELIMINA_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pReserva" Type="varchar" Mode="In" />
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
           <Parameter Name="pFechaentrada" Type="date" Mode="In" />
           <Parameter Name="pFechasalida" Type="date" Mode="In" />
           <Parameter Name="pCantidaddias" Type="int" Mode="In" />
           <Parameter Name="pCodigopromocional" Type="char" Mode="In" />
           <Parameter Name="pCantidadultos" Type="int" Mode="In" />
-          <Parameter Name="pCantidniños" Type="int" Mode="In" />
+          <Parameter Name="pCantidadniños" Type="int" Mode="In" />
           <Parameter Name="pMascota" Type="char" Mode="In" />
           <Parameter Name="pMetodopago" Type="char" Mode="In" />
           <Parameter Name="pPrecio" Type="int" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ELIMINA_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pNombre" Type="varchar" Mode="In" />
@@ -497,6 +492,32 @@
           <Parameter Name="pPregunta" Type="varchar" Mode="In" />
           <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
           <Parameter Name="pEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_USUARIO_ADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pAdministrador" Type="bit" Mode="In" />
+          <Parameter Name="pSeguridad" Type="bit" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="bit" Mode="In" />
+          <Parameter Name="pMantenimiento" Type="bit" Mode="In" />
+          <Parameter Name="pConsulta" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ELIMINA_USUARIO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+          <Parameter Name="pNombre" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pClave" Type="varchar" Mode="In" />
+          <Parameter Name="pPregunta" Type="varchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="varchar" Mode="In" />
+          <Parameter Name="pEstado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="EXISTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
@@ -521,7 +542,7 @@
           <Parameter Name="pMaximo" Type="int" Mode="In" />
         </Function>
         <Function Name="INSERTA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="datetime" Mode="In" />
           <Parameter Name="pMensaje" Type="varchar" Mode="In" />
         </Function>
         <Function Name="INSERTA_HABITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -545,8 +566,8 @@
         <Function Name="MODIFICA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="nvarchar" Mode="In" />
-          <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
           <Parameter Name="pConsecutivo" Type="varchar" Mode="In" />
+          <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
           <Parameter Name="pPrefijo" Type="varchar" Mode="In" />
           <Parameter Name="pPoseeRango" Type="bit" Mode="In" />
           <Parameter Name="pMinimo" Type="int" Mode="In" />
@@ -554,8 +575,11 @@
         </Function>
         <Function Name="MODIFICA_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
-          <Parameter Name="pFecha_hora" Type="date" Mode="In" />
+          <Parameter Name="pFecha_hora" Type="datetime" Mode="In" />
           <Parameter Name="pMensaje" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenertRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -587,22 +611,40 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="USUARIO_CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="USUARIO_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="USUARIO_ADMIN_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
           <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="USUARIO_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="USUARIO_ADMIN_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pNombre" Type="nvarchar" Mode="In" />
           <Parameter Name="pApellido1" Type="nvarchar" Mode="In" />
           <Parameter Name="pApellido2" Type="nvarchar" Mode="In" />
           <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
           <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
           <Parameter Name="pClave" Type="nvarchar" Mode="In" />
-          <Parameter Name="pRol" Type="int" Mode="In" />
-          <Parameter Name="pEstado" Type="int" Mode="In" />
+          <Parameter Name="pAdministrador" Type="bit" Mode="In" />
+          <Parameter Name="pSeguridad" Type="bit" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="bit" Mode="In" />
+          <Parameter Name="pMantenimiento" Type="bit" Mode="In" />
+          <Parameter Name="pConsulta" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_CLIENTE_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPassword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_CLIENTE_REGISTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido1" Type="nvarchar" Mode="In" />
+          <Parameter Name="pApellido2" Type="nvarchar" Mode="In" />
+          <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
+          <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="pClave" Type="nvarchar" Mode="In" />
+          <Parameter Name="pPregunta" Type="nvarchar" Mode="In" />
+          <Parameter Name="pRespuesta" Type="nvarchar" Mode="In" />
+          <Parameter Name="pEstado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USUARIO_CONSULTA_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pCorreo" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" Schema="dbo" store:Type="Tables" />
@@ -613,17 +655,16 @@
           <EntitySet Name="Emisor" EntityType="Self.Emisor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Est_Hab" EntityType="Self.Est_Hab" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Historial_Actividad" EntityType="Self.Historial_Actividad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Precio" EntityType="Self.Precio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo_Articulo" EntityType="Self.Tipo_Articulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo_Habitacion" EntityType="Self.Tipo_Habitacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_Admin" EntityType="Self.Usuario_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario_Cliente" EntityType="Self.Usuario_Cliente" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Articulo_Reserva_fk" Association="Self.Articulo_Reserva_fk">
             <End Role="Reserva" EntitySet="Reserva" />
             <End Role="Articulo" EntitySet="Articulo" />
@@ -653,7 +694,7 @@
             <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
           </AssociationSet>
           <AssociationSet Name="Hist_Act_Usuario_fk" Association="Self.Hist_Act_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
           </AssociationSet>
           <AssociationSet Name="Precio_Tipo_Habitacion_fk" Association="Self.Precio_Tipo_Habitacion_fk">
@@ -661,7 +702,7 @@
             <End Role="Precio" EntitySet="Precio" />
           </AssociationSet>
           <AssociationSet Name="Reserva_Usuario_fk" Association="Self.Reserva_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           <AssociationSet Name="Tarjeta_Emisor_fk" Association="Self.Tarjeta_Emisor_fk">
@@ -669,19 +710,12 @@
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
           <AssociationSet Name="Tarjeta_Usuario_fk" Association="Self.Tarjeta_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
-          <AssociationSet Name="Usuario_estado_fk" Association="Self.Usuario_estado_fk">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-          <AssociationSet Name="Usuario_Rol_fk" Association="Self.Usuario_Rol_fk">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -711,7 +745,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
@@ -751,7 +785,7 @@
             <PropertyRef Name="Codigo" />
           </Key>
           <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Est_Hab">
@@ -761,14 +795,6 @@
           <Property Name="Codigo" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Habitacion" Relationship="Self.Habitacion_Est_Hab_fk" FromRole="Est_Hab" ToRole="Habitacion" />
-        </EntityType>
-        <EntityType Name="Estado">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_estado_fk" FromRole="Estado" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Habitacion">
           <Key>
@@ -791,7 +817,7 @@
           <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Actividad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Actividad1" Relationship="Self.Hist_act_Act_fk" FromRole="Historial_Actividad" ToRole="Actividad" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Historial_Actividad" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario_Cliente" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Historial_Actividad" ToRole="Usuario_Cliente" />
         </EntityType>
         <EntityType Name="Precio">
           <Key>
@@ -820,15 +846,7 @@
           <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Articulo" Relationship="Self.Articulo_Reserva_fk" FromRole="Reserva" ToRole="Articulo" />
           <NavigationProperty Name="BookingID" Relationship="Self.Bookingid_Reserva_fk" FromRole="Reserva" ToRole="BookingID" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.Reserva_Usuario_fk" FromRole="Reserva" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="Rol">
-          <Key>
-            <PropertyRef Name="Codigo" />
-          </Key>
-          <Property Name="Codigo" Type="Int32" Nullable="false" />
-          <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="Self.Usuario_Rol_fk" FromRole="Rol" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario_Cliente" Relationship="Self.Reserva_Usuario_fk" FromRole="Reserva" ToRole="Usuario_Cliente" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -850,7 +868,7 @@
           <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Emisor" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Emisor1" Relationship="Self.Tarjeta_Emisor_fk" FromRole="Tarjeta" ToRole="Emisor" />
-          <NavigationProperty Name="Usuario1" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Tarjeta" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario_Cliente" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Tarjeta" ToRole="Usuario_Cliente" />
         </EntityType>
         <EntityType Name="Tipo_Articulo">
           <Key>
@@ -868,7 +886,7 @@
           <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Precio" Relationship="Self.Precio_Tipo_Habitacion_fk" FromRole="Tipo_Habitacion" ToRole="Precio" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="Usuario_Admin">
           <Key>
             <PropertyRef Name="Codigo" />
           </Key>
@@ -877,17 +895,31 @@
           <Property Name="Apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Pregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Respuesta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Rol" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado1" Relationship="Self.Usuario_estado_fk" FromRole="Usuario" ToRole="Estado" />
-          <NavigationProperty Name="Historial_Actividad" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Usuario" ToRole="Historial_Actividad" />
-          <NavigationProperty Name="Reserva" Relationship="Self.Reserva_Usuario_fk" FromRole="Usuario" ToRole="Reserva" />
-          <NavigationProperty Name="Rol1" Relationship="Self.Usuario_Rol_fk" FromRole="Usuario" ToRole="Rol" />
-          <NavigationProperty Name="Tarjeta" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Usuario" ToRole="Tarjeta" />
+          <Property Name="Administrador" Type="Boolean" />
+          <Property Name="Seguridad" Type="Boolean" />
+          <Property Name="Consecutivo" Type="Boolean" />
+          <Property Name="Mantenimiento" Type="Boolean" />
+          <Property Name="Consulta" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Usuario_Cliente">
+          <Key>
+            <PropertyRef Name="Codigo" />
+          </Key>
+          <Property Name="Codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pregunta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Respuesta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Historial_Actividad" Relationship="Self.Hist_Act_Usuario_fk" FromRole="Usuario_Cliente" ToRole="Historial_Actividad" />
+          <NavigationProperty Name="Reserva" Relationship="Self.Reserva_Usuario_fk" FromRole="Usuario_Cliente" ToRole="Reserva" />
+          <NavigationProperty Name="Tarjeta" Relationship="Self.Tarjeta_Usuario_fk" FromRole="Usuario_Cliente" ToRole="Tarjeta" />
         </EntityType>
         <Association Name="Hist_act_Act_fk">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
@@ -973,18 +1005,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Usuario_estado_fk">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Habitacion_Precio_fk">
           <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
           <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
@@ -998,10 +1018,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Hist_Act_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Historial_Actividad" Type="Self.Historial_Actividad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Historial_Actividad">
@@ -1022,10 +1042,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Reserva_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Reserva">
@@ -1033,23 +1053,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Usuario_Rol_fk">
-          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Rol">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="Rol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Tarjeta_Usuario_fk">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario_Cliente" Type="Self.Usuario_Cliente" Multiplicity="1" />
           <End Role="Tarjeta" Type="Self.Tarjeta" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuario_Cliente">
               <PropertyRef Name="Codigo" />
             </Principal>
             <Dependent Role="Tarjeta">
@@ -1066,17 +1074,16 @@
           <EntitySet Name="Emisor" EntityType="Self.Emisor" />
           <EntitySet Name="Error" EntityType="Self.Error" />
           <EntitySet Name="Est_Hab" EntityType="Self.Est_Hab" />
-          <EntitySet Name="Estado" EntityType="Self.Estado" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" />
           <EntitySet Name="Historial_Actividad" EntityType="Self.Historial_Actividad" />
           <EntitySet Name="Precio" EntityType="Self.Precio" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
-          <EntitySet Name="Rol" EntityType="Self.Rol" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tarjeta" EntityType="Self.Tarjeta" />
           <EntitySet Name="Tipo_Articulo" EntityType="Self.Tipo_Articulo" />
           <EntitySet Name="Tipo_Habitacion" EntityType="Self.Tipo_Habitacion" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Usuario_Admin" EntityType="Self.Usuario_Admin" />
+          <EntitySet Name="Usuario_Cliente" EntityType="Self.Usuario_Cliente" />
           <AssociationSet Name="Hist_act_Act_fk" Association="Self.Hist_act_Act_fk">
             <End Role="Actividad" EntitySet="Actividad" />
             <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
@@ -1105,16 +1112,12 @@
             <End Role="Est_Hab" EntitySet="Est_Hab" />
             <End Role="Habitacion" EntitySet="Habitacion" />
           </AssociationSet>
-          <AssociationSet Name="Usuario_estado_fk" Association="Self.Usuario_estado_fk">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
           <AssociationSet Name="Habitacion_Precio_fk" Association="Self.Habitacion_Precio_fk">
             <End Role="Precio" EntitySet="Precio" />
             <End Role="Habitacion" EntitySet="Habitacion" />
           </AssociationSet>
           <AssociationSet Name="Hist_Act_Usuario_fk" Association="Self.Hist_Act_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Historial_Actividad" EntitySet="Historial_Actividad" />
           </AssociationSet>
           <AssociationSet Name="Precio_Tipo_Habitacion_fk" Association="Self.Precio_Tipo_Habitacion_fk">
@@ -1122,30 +1125,22 @@
             <End Role="Precio" EntitySet="Precio" />
           </AssociationSet>
           <AssociationSet Name="Reserva_Usuario_fk" Association="Self.Reserva_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
-          <AssociationSet Name="Usuario_Rol_fk" Association="Self.Usuario_Rol_fk">
-            <End Role="Rol" EntitySet="Rol" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
           <AssociationSet Name="Tarjeta_Usuario_fk" Association="Self.Tarjeta_Usuario_fk">
-            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario_Cliente" EntitySet="Usuario_Cliente" />
             <End Role="Tarjeta" EntitySet="Tarjeta" />
           </AssociationSet>
           <FunctionImport Name="ACTUALIZA_ACTIVIDAD">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
-            <Parameter Name="pDia" Mode="In" Type="String" />
-            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
-            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ACTUALIZA_ARTICULO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
-            <Parameter Name="pReserva" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ACTUALIZA_BITACORA">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
@@ -1155,6 +1150,7 @@
           </FunctionImport>
           <FunctionImport Name="ACTUALIZA_HABITACION">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNumero" Mode="In" Type="Int32" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
@@ -1176,7 +1172,37 @@
             <Parameter Name="pRespuesta" Mode="In" Type="String" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="CAMBIO_PASS">
+          <FunctionImport Name="ACTUALIZA_USUARIO_ADMIN">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pAdministrador" Mode="In" Type="Boolean" />
+            <Parameter Name="pSeguridad" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Boolean" />
+            <Parameter Name="pMantenimiento" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsulta" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_USUARIO_CLIENTE">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CAMBIO_PASS_ADMIN">
+            <Parameter Name="pUsername" Mode="In" Type="String" />
+            <Parameter Name="pPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CAMBIO_PASS_CLIENTE">
             <Parameter Name="pUsername" Mode="In" Type="String" />
             <Parameter Name="pPassword" Mode="In" Type="String" />
           </FunctionImport>
@@ -1189,43 +1215,29 @@
             <Parameter Name="pClave" Mode="In" Type="String" />
             <Parameter Name="pPregunta" Mode="In" Type="String" />
             <Parameter Name="pRespuesta" Mode="In" Type="String" />
-            <Parameter Name="pRol" Mode="In" Type="Int32" />
-            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+            <Parameter Name="pEstado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="CONSULTA_ACTIVIDAD" ReturnType="Collection(Model.CONSULTA_ACTIVIDAD_Result)" />
-          <FunctionImport Name="CONSULTA_ARTICULO" ReturnType="Collection(Model.CONSULTA_ARTICULO_Result)">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="CONSULTA_ARTICULO" ReturnType="Collection(Model.CONSULTA_ARTICULO_Result)" />
           <FunctionImport Name="CONSULTA_BITACORA" ReturnType="Collection(Model.CONSULTA_BITACORA_Result)" />
-          <FunctionImport Name="CONSULTA_CONSECUTIVO" ReturnType="Collection(Model.CONSULTA_CONSECUTIVO_Result)">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="CONSULTA_CONSECUTIVO" ReturnType="Collection(Model.CONSULTA_CONSECUTIVO_Result)" />
           <FunctionImport Name="CONSULTA_ERROR" ReturnType="Collection(Model.CONSULTA_ERROR_Result)" />
           <FunctionImport Name="CONSULTA_HABITACION" ReturnType="Collection(Model.CONSULTA_HABITACION_Result)" />
-          <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CONSULTA_RESERVA" ReturnType="Collection(Model.CONSULTA_RESERVA_Result)">
-          <Parameter Name="pReserva" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CONSULTA_ROL" ReturnType="Collection(Model.CONSULTA_ROL_Result)">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="CONSULTA_USUARIO" ReturnType="Collection(Model.CONSULTA_USUARIO_Result)">
-          <Parameter Name="pCorreo" Mode="In" Type="String" />
-          </FunctionImport>
+          <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)" />
+          <FunctionImport Name="CONSULTA_RESERVA" ReturnType="Collection(Model.CONSULTA_RESERVA_Result)" />
+          <FunctionImport Name="CONSULTA_ROL" />
+          <FunctionImport Name="CONSULTA_USUARIO_ADMIN" ReturnType="Collection(Model.CONSULTA_USUARIO_ADMIN_Result)" />
+          <FunctionImport Name="CONSULTA_USUARIO_CLIENTE" ReturnType="Collection(Model.CONSULTA_USUARIO_CLIENTE_Result)" />
           <FunctionImport Name="ELIMINA_ACTIVIDAD">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
-            <Parameter Name="pDia" Mode="In" Type="String" />
-            <Parameter Name="pHorainicio" Mode="In" Type="DateTime" />
-            <Parameter Name="pHorafinal" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_ARTICULO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pTipo_Articulo" Mode="In" Type="Int32" />
             <Parameter Name="pReservaid" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_BITACORA">
@@ -1236,11 +1248,13 @@
           </FunctionImport>
           <FunctionImport Name="ELIMINA_CONSECUTIVO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="consecutivo" Mode="In" Type="String" />
-            <Parameter Name="prefijo" Mode="In" Type="String" />
-            <Parameter Name="minimo" Mode="In" Type="Int32" />
-            <Parameter Name="maximo" Mode="In" Type="Int32" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
+            <Parameter Name="pPrefijo" Mode="In" Type="String" />
+            <Parameter Name="pPoseeRango" Mode="In" Type="Boolean" />
+            <Parameter Name="pMinimo" Mode="In" Type="Int32" />
+            <Parameter Name="pMaximo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_ERROR">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
@@ -1249,9 +1263,10 @@
           </FunctionImport>
           <FunctionImport Name="ELIMINA_HABITACION">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNumero" Mode="In" Type="Int32" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
-            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_PRECIO">
             <Parameter Name="pCodigo" Mode="In" Type="String" />
@@ -1259,16 +1274,17 @@
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_RESERVA">
-            <Parameter Name="pReserva" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
             <Parameter Name="pFechaentrada" Mode="In" Type="DateTime" />
             <Parameter Name="pFechasalida" Mode="In" Type="DateTime" />
             <Parameter Name="pCantidaddias" Mode="In" Type="Int32" />
             <Parameter Name="pCodigopromocional" Mode="In" Type="String" />
             <Parameter Name="pCantidadultos" Mode="In" Type="Int32" />
-            <Parameter Name="pCantidniños" Mode="In" Type="Int32" />
+            <Parameter Name="pCantidadniños" Mode="In" Type="Int32" />
             <Parameter Name="pMascota" Mode="In" Type="String" />
             <Parameter Name="pMetodopago" Mode="In" Type="String" />
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_USUARIO">
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -1282,11 +1298,41 @@
             <Parameter Name="pRespuesta" Mode="In" Type="String" />
             <Parameter Name="pEstado" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="ELIMINA_USUARIO_ADMIN">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pAdministrador" Mode="In" Type="Boolean" />
+            <Parameter Name="pSeguridad" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Boolean" />
+            <Parameter Name="pMantenimiento" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsulta" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ELIMINA_USUARIO_CLIENTE">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="EXISTE">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_ACTIVIDAD">
             <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERTA_BITACORA">
+            <Parameter Name="pTipo" Mode="In" Type="String" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_CONSECUTIVO">
@@ -1324,8 +1370,8 @@
           <FunctionImport Name="MODIFICA_CONSECUTIVO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
-            <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
             <Parameter Name="pConsecutivo" Mode="In" Type="String" />
+            <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
             <Parameter Name="pPrefijo" Mode="In" Type="String" />
             <Parameter Name="pPoseeRango" Mode="In" Type="Boolean" />
             <Parameter Name="pMinimo" Mode="In" Type="Int32" />
@@ -1335,6 +1381,9 @@
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
             <Parameter Name="pFecha_hora" Mode="In" Type="DateTime" />
             <Parameter Name="pMensaje" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenertRoles" ReturnType="Collection(Model.ObtenertRoles_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1366,26 +1415,40 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="USUARIO_CONSULTA_ROL">
-          <Parameter Name="pCorreo" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="USUARIO_LOGIN" ReturnType="Collection(Model.USUARIO_LOGIN_Result)">
+          <FunctionImport Name="USUARIO_ADMIN_LOGIN" ReturnType="Collection(Model.USUARIO_ADMIN_LOGIN_Result)">
             <Parameter Name="pUsuario" Mode="In" Type="String" />
             <Parameter Name="pPassword" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="USUARIO_REGISTRO">
+          <FunctionImport Name="USUARIO_ADMIN_REGISTRO">
             <Parameter Name="pNombre" Mode="In" Type="String" />
             <Parameter Name="pApellido1" Mode="In" Type="String" />
             <Parameter Name="pApellido2" Mode="In" Type="String" />
             <Parameter Name="pCorreo" Mode="In" Type="String" />
             <Parameter Name="pUsuario" Mode="In" Type="String" />
             <Parameter Name="pClave" Mode="In" Type="String" />
-            <Parameter Name="pRol" Mode="In" Type="Int32" />
-            <Parameter Name="pEstado" Mode="In" Type="Int32" />
+            <Parameter Name="pAdministrador" Mode="In" Type="Boolean" />
+            <Parameter Name="pSeguridad" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Boolean" />
+            <Parameter Name="pMantenimiento" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsulta" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="INSERTA_BITACORA">
-            <Parameter Name="pTipo" Mode="In" Type="String" />
-            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+          <FunctionImport Name="USUARIO_CLIENTE_LOGIN" ReturnType="Collection(Model.USUARIO_CLIENTE_LOGIN_Result)">
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USUARIO_CLIENTE_REGISTRO">
+            <Parameter Name="pNombre" Mode="In" Type="String" />
+            <Parameter Name="pApellido1" Mode="In" Type="String" />
+            <Parameter Name="pApellido2" Mode="In" Type="String" />
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
+            <Parameter Name="pUsuario" Mode="In" Type="String" />
+            <Parameter Name="pClave" Mode="In" Type="String" />
+            <Parameter Name="pPregunta" Mode="In" Type="String" />
+            <Parameter Name="pRespuesta" Mode="In" Type="String" />
+            <Parameter Name="pEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USUARIO_CONSULTA_ROL">
+            <Parameter Name="pCorreo" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CONSULTA_ACTIVIDAD_Result">
@@ -1395,26 +1458,30 @@
         </ComplexType>
         <ComplexType Name="CONSULTA_ARTICULO_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Reservaid" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
           <Property Type="Int32" Name="Precio" Nullable="false" />
+          <Property Type="Int32" Name="Tipo_Articulo" Nullable="false" />
+          <Property Type="String" Name="Reserva" Nullable="false" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="CONSULTA_BITACORA_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
-          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" Precision="23" />
           <Property Type="String" Name="Tipo" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="CONSULTA_CONSECUTIVO_Result">
           <Property Type="Int32" Name="Codigo" Nullable="false" />
-          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Consecutivo" Nullable="false" />
+          <Property Type="Boolean" Name="PoseePrefijo" Nullable="true" />
           <Property Type="String" Name="Prefijo" Nullable="true" MaxLength="5" />
+          <Property Type="Boolean" Name="PoseeRango" Nullable="true" />
           <Property Type="Int32" Name="Minimo" Nullable="true" />
           <Property Type="Int32" Name="Maximo" Nullable="true" />
         </ComplexType>
         <ComplexType Name="CONSULTA_ERROR_Result">
           <Property Type="Int32" Name="Codigo" Nullable="false" />
-          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" Precision="23" />
           <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="CONSULTA_HABITACION_Result">
@@ -1431,31 +1498,49 @@
         </ComplexType>
         <ComplexType Name="CONSULTA_RESERVA_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Codigo_Promocional" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="Mascota" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="Metodopago" Nullable="true" MaxLength="1" />
           <Property Type="DateTime" Name="Fecha_Entrada" Nullable="false" />
           <Property Type="DateTime" Name="Fecha_Salida" Nullable="false" />
+          <Property Type="Int32" Name="Cantidad_Dias" Nullable="false" />
+          <Property Type="String" Name="Codigo_Promocional" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="Cantidad_Adultos" Nullable="false" />
-          <Property Type="Int32" Name="Cantidad_Adultos1" Nullable="false" />
           <Property Type="Int32" Name="Cantidad_Niños" Nullable="false" />
+          <Property Type="String" Name="Mascota" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Metodo_Pago" Nullable="false" MaxLength="1" />
           <Property Type="Int32" Name="Precio" Nullable="true" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="10" />
         </ComplexType>
-        <ComplexType Name="CONSULTA_ROL_Result">
-          <Property Type="Int32" Name="Codigo" Nullable="false" />
-          <Property Type="String" Name="Tipo" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="CONSULTA_USUARIO_Result">
+        <ComplexType Name="CONSULTA_USUARIO_ADMIN_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Contrasena" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Pregunta_seguridad" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Respuesta_seguridad" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Primer_apellido" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Segundo_apellido" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="Rol" Nullable="false" />
-          <Property Type="Int32" Name="Estado" Nullable="false" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="Administrador" Nullable="true" />
+          <Property Type="Boolean" Name="Seguridad" Nullable="true" />
+          <Property Type="Boolean" Name="Consecutivo" Nullable="true" />
+          <Property Type="Boolean" Name="Mantenimiento" Nullable="true" />
+          <Property Type="Boolean" Name="Consulta" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="CONSULTA_USUARIO_CLIENTE_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Pregunta" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Respuesta" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="ObtenertRoles_Result">
+          <Property Type="Boolean" Name="Consecutivo" Nullable="true" />
+          <Property Type="Boolean" Name="Mantenimiento" Nullable="true" />
+          <Property Type="Boolean" Name="Seguridad" Nullable="true" />
+          <Property Type="Boolean" Name="Consulta" Nullable="true" />
+          <Property Type="Boolean" Name="Administrador" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1468,7 +1553,11 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="USUARIO_LOGIN_Result">
+        <ComplexType Name="USUARIO_ADMIN_LOGIN_Result">
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="USUARIO_CLIENTE_LOGIN_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
         </ComplexType>
@@ -1556,14 +1645,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Estado">
-            <EntityTypeMapping TypeName="Model.Estado">
-              <MappingFragment StoreEntitySet="Estado">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Habitacion">
             <EntityTypeMapping TypeName="Model.Habitacion">
               <MappingFragment StoreEntitySet="Habitacion">
@@ -1610,14 +1691,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Rol">
-            <EntityTypeMapping TypeName="Model.Rol">
-              <MappingFragment StoreEntitySet="Rol">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1656,19 +1729,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="Model.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
+          <EntitySetMapping Name="Usuario_Admin">
+            <EntityTypeMapping TypeName="Model.Usuario_Admin">
+              <MappingFragment StoreEntitySet="Usuario_Admin">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
                 <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+                <ScalarProperty Name="Seguridad" ColumnName="Seguridad" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Mantenimiento" ColumnName="Mantenimiento" />
+                <ScalarProperty Name="Consulta" ColumnName="Consulta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario_Cliente">
+            <EntityTypeMapping TypeName="Model.Usuario_Cliente">
+              <MappingFragment StoreEntitySet="Usuario_Cliente">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
                 <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1679,7 +1769,10 @@
           <FunctionImportMapping FunctionImportName="ACTUALIZA_HABITACION" FunctionName="Model.Store.ACTUALIZA_HABITACION" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_PRECIO" FunctionName="Model.Store.ACTUALIZA_PRECIO" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_USUARIO" FunctionName="Model.Store.ACTUALIZA_USUARIO" />
-          <FunctionImportMapping FunctionImportName="CAMBIO_PASS" FunctionName="Model.Store.CAMBIO_PASS" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_USUARIO_ADMIN" FunctionName="Model.Store.ACTUALIZA_USUARIO_ADMIN" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_USUARIO_CLIENTE" FunctionName="Model.Store.ACTUALIZA_USUARIO_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="CAMBIO_PASS_ADMIN" FunctionName="Model.Store.CAMBIO_PASS_ADMIN" />
+          <FunctionImportMapping FunctionImportName="CAMBIO_PASS_CLIENTE" FunctionName="Model.Store.CAMBIO_PASS_CLIENTE" />
           <FunctionImportMapping FunctionImportName="CLIENTE_REGISTRO" FunctionName="Model.Store.CLIENTE_REGISTRO" />
           <FunctionImportMapping FunctionImportName="CONSULTA_ACTIVIDAD" FunctionName="Model.Store.CONSULTA_ACTIVIDAD">
             <ResultMapping>
@@ -1695,8 +1788,9 @@
               <ComplexTypeMapping TypeName="Model.CONSULTA_ARTICULO_Result">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Reservaid" ColumnName="Reservaid" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Tipo_Articulo" ColumnName="Tipo_Articulo" />
+                <ScalarProperty Name="Reserva" ColumnName="Reserva" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1715,7 +1809,10 @@
               <ComplexTypeMapping TypeName="Model.CONSULTA_CONSECUTIVO_Result">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="PoseePrefijo" ColumnName="PoseePrefijo" />
                 <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="PoseeRango" ColumnName="PoseeRango" />
                 <ScalarProperty Name="Minimo" ColumnName="Minimo" />
                 <ScalarProperty Name="Maximo" ColumnName="Maximo" />
               </ComplexTypeMapping>
@@ -1754,38 +1851,50 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.CONSULTA_RESERVA_Result">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Codigo_Promocional" ColumnName="Codigo Promocional" />
-                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
-                <ScalarProperty Name="Metodopago" ColumnName="Metodopago" />
                 <ScalarProperty Name="Fecha_Entrada" ColumnName="Fecha_Entrada" />
                 <ScalarProperty Name="Fecha_Salida" ColumnName="Fecha_Salida" />
+                <ScalarProperty Name="Cantidad_Dias" ColumnName="Cantidad_Dias" />
+                <ScalarProperty Name="Codigo_Promocional" ColumnName="Codigo_Promocional" />
                 <ScalarProperty Name="Cantidad_Adultos" ColumnName="Cantidad_Adultos" />
-                <ScalarProperty Name="Cantidad_Adultos1" ColumnName="Cantidad_Adultos1" />
                 <ScalarProperty Name="Cantidad_Niños" ColumnName="Cantidad_Niños" />
+                <ScalarProperty Name="Mascota" ColumnName="Mascota" />
+                <ScalarProperty Name="Metodo_Pago" ColumnName="Metodo_Pago" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTA_ROL" FunctionName="Model.Store.CONSULTA_ROL">
+          <FunctionImportMapping FunctionImportName="CONSULTA_ROL" FunctionName="Model.Store.CONSULTA_ROL" />
+          <FunctionImportMapping FunctionImportName="CONSULTA_USUARIO_ADMIN" FunctionName="Model.Store.CONSULTA_USUARIO_ADMIN">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.CONSULTA_ROL_Result">
+              <ComplexTypeMapping TypeName="Model.CONSULTA_USUARIO_ADMIN_Result">
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTA_USUARIO" FunctionName="Model.Store.CONSULTA_USUARIO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.CONSULTA_USUARIO_Result">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
-                <ScalarProperty Name="Pregunta_seguridad" ColumnName="Pregunta_seguridad" />
-                <ScalarProperty Name="Respuesta_seguridad" ColumnName="Respuesta_seguridad" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+                <ScalarProperty Name="Seguridad" ColumnName="Seguridad" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Mantenimiento" ColumnName="Mantenimiento" />
+                <ScalarProperty Name="Consulta" ColumnName="Consulta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_USUARIO_CLIENTE" FunctionName="Model.Store.CONSULTA_USUARIO_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_USUARIO_CLIENTE_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Primer_apellido" ColumnName="Primer_apellido" />
-                <ScalarProperty Name="Segundo_apellido" ColumnName="Segundo_apellido" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -1799,14 +1908,28 @@
           <FunctionImportMapping FunctionImportName="ELIMINA_PRECIO" FunctionName="Model.Store.ELIMINA_PRECIO" />
           <FunctionImportMapping FunctionImportName="ELIMINA_RESERVA" FunctionName="Model.Store.ELIMINA_RESERVA" />
           <FunctionImportMapping FunctionImportName="ELIMINA_USUARIO" FunctionName="Model.Store.ELIMINA_USUARIO" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_USUARIO_ADMIN" FunctionName="Model.Store.ELIMINA_USUARIO_ADMIN" />
+          <FunctionImportMapping FunctionImportName="ELIMINA_USUARIO_CLIENTE" FunctionName="Model.Store.ELIMINA_USUARIO_CLIENTE" />
           <FunctionImportMapping FunctionImportName="EXISTE" FunctionName="Model.Store.EXISTE" />
           <FunctionImportMapping FunctionImportName="INSERTA_ACTIVIDAD" FunctionName="Model.Store.INSERTA_ACTIVIDAD" />
+          <FunctionImportMapping FunctionImportName="INSERTA_BITACORA" FunctionName="Model.Store.INSERTA_BITACORA" />
           <FunctionImportMapping FunctionImportName="INSERTA_CONSECUTIVO" FunctionName="Model.Store.INSERTA_CONSECUTIVO" />
           <FunctionImportMapping FunctionImportName="INSERTA_ERROR" FunctionName="Model.Store.INSERTA_ERROR" />
           <FunctionImportMapping FunctionImportName="INSERTA_HABITACION" FunctionName="Model.Store.INSERTA_HABITACION" />
           <FunctionImportMapping FunctionImportName="INSERTA_RESERVA" FunctionName="Model.Store.INSERTA_RESERVA" />
           <FunctionImportMapping FunctionImportName="MODIFICA_CONSECUTIVO" FunctionName="Model.Store.MODIFICA_CONSECUTIVO" />
           <FunctionImportMapping FunctionImportName="MODIFICA_ERROR" FunctionName="Model.Store.MODIFICA_ERROR" />
+          <FunctionImportMapping FunctionImportName="ObtenertRoles" FunctionName="Model.Store.ObtenertRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.ObtenertRoles_Result">
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Mantenimiento" ColumnName="Mantenimiento" />
+                <ScalarProperty Name="Seguridad" ColumnName="Seguridad" />
+                <ScalarProperty Name="Consulta" ColumnName="Consulta" />
+                <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Model.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Model.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Model.Store.sp_dropdiagram" />
@@ -1831,17 +1954,25 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Model.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="USUARIO_CONSULTA_ROL" FunctionName="Model.Store.USUARIO_CONSULTA_ROL" />
-          <FunctionImportMapping FunctionImportName="USUARIO_LOGIN" FunctionName="Model.Store.USUARIO_LOGIN">
+          <FunctionImportMapping FunctionImportName="USUARIO_ADMIN_LOGIN" FunctionName="Model.Store.USUARIO_ADMIN_LOGIN">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.USUARIO_LOGIN_Result">
+              <ComplexTypeMapping TypeName="Model.USUARIO_ADMIN_LOGIN_Result">
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="USUARIO_REGISTRO" FunctionName="Model.Store.USUARIO_REGISTRO" />
-          <FunctionImportMapping FunctionImportName="INSERTA_BITACORA" FunctionName="Model.Store.INSERTA_BITACORA" />
+          <FunctionImportMapping FunctionImportName="USUARIO_ADMIN_REGISTRO" FunctionName="Model.Store.USUARIO_ADMIN_REGISTRO" />
+          <FunctionImportMapping FunctionImportName="USUARIO_CLIENTE_LOGIN" FunctionName="Model.Store.USUARIO_CLIENTE_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.USUARIO_CLIENTE_LOGIN_Result">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USUARIO_CLIENTE_REGISTRO" FunctionName="Model.Store.USUARIO_CLIENTE_REGISTRO" />
+          <FunctionImportMapping FunctionImportName="USUARIO_CONSULTA_ROL" FunctionName="Model.Store.USUARIO_CONSULTA_ROL" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

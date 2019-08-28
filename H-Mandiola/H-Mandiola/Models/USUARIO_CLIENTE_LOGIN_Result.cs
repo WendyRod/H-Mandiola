@@ -11,7 +11,7 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class USUARIO_LOGIN_Result
+    public partial class USUARIO_CLIENTE_LOGIN_Result
     {
         public string Usuario { get; set; }
         public string Clave { get; set; }

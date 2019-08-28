@@ -12,10 +12,10 @@ namespace H_Mandiola.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Usuario_Cliente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
+        public Usuario_Cliente()
         {
             this.Historial_Actividad = new HashSet<Historial_Actividad>();
             this.Reserva = new HashSet<Reserva>();
@@ -27,19 +27,16 @@ namespace H_Mandiola.Models
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
         public string Email { get; set; }
-        public string Usuario1 { get; set; }
+        public string Usuario { get; set; }
         public string Clave { get; set; }
         public string Pregunta { get; set; }
         public string Respuesta { get; set; }
-        public int Rol { get; set; }
-        public int Estado { get; set; }
+        public string Estado { get; set; }
     
-        public virtual Estado Estado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Historial_Actividad> Historial_Actividad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reserva> Reserva { get; set; }
-        public virtual Rol Rol1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarjeta> Tarjeta { get; set; }
     }

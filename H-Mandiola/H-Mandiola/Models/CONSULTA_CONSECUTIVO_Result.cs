@@ -15,7 +15,10 @@ namespace H_Mandiola.Models
     {
         public int Codigo { get; set; }
         public string Descripcion { get; set; }
+        public int Consecutivo { get; set; }
+        public Nullable<bool> PoseePrefijo { get; set; }
         public string Prefijo { get; set; }
+        public Nullable<bool> PoseeRango { get; set; }
         public Nullable<int> Minimo { get; set; }
         public Nullable<int> Maximo { get; set; }
     }

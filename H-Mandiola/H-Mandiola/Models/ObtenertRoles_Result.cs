@@ -11,9 +11,12 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class CONSULTA_ROL_Result
+    public partial class ObtenertRoles_Result
     {
-        public int Codigo { get; set; }
-        public string Tipo { get; set; }
+        public Nullable<bool> Consecutivo { get; set; }
+        public Nullable<bool> Mantenimiento { get; set; }
+        public Nullable<bool> Seguridad { get; set; }
+        public Nullable<bool> Consulta { get; set; }
+        public Nullable<bool> Administrador { get; set; }
     }
 }

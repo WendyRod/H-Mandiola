@@ -14,14 +14,15 @@ namespace H_Mandiola.Models
     public partial class CONSULTA_RESERVA_Result
     {
         public string Codigo { get; set; }
-        public string Codigo_Promocional { get; set; }
-        public string Mascota { get; set; }
-        public string Metodopago { get; set; }
         public System.DateTime Fecha_Entrada { get; set; }
         public System.DateTime Fecha_Salida { get; set; }
+        public int Cantidad_Dias { get; set; }
+        public string Codigo_Promocional { get; set; }
         public int Cantidad_Adultos { get; set; }
-        public int Cantidad_Adultos1 { get; set; }
         public int Cantidad_Niños { get; set; }
+        public string Mascota { get; set; }
+        public string Metodo_Pago { get; set; }
         public Nullable<int> Precio { get; set; }
+        public string Usuario { get; set; }
     }
 }

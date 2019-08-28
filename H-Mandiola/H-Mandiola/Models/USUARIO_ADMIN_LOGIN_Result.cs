@@ -10,17 +10,10 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Tarjeta
+    public partial class USUARIO_ADMIN_LOGIN_Result
     {
-        public int Codigo { get; set; }
-        public int Numero_Tarjeta { get; set; }
-        public System.DateTime Fecha_Exp { get; set; }
         public string Usuario { get; set; }
-        public int Emisor { get; set; }
-    
-        public virtual Emisor Emisor1 { get; set; }
-        public virtual Usuario_Cliente Usuario_Cliente { get; set; }
+        public string Clave { get; set; }
     }
 }

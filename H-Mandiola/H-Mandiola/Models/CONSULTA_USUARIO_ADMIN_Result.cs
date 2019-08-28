@@ -11,12 +11,19 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class CONSULTA_ARTICULO_Result
+    public partial class CONSULTA_USUARIO_ADMIN_Result
     {
         public string Codigo { get; set; }
         public string Nombre { get; set; }
-        public int Precio { get; set; }
-        public int Tipo_Articulo { get; set; }
-        public string Reserva { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string Email { get; set; }
+        public string Usuario { get; set; }
+        public string Clave { get; set; }
+        public Nullable<bool> Administrador { get; set; }
+        public Nullable<bool> Seguridad { get; set; }
+        public Nullable<bool> Consecutivo { get; set; }
+        public Nullable<bool> Mantenimiento { get; set; }
+        public Nullable<bool> Consulta { get; set; }
     }
 }

@@ -10,17 +10,18 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Tarjeta
+    public partial class CONSULTA_USUARIO_CLIENTE_Result
     {
-        public int Codigo { get; set; }
-        public int Numero_Tarjeta { get; set; }
-        public System.DateTime Fecha_Exp { get; set; }
+        public string Codigo { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string Email { get; set; }
         public string Usuario { get; set; }
-        public int Emisor { get; set; }
-    
-        public virtual Emisor Emisor1 { get; set; }
-        public virtual Usuario_Cliente Usuario_Cliente { get; set; }
+        public string Clave { get; set; }
+        public string Pregunta { get; set; }
+        public string Respuesta { get; set; }
+        public string Estado { get; set; }
     }
 }
