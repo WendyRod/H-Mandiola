@@ -11,7 +11,9 @@
             --input-padding-y: .75rem;
         }
 
-    body { background-image: url("https://www.thephoenician.com/wp-content/uploads/sites/8/2013/02/poolatdusk.jpg"); }
+        body {
+            background-image: url("https://www.thephoenician.com/wp-content/uploads/sites/8/2013/02/poolatdusk.jpg");
+        }
 
         .card-signin {
             border: 0;
@@ -111,45 +113,47 @@
 <body>
     <br />
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-xl-6 mx-auto">
-                <div class="card card-signin flex-row my-5">
-                    <div class="card-body">
-                        <center>
-                            <img src="../Imagenes/H-icono.png" width="60" height="60" />
-                        </center>
-                        <br />
-                        <div class="form-label-group">
-                            <h5 class="card-title text-center">Cambiar contraseña</h5>
-                            <form class="form-signin" id="ChangePassForm" />
-
-                            <!-- Text input-->
+        <form class="form-signin" id="ChangePassForm">
+            <div class="row">
+                <div class="col-lg-6 col-xl-6 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-body">
+                            <center>
+                                <img src="../Imagenes/H-icono.png" width="60" height="60" />
+                            </center>
+                            <br />
                             <div class="form-label-group">
-                                <input id="pass" name="pass" type="password" placeholder="Contraseña actual" class="form-control input-md" required>
-                                <label for="pass">Contraseña actual</label>
-                            </div>
+                                <h5 class="card-title text-center">Cambiar contraseña</h5>
+                                <!-- Text input-->
+                                <div class="form-label-group">
+                                    <input id="pass" name="pass" type="password" placeholder="Contraseña actual" class="form-control input-md" required>
+                                    <label for="pass">Contraseña actual</label>
+                                </div>
 
-                            <div class="form-label-group">
-                                <input id="newPass" name="newPass" type="password" placeholder="Nueva contraseña" class="form-control input-md" required>
-                                <label for="newPass">Nueva contraseña</label>
-                            </div>
+                                <div class="form-label-group">
+                                    <input id="newPass" name="newPass" type="password" placeholder="Nueva contraseña" class="form-control input-md" required>
+                                    <label for="newPass">Nueva contraseña</label>
+                                </div>
 
-                            <div class="form-label-group">
-                                <input id="confirmNewPass" name="confirmNewPass" type="password" placeholder="Confirmar contraseña" class="form-control input-md" required>
-                                <label for="confirmNewPass">Confirmar contraseña</label>
-                            </div>
+                                <div class="form-label-group">
+                                    <input id="confirmNewPass" name="confirmNewPass" type="password" placeholder="Confirmar contraseña" class="form-control input-md" required>
+                                    <label for="confirmNewPass">Confirmar contraseña</label>
+                                </div>
 
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                                <!--
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                    <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                                </div>
+                                -->
                             </div>
+                            <input ID="ChangePasswordPushButton" type="submit" value="Guardar cambios" class="btn btn-primary" CommandName="ChangePassword" Text="Guardar cambios" onclick="ChangePassword()" ValidationGroup="ChangePassword1" />
+                            <input ID="CancelPushButton" type="submit" value="Cancelar" class="btn btn-danger" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
                         </div>
-                        <input ID="ChangePasswordPushButton" type="submit" value="Guardar cambios" class="btn btn-primary" CommandName="ChangePassword" Text="Guardar cambios" onclick="ChangePassword()" ValidationGroup="ChangePassword1" />
-                        <input ID="CancelPushButton" type="submit" value="Cancelar" class="btn btn-danger" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 

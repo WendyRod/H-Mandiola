@@ -14,7 +14,6 @@ namespace H_Mandiola.Controllers
 {
     public class UsuarioController : Controller
     {
-        //Usuario db = new Usuario();
         private Entities db = new Entities();
         private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
         private SqlConnection conn = new SqlConnection(connStr);
@@ -22,43 +21,81 @@ namespace H_Mandiola.Controllers
         //private string Rol_Seguridad = "1,2";
 
         // GET: Usuario
-
-
         #region CrearUsuario
+        /// <summary>
+        /// Constructor de la pagina Usuario/CrearUsuario
+        /// </summary>
+        /// <returns>Retorna la pagina.</returns>
         public ActionResult CrearUsuario()
         {
             return View();
         }
-
+        /// <summary>
+        /// Metodo para agregar el usuario.
+        /// </summary>
+        /// <param name="user">Datos del usuaruio que se va a registrar.</param>
         [HttpPost]
         public ActionResult SaveValues(BLL.Usuario user)
         {
-            user.GuardaUsuario();
+            try
+            {
+                //Variable que indica si existe o no el usuario.
+                var result = 0; //Valor 0 es que no existe el usuario.
+                foreach (var item in db.Usuario) //Verificamos la lista.
+                {
+                    if (item.Usuario1.Equals(user.username) || item.Email.Equals(user.email))    //Comparamos los datos con los ya existentes.
+                    {
+                        result = 1; //Si ya existe, se cambia el valor.
+                    }
+                    else
+                    {
+                        /* Si no existe no se hace nada. */
+                    }
+                }
 
-            return Content("Success");
+                if (result == 0)    //Se verifica que no exista el usuario.
+                {
+                    user.GuardaUsuario();   //Se inserta el usuario en la base de datos.
+                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el usuario: {0}", user.username)); //Se agrega el registro el usuario en la base de datos.
+                    return Json(new { success = true, responseText = "Se ha ingresado el usuario correctamente." }, JsonRequestBehavior.AllowGet);  //Mensaje que se va a mostrar al registrar el usuario.
+                }
+                else  //En caso de que ya exista el dato.
+                {
+                    // Datos ya exixtentes //
+                    return Json(new { success = false, responseText = "Usuario y/o coreo ya existen." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error en SaveValues.");
+                return Json(new { success = false, responseText = "Ha ocurrido un error." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            }
         }
         #endregion
 
         #region Login
-        public ActionResult LoginAdmin()
+        /// <summary>
+        /// Constructor de la pagina Usuario/Login.
+        /// </summary>
+        /// <returns>Retorna la pagina.</returns>
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LoginAdmin(H_Mandiola.Models.Usuario_Admin userModel)
+        public ActionResult LoginMethod(H_Mandiola.Models.Usuario userModel)
         {
-            //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
-            var userDetails = db.Usuario_Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
+            var userDetails = db.Usuario.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {
                 TempData["msg"] = "El usuario o la clave no son correctos.";
-                return RedirectToAction("LoginAdmin", "Usuario");
+                return RedirectToAction("Login", "Usuario");
             }
             else
             {
-                Session["username"] = userDetails.Usuario;
-                //TempData["msg"] = "Login exitoso!";
+                Session["username"] = userDetails.Usuario1;
+                //TempData["msg"] = "Login exitoso!"
                 return RedirectToAction("Default", "Usuario");
             }
         }
@@ -71,53 +108,52 @@ namespace H_Mandiola.Controllers
             return View();
         }
 
-        public ActionResult CambiarContraseñaUser(string OldPass, string newPass, string confirmPass)
+        [HttpPost]
+        public ActionResult CambiarClaveUser(string OldPass, string NewPass, string ConfirmPass)
         {
-            bool result = true;
-            Usuario_Cliente user = new Usuario_Cliente();
+            Usuario user = new Usuario();
+            return Json(new { success = true, responseText = "Exito. " + OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            //if (NewPass.Equals(OldPass)) //Las contraseñas nuevas deben de ser iguales.
+            //{
+            //    string PassActual = string.Empty;
+            //    foreach (var item in db.Usuario)
+            //    {
+            //        if (item.Usuario1.Equals("diegoalru"))
+            //        {
+            //            PassActual = item.Clave;
+            //        }
+            //        else
+            //        {
+            //            /* Continua la busqueda del usuario*/
+            //        }
+            //    }
 
-            if (pass == "" || newPass == "" || confirmPass == "")
-            {
-                result = false;
-            }
-            else
-            {
-                if (OldPass != pass)
-                {
-                    result = false;
-                }
-                else
-                {
-                    if (newPass != confirmPass)
-                    {
-                        result = false;
-                    }
-                    else
-                    {
-
-                        SqlCommand comando;
-
-                        comando = conn.CreateCommand();
-
-                        comando.CommandText = "Execute CAMBIO_PASS @pUsername, @pPassword";
-                        comando.Parameters.Add("@pUsername", SqlDbType.VarChar).Value = user;
-                        comando.Parameters.Add("@pPassword", SqlDbType.VarChar).Value = newPass;
-
-                        conn.Open();
-                        comando.ExecuteNonQuery();
-
-                        conn.Close();
-
-                        pass = newPass;
-                        result = true;
-
-                    }
-                }
-            }
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            //    /*
+            //     * En caso de que no se encuentre el usuario.
+            //     */
+            //    if (PassActual.Equals(string.Empty))
+            //    {
+            //        return Json(new { success = false, responseText = "Error interno." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            //    }
+            //    else
+            //    {
+            //        if (PassActual.Equals(NewPass))
+            //        {
+            //            return Json(new { success = false, responseText = "La contraseña es igual que la anterior." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            //        }
+            //        else
+            //        {
+            //            return Json(new { success = true, responseText = "Exito. " + OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    return Json(new { success = false, responseText = "Las contraseñas no coinciden." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            //}
         }
         #endregion
+
 
         public ActionResult Usuarios()
         {
@@ -133,103 +169,19 @@ namespace H_Mandiola.Controllers
         {
             return View();
         }
+    }
 
-        /*[HttpPost]
-        public ActionResult AsignarRoles(int ID)
-        {*/
+    public class PassClass
+    {
+        public string OldPass { get; set; }
+        public string NewPass { get; set; }
+        public string ConfirmedPass { get; set; }
 
-
-            //Rol roles = new Rol();
-            //currentUseRol = ID;
-
-            //BLL.Usuario usuario = new BLL.Usuario();
-            //List<bool> Roles = usuario.SearchRoles(ID);
-
-            #region conditions
-            /*if (Roles.ElementAt(0))
-            {
-                roles.Aministrador = "y";
-            }
-            else
-            {
-                roles.Aministrador = "n";
-            }
-
-            if (Roles.ElementAt(1))
-            {
-                roles.Consecutivo = "y";
-            }
-            else
-            {
-                roles.Consecutivo = "n";
-            }
-
-            if (Roles.ElementAt(2))
-            {
-                roles.Consulta = "y";
-            }
-            else
-            {
-                roles.Consulta = "n";
-            }
-
-            if (Roles.ElementAt(3))
-            {
-                roles.Mantenimiento = "y";
-            }
-            else
-            {
-                roles.Mantenimiento = "n";
-            }
-
-            if (Roles.ElementAt(4))
-            {
-                roles.Seguridad = "y";
-            }
-            else
-            {
-                roles.Seguridad = "n";
-            }*/
-            #endregion
-
-          //  BLL.Usuario usuario_Admi = new BLL.Usuario();
-            //usuario_Admi.llenarUsuario();
-
-            //return Json(roles, JsonRequestBehavior.AllowGet);
-        //}
-
-        /*public ActionResult AsignarRoles()
+        public PassClass(string oldPass, string newPass, string confirmedPass)
         {
-            Usuario_Admin usuario_Admi = new Usuario_Admin();
-            //usuario_Admi.llenarUsuario();
-
-            BLL.Usuario usuario = new BLL.Usuario();
-            //List<bool> Roles = usuario.SearchRoles(usuario_Admi.IDUserAdmi);
-
-            /*if (Roles.ElementAt(0) || Roles.ElementAt(4))
-            {
-                List<Usuario_Admin> UserList = usuario_Admi.llenarUsuarioString();
-                ViewBag.UserList = new SelectList(UserList, "ID", "Username");
-
-                return View();
-            }
-            else
-            {
-                return View("AfterLogin", User);
-            }*/
-        //}
-
-        public ActionResult SaveRoles(bool Conse, bool Consul, bool Mante, bool Admi, bool Segu, int currentUseRol)
-        {
-
-            BLL.Usuario usuario = new BLL.Usuario();
-            usuario.SaveRoles(Conse, Consul, Mante, Admi, Segu, currentUseRol);
-
-            //bitacora.insertaBitacora(CurrenteUsername, "SaveRoles", "Edit", "Save user´s roles", "Consecutive: " + Conse + " - Query: " + Consul + " - Maintenance: " + Mante + " - Administration: " + Admi + " - Security: " + Segu);
-
-            string result = "OK";
-
-            return Json(result, JsonRequestBehavior.AllowGet);
+            OldPass = oldPass;
+            NewPass = newPass;
+            ConfirmedPass = confirmedPass;
         }
     }
 }

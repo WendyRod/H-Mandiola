@@ -13,107 +13,79 @@ function Register() {
     values.clave = $('#password').val();
     values.confirmPass = $('#confirm_password').val();
     values.email = $('#email').val();
-    
+
     if (/*values.cedula == "" || */ values.nombre == "" || values.apellido1 == "" || values.apellido2 == "" || values.username == "" || values.clave == "" || values.email == "") {
         alert("Complete todos los campos.");
     } else if (values.clave != values.confirmPass) {
         alert("La contraseña y la confirmación de la contraseña no coinciden");
-    } 
-    
-        $.ajax({
-            type: 'POST',
-            data: JSON.stringify(values),
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Usuario/SaveValues',
-            success: function (result) {
-                alert('Datos guardados con exito!!');
-                console.log("Hola");
+    }
+
+    $.ajax({
+        type: 'POST',
+        data: JSON.stringify(values),
+        contentType: 'application/json',
+        dataType: 'json',
+        url: '/Usuario/SaveValues',
+        success: function (response) {
+            if (response.success) {
+                alert(response.responseText);
+            } else {
+                alert(response.responseText);
             }
-        })
+        },
+        error: function (response) {
+            alert("error!");
+        }
+    })
 }
 
 function ChangePassword() {
-    var PASS = $("#pass").val();
-    var NEWPASS = $("#newPass").val();
-    var CONFIRMNEWPASS = $("#confirmNewPass").val();
 
-    if (PASS == "" || NEWPASS == "" || CONFIRMNEWPASS =="") {
-        alert("Complete todos los campos.");
-    } else {
-        
+    var oldPass = $('#pass').val();
+    var newPass = $('#newPass').val();
+    var confirmPass = $('#confirmNewPass').val();
+    if (oldPass == "" || newPass == "" || confirmPass == "") {
+        alert("No se han brindado los datos necesarios.")
+    }
+    else {
         $.ajax({
-            type: "POST",
-            url: "/Usuario/CambiarContraseñaUser", 
-            data: { OldPass: PASS, newPass: NEWPASS, confirmPass: CONFIRMNEWPASS },
-            dataType: "json",
-            success: function (result) {
-                if (result == "fail") {
-                    $("#ChangePassForm")[0].reset();
-                    alert("El cambio de contraseña falló");
+            type: 'POST',
+            url: "/Usuario/CambiarClaveUser",
+            data: JSON.stringify({ OldPass: oldPass, NewPass: newPass, ConfirmPass: confirmPass }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (response) {
+                if (response.success) {
+                    alert(response.responseText);
+                    //window.location.href = "/Usuario/Default"
+                } else {
+                    alert(response.responseText);
                 }
-                else {
-                    $("#ChangePassForm")[0].reset();
-                    alert("Cambio de contraseña exitoso");
-                    window.location.href = "/Usuario/Default"
-                }
+            },
+            error: function (response) {
+                alert("Error.");
             }
         })
     }
 }
 
-    function Cancelar() {
-        window.location.href = "/Usuario/Default"
-    }
-
-    function InicioSesion() {
-        window.location.href = "/Usuario/LoginAdmin"
-    }
-
-    function LoginRegister() {
-        window.location.href = "/Usuario/CrearUsuario"
-}
-
-function LoginClientView() {
-    window.location.href = "/Cliente/LoginCliente"
-}
-
-function LoginAdminView() {
+function Cancelar() {
     window.location.href = "/Usuario/Default"
 }
 
-var LoginAdmin = function () {
-    var data = $("#loginF").serialize();
-        //var data = $("#login").serialize();
-        //var username = $("#UserName").val();
-        //var pass = $("#Password").val();
-        $.ajax({
-            type: "POST",
-            url: "/Usuario/LoginAdmin",
-            data: data,
-            success: function (result) {
-                if (result == "Fail") {
-                    $("#loginF")[0].reset();
-                    //$("#msg").show();
-                }
-                else {
-                    window.location.href = "/Usuario/Default";
-                    $("#btnInicio").hide();
-                    $("#btnSalir").show();
-                    //$("#msg").hide();
-                }
-            }
-        })
+function InicioSesion() {
+    window.location.href = "/Usuario/Login"
 }
 
-var LoginCliente = function () {
+function LoginRegister() {
+    window.location.href = "/Usuario/CrearUsuario"
+}
+
+var Login = function () {
     var data = $("#loginF").serialize();
-    //var data = $("#login").serialize();
-    //var username = $("#UserName").val();
-    //var pass = $("#Password").val();
     $.ajax({
         type: "POST",
-        url: "/Cliente/LoginCliente",
+        url: "/Usuario/LoginUser",
         data: data,
         success: function (result) {
             if (result == "Fail") {
@@ -121,7 +93,7 @@ var LoginCliente = function () {
                 //$("#msg").show();
             }
             else {
-                window.location.href = "/Cliente/Inicio";
+                window.location.href = "/Usuario/Default";
                 $("#btnInicio").hide();
                 $("#btnSalir").show();
                 //$("#msg").hide();

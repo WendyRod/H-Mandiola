@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<style>
+    body {
+        background-image: url('https://www.starhotelscollezione.com//assets/uploads/Starhotels-Collezione/Savoia-Excelsior-Palace/DESIGN-HISTORY-PHILOSOPHY/four-star-hotel-in-central-trieste-savoia-excelsior-palace-trieste-hall-42.jpg')
+    }
+</style>
 
 
 @using (Html.BeginForm())
@@ -15,7 +19,7 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-xl-9 mx-auto">
+            <div class="col-lg-7 col-xl-7 mx-auto">
                 <div class="card card-signin flex-row my-5">
                     <div class="card-body">
                         <center>
@@ -27,40 +31,40 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-12">
                                 @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-12">
                                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Est_Hab, "Est_Hab", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Est_Hab, "Est_Hab", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-12">
                                 @Html.DropDownList("Est_Hab", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Est_Hab, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Precio, "Precio", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Precio, "Precio", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-12">
                                 @Html.DropDownList("Precio", null, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <br />
 
-                        <div class="form-group">
+                        <div class="form-group col-md-10">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Aceptar" class="btn btn-primary" />
                             </div>
