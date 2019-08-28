@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    body {
+        background-image: url('https://www.starhotelscollezione.com//assets/uploads/Starhotels-Collezione/Savoia-Excelsior-Palace/DESIGN-HISTORY-PHILOSOPHY/four-star-hotel-in-central-trieste-savoia-excelsior-palace-trieste-hall-42.jpg')
+    }
+</style>
+
 <body>
     <br />
     @using (Html.BeginForm())
@@ -14,7 +20,7 @@
         <br />
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-xl-9 mx-auto">
+                <div class="col-lg-6 col-xl-6 mx-auto">
                     <div class="card card-signin flex-row my-5">
                         <div class="card-body">
                             <center>
@@ -34,16 +40,16 @@
                                 </div>*@
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-11">
                                     @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
+                                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-11">
                                     @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                                 </div>

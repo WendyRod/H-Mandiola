@@ -52,13 +52,13 @@ namespace H_Mandiola.Controllers
         public async Task<ActionResult> Create(Reserva res)
         {
 
-            // var reserva = db.Database.SqlQuery<Reserva>("INSERTA_RESERVA");
+            //var reserva = db.Database.SqlQuery<Reserva>("INSERTA_RESERVA");
             //var datos = db.Reserva.SqlQuery("[dbo].[INSERT_RESERVA]");
             
 
             if (ModelState.IsValid)
             {
-                Usuario usuario = (Usuario)Session["username"];
+                Usuario usuario = (Usuario)Session["name"];
                 db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Nombre);
                 db.SaveChanges();
                 return RedirectToAction("Index");

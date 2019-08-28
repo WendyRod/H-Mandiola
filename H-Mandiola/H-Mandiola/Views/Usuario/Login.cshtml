@@ -135,6 +135,16 @@
 
 <body>
 
+    @*FACEBOOK*@
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v4.0&appId=500521697439684&autoLogAppEvents=1"></script>
+    @*FIN*@
+
+    @*GOOGLE*@
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="568085675674-2hpag6sutceap4qcrvhllsb6qtfbu15c.apps.googleusercontent.com">
+    @*FIN*@
+
     <div class="container">
         @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
         {
@@ -149,7 +159,7 @@
                             <br />
                             <h5 class="card-title text-center">Iniciar sesión</h5>
                             <form class="form-signin" id="loginF">
-                                <div class="form-label-group">
+                                <div class="form-group">
                                     <label for="UsernameLabel" runat="server">Nombre de usuario:</label>
                                     <br />
                                     <br />
@@ -157,7 +167,7 @@
                                     <br />
                                     @Html.ValidationMessageFor(model => model.Usuario1)
                                 </div>
-                                <div class="form-label-group">
+                                <div class="form-group">
                                     <label for="PasswordLabel" runat="server">Contraseña:</label>
                                     <br />
                                     <br />
@@ -173,20 +183,14 @@
                         </div>
 
                         <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                        @*<div class="text-center">
-            <a class="btn btn-link" href="#">Olvidó la contraseña?</a>
-        </div>*@
-                        @*<div class="text-center">*@
-                        @*<label>¿No posee una cuenta?</label>*@
+
                         <input id="LoginRegisterButton" class="btn btn-link" type="submit" value="¿No posee una cuenta?" onclick="LoginRegister()" />
-                        @*</div>*@
-                        @*<hr class="my-4" />*@
 
-                        @*<button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
+                        <div class="fb-login-button" data-width="" data-size="medium" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                        <div class="g-signin2 text-center" id="customBtn" data-width="205" data-height="35" data-longtitle="true" data-onsuccess="onSignIn"></div>
 
                     </div>
-                    </div>
+                </div>
             </div>
         }
     </div>
@@ -206,64 +210,96 @@
 </html>
 <script src="~/Scripts/JQuery/UserJQuery.js"></script>
 
-@*<body>
-    <div class="container">
-        @using (Html.BeginForm("LoginMethod", "Usuario", FormMethod.Post))
-        {
-            <div class="row">
-                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                        <div class="card-body">
-                            <center>
-                                <img src="../Imagenes/H-icono.png" width="60" height="60" />
-                            </center>
-                            <br />
-                            <div class="form-label-group">
-                                <h5 class="card-title text-center">Iniciar sesión</h5>
-                                <form class="form-signin" id="loginF" />
 
-                                <!-- Text input-->
-                                <div class="form-label-group">
-                                    <input id="UserName" name="UserName" type="text" placeholder="Nombre de usuario" class="form-control input-md" required>
-                                    <label for="UserName" runat="server">Nombre de usuario</label>
-                                </div>
+@*GOOGLE*@
+<script>
+    var googleUser = {};
+    var startApp = function () {
+        gapi.load('auth2', function () {
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '568085675674-2hpag6sutceap4qcrvhllsb6qtfbu15c.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                //scope: 'additional_scope'
+            });
+            attachSignin(document.getElementById('customBtn'));
+        });
+    };
 
-                                <div class="form-label-group">
-                                    <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control input-md" required>
-                                    <label for="password" runat="server">Contraseña</label>
-                                </div>
+    function attachSignin(element) {
+        var Nombre = "";
+        var Email = "";
+        console.log(element.id);
+        auth2.attachClickHandler(element, {},
+            function (googleUser) {
+                var profile = googleUser.getBasicProfile();
 
-                                <div class="custom-control custom-checkbox mb-3" />
-                                <input type="checkbox" class="custom-control-input" id="customCheck1" />
-                                <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                Nombre = profile.getName();
+                Email = profile.getEmail();
+                // googleUser.getBasicProfile().getName();
 
-                            </div>
-                        </div>
-                        <input id="LoginButton" class="btn btn-primary btn-block text-uppercase" type="submit" value="Aceptar" onclick="Login()" />
-                        <div class="text-center">
-                            <a class="small" id="LoginRegisterButton" value="Registrarse" onclick="LoginRegistrese()" href="#">¿No posee una cuenta?</a>
-                        </div>
-                        @*<hr class="my-4" />
+                $.ajax({
+                    type: "POST",
+                    url: "/Usuario/Login", // the method we are calling
+                    data: { nombre: Nombre, email: Email },
+                    dataType: "json",
+                    success: function (result) {
+                        if (result == "ok") {
 
-                        <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-2"></i>Iniciar sesión con Google</button>
-                        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-2"></i>Iniciar sesión con Facebook</button>*@
-                    @*</div>
-                </div>
-            </div>
-        }
-        </div>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+                            window.location.href = "/Cliente/Inicio";
 
-        {
-        if (TempData["msg"] != null)
-        {
-<script type="text/javascript">
-                alert("@TempData["msg"]");
+
+                        }
+                    }
+                })
+
+
+
+
+            }, function (error) {
+                alert(JSON.stringify(error, undefined, 2));
+            });
+    }
+
 </script>
-        }
-        }
-        </body>
-        </html>
-<script src="~/Scripts/JQuery/UserJQuery.js"></script>*@
+
+
+
+@*FACEBOOK*@
+
+<script type="text/javascript">
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '500521697439684',
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true, // parse XFBML
+            oauth: true // enable OAuth 2.0
+        });
+    };
+    (function () {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol +
+            '//connect.facebook.net/en_US/all.js';
+        document.getElementById('fb-root').appendChild(e);
+    }());
+
+    function loginByFacebook() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                FacebookLoggedIn(response);
+            } else {
+                console.log('User cancelled login or did not fully authorize.');
+            }
+        }, { scope: 'email' });
+    }
+
+    function FacebookLoggedIn(response) {
+        var loc = '/Cliente/Inicio';
+        if (loc.indexOf('?') > -1)
+            window.location = loc + '&authprv=facebook&access_token=' + response.authResponse.accessToken;
+        else
+            window.location = loc + '?authprv=facebook&access_token=' + response.authResponse.accessToken;
+    }
+</script>
