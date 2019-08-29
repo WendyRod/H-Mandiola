@@ -6,103 +6,215 @@
 }
 
 
-@using (Html.BeginForm(@*ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { data_function = "initialize" }*@))
+<head>
+    <style>
+
+        body {
+            background-image: url("https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/42/81/42817_v4.jpeg");
+        }
+
+        :root {
+            --input-padding-x: 1.5rem;
+            --input-padding-y: .75rem;
+        }
+
+
+        .card-signin {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+        }
+
+            .card-signin .card-title {
+                margin-bottom: 2rem;
+                font-weight: 300;
+                font-size: 1.5rem;
+            }
+
+            .card-signin .card-body {
+                padding: 2rem;
+            }
+
+        .form-signin {
+            width: 100%;
+        }
+
+            .form-signin .btn {
+                font-size: 80%;
+                border-radius: 5rem;
+                letter-spacing: .1rem;
+                font-weight: bold;
+                padding: 1rem;
+                transition: all 0.2s;
+            }
+
+        .form-label-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+            .form-label-group input {
+                height: auto;
+                border-radius: 2rem;
+            }
+
+            .form-label-group > input,
+            .form-label-group > label {
+                padding: var(--input-padding-y) var(--input-padding-x);
+            }
+
+            .form-label-group > label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: block;
+                width: 100%;
+                margin-bottom: 0;
+                /* Override default `<label>` margin */
+                line-height: 1.5;
+                color: #495057;
+                border: 1px solid transparent;
+                border-radius: .25rem;
+                transition: all .1s ease-in-out;
+            }
+
+            .form-label-group input::-webkit-input-placeholder {
+                color: transparent;
+            }
+
+            .form-label-group input:-ms-input-placeholder {
+                color: transparent;
+            }
+
+            .form-label-group input::-ms-input-placeholder {
+                color: transparent;
+            }
+
+            .form-label-group input::-moz-placeholder {
+                color: transparent;
+            }
+
+            .form-label-group input::placeholder {
+                color: transparent;
+            }
+
+            .form-label-group input:not(:placeholder-shown) {
+                padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+                padding-bottom: calc(var(--input-padding-y) / 3);
+            }
+
+                .form-label-group input:not(:placeholder-shown) ~ label {
+                    padding-top: calc(var(--input-padding-y) / 3);
+                    padding-bottom: calc(var(--input-padding-y) / 3);
+                    font-size: 12px;
+                    color: #777;
+                }
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+
+
+<body>
+    @using (Html.BeginForm(@*ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { data_function = "initialize" }*@))
 {
-    @Html.AntiForgeryToken()
-    
-    <br />
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-xl-6 mx-auto">
-                <div class="card card-signin flex-row my-5">
-                    <div class="card-body">
-                        <center>
-                            <img src="../Imagenes/H-icono.png" width="60" height="60" />
-                        </center>
-                        <br />
-                        <h5 class="card-title text-center">Crear Consecutivo</h5>
-                            <hr />
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" }) {
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+@Html.AntiForgeryToken()
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Consecutivo1, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Consecutivo1, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Consecutivo1, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.PoseePrefijo, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    <div class="checkbox" >
-                                        @Html.EditorFor(model => model.PoseePrefijo, new { htmlAttributes = new { data_function = "toggleEnable", data_target = "[name='Prefijo']" } })
-                                        @Html.ValidationMessageFor(model => model.PoseePrefijo, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Prefijo, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Prefijo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
-                                    @Html.ValidationMessageFor(model => model.Prefijo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.PoseeRango, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    <div class="checkbox">
-                                        @Html.EditorFor(model => model.PoseeRango, new { htmlAttributes = new { data_function = "toggleEnable", data_target = "[name='Minimo'], [name='Maximo']" } })
-                                        @Html.ValidationMessageFor(model => model.PoseeRango, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Minimo, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Minimo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
-                                    @Html.ValidationMessageFor(model => model.Minimo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Maximo, htmlAttributes: new { @class = "control-label col-md-5" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Maximo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
-                                    @Html.ValidationMessageFor(model => model.Maximo, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        }
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Aceptar" class="btn btn-primary" />
-                                </div>
-                            </div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-xl-6 mx-auto">
+            <div class="card card-signin flex-row my-5">
+                <div class="card-body">
+                    <center>
+                        <img src="../Imagenes/H-icono.png" width="60" height="60" />
+                    </center>
+                    <br />
+                    <h5 class="card-title text-center">Crear Consecutivo</h5>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Consecutivo1, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Consecutivo1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Consecutivo1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PoseePrefijo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.PoseePrefijo, new { htmlAttributes = new { data_function = "toggleEnable", data_target = "[name='Prefijo']"} })
+                                @Html.ValidationMessageFor(model => model.PoseePrefijo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Prefijo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Prefijo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
+                            @Html.ValidationMessageFor(model => model.Prefijo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PoseeRango, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.PoseeRango, new { htmlAttributes = new { data_function = "toggleEnable", data_target = "[name='Minimo'], [name='Maximo']", @class = "checkbox" } })
+                                @Html.ValidationMessageFor(model => model.PoseeRango, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Minimo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Minimo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
+                            @Html.ValidationMessageFor(model => model.Minimo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Maximo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Maximo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", data_function = "noBlank" } })
+                            @Html.ValidationMessageFor(model => model.Maximo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Aceptar" class="btn btn-primary" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 }
+</body>
 
 <br />
 <br />

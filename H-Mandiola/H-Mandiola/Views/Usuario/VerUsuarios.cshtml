@@ -1,4 +1,5 @@
-﻿@{
+﻿@model H_Mandiola.Models.Usuario_Admin
+@{
     ViewBag.Title = "VerUsuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -119,6 +120,20 @@
     }
 </style>
 
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AsignarRoles</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+
 <body>
     <br />
     <div class="container">
@@ -132,66 +147,157 @@
                         </center>
 
                         <div class="form-label-group">
-                            <h5 class="card-title text-center">Cambiar contraseña</h5>
-                            <form class="form-signin" />
+                            <h5 class="card-title text-center">Lista de usuarios</h5>
 
-
-                            <!-- Select Multiple -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="listaUsuario">Lista de Usuarios</label>
-                                <div class="col-md-12">
-                                    <select id="listaUsuario" name="listaUsuario" class="form-control" multiple="multiple">
-                                        <option value="1">María</option>
-                                        <option value="2">Wendy</option>
-                                    </select>
+                            <div class="col-md-4 col-md-offset-4 alert alert-info">
+                                <h1>Select <span class="label label-default">a User</span></h1>
+                                <br />  <br />
+                                <div class="form-group">
+                                    @if (ViewBag.UserList != null)
+                                    {
+                                        @Html.DropDownListFor(model => model.Codigo, ViewBag.UserList as SelectList, " --Seleccione un usuario-- ", new { @class = "form-control", onchange = "ddListChange()" })
+                                    }
                                 </div>
+                                <div class="col-md-5">
+                                    <ul class="list-group">
+
+                                        Administrator  &nbsp;&nbsp;
+                                        <input type="checkbox" id="Admi" name="Admi" />
+                                        <br />
+                                        Consecutive   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="Conse" />
+                                        <br />
+                                        Query&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="Consu" />
+                                        <br />
+                                        Maintenance &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="Mante" />
+                                        <br />
+                                        Security&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" id="Segu" />
+
+
+                                    </ul>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div id="button">
+                                    <button class="btn btn-primary" type="submit" onclick="SaveRoles()">Actualizar Roles</button>
+                                </div>
+                                <br />  <br />
+                                <div class="text-justify" id="msg"><ul style="font-weight:bold;color:black;">Roles saved succesfully !</ul></div>
                             </div>
-                            <!-- Multiple Radios -->
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="listaRol">Roles</label>
-                                <div class="col-md-6">
-                                    <div class="radio">
-                                        <label for="listaRol-0">
-                                            <input type="checkbox" name="listaRol" id="listaRol-0" value="1" checked="checked">
-                                            Administrador
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="listaRol-1">
-                                            <input type="checkbox" name="listaRol" id="listaRol-1" value="2">
-                                            Seguridad
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="listaRol-2">
-                                            <input type="checkbox" name="listaRol" id="listaRol-2" value="3">
-                                            Consecutivo
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="listaRol-3">
-                                            <input type="checkbox" name="listaRol" id="listaRol-3" value="4">
-                                            Mantenimiento
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label for="listaRol-4">
-                                            <input type="checkbox" name="listaRol" id="listaRol-4" value="5">
-                                            Consulta
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <!-- Button (Double) -->
-                        <button id="aceptar" name="aceptar" class="linea btn btn-primary" style="font-size:15px;">Aceptar</button>
-                        <button id="cancelar" name="cancelar" class="linea btn btn-danger" style="font-size:15px;">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
- </body>
-<br />
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+
+
+    function ddListChange() {
+
+        $("#msg").hide();
+
+
+
+        var id = $("#ID option:selected").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Usuario/AsignarRoles", // the method we are calling
+            data: { ID: id },
+            success: function (result) {
+
+
+
+                if (result.Aministrador == "y") {
+                    $('#Admi').prop('checked', true);
+                } else {
+                    $('#Admi').prop('checked', false);
+                }
+
+                if (result.Consecutivo == "y") {
+                    $('#Conse').prop('checked', true);
+                } else {
+                    $('#Conse').prop('checked', false);
+                }
+
+                if (result.Consulta == "y") {
+                    $('#Consu').prop('checked', true);
+                } else {
+                    $('#Consu').prop('checked', false);
+
+                }
+                if (result.Mantenimiento == "y") {
+                    $('#Mante').prop('checked', true);
+                } else {
+                    $('#Mante').prop('checked', false);
+                }
+
+                if (result.Seguridad == "y") {
+                    $('#Segu').prop('checked', true);
+                } else {
+                    $('#Segu').prop('checked', false);
+                }
+            }
+        })
+    }
+
+
+
+    $("#msg").hide();
+    var SaveRoles = function () {
+
+        if ($('#Admi').is(':checked')) {
+            var Admi = true;
+        } else {
+            Admi = false;
+        }
+
+        if ($('#Conse').is(':checked')) {
+            var Conse = true;
+        } else {
+            Conse = false;
+        }
+
+        if ($('#Segu').is(':checked')) {
+            var Segu = true;
+        } else {
+            Segu = false;
+        }
+
+        if ($('#Consu').is(':checked')) {
+            var Consu = true;
+        } else {
+            Consu = false;
+        }
+
+        if ($('#Mante').is(':checked')) {
+            var Mante = true;
+        } else {
+            Mante = false;
+        }
+        
+        $.ajax({
+            type: "post",
+            url: "/Usuario/SaveRoles",
+            data: { Admi: Admi, Consul: Consu, Conse: Conse, Mante: Mante, Segu: Segu },
+            success: function (result) {
+                if (result == "ok") {
+                    $("#msg").show();
+                }
+
+            }
+        })
+    }
+
+</script>
 
