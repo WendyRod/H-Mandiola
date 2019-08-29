@@ -1,3 +1,6 @@
+USE [H-Mandiola];
+GO
+
 DROP TABLE IF EXISTS Usuario_Cliente;
 DROP TABLE IF EXISTS Usuario_Admin;
 DROP TABLE IF EXISTS Estado;
@@ -18,7 +21,8 @@ DROP TABLE IF EXISTS Bitacora;
 DROP TABLE IF EXISTS Error;
 DROP TABLE IF EXISTS Consecutivo;
 
---USE [H-Mandiola] 
+USE [H-Mandiola];
+GO
 
 CREATE TABLE Consecutivo (
     Codigo        INT NOT NULL,
@@ -285,4 +289,4 @@ insert into Precio (codigo, tipo_habitacion, precio) values (1, 1, 80);
 
 insert into Precio (codigo, tipo_habitacion, precio) values (2, 2, 95);
 
-insert into Precio (codigo, tipo_habitacion, precio) values (3, 3, 115);
+insert into Precio (codigo, tipo_habitacion, precio) values (3, 3, 115); 115);
