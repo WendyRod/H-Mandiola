@@ -249,6 +249,7 @@
     <Compile Include="Models\Tipo_Habitacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usuario_Admi.cs" />
     <Compile Include="Models\Usuario_Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
