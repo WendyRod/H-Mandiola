@@ -17,7 +17,7 @@ namespace H_Mandiola.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Reserva()
         {
-            this.Articulo = new HashSet<Articulo>();
+            this.ARTICULOS_RESERVA = new HashSet<ARTICULOS_RESERVA>();
             this.BookingID = new HashSet<BookingID>();
         }
     
@@ -25,18 +25,18 @@ namespace H_Mandiola.Models
         public System.DateTime Fecha_Entrada { get; set; }
         public System.DateTime Fecha_Salida { get; set; }
         public int Cantidad_Dias { get; set; }
-        public string Codigo_Promocional { get; set; }
+        public bool Codigo_Promocional { get; set; }
         public int Cantidad_Adultos { get; set; }
         public int Cantidad_Niños { get; set; }
-        public string Mascota { get; set; }
+        public bool Mascota { get; set; }
         public string Metodo_Pago { get; set; }
         public Nullable<int> Precio { get; set; }
         public string Usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Articulo> Articulo { get; set; }
+        public virtual ICollection<ARTICULOS_RESERVA> ARTICULOS_RESERVA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingID> BookingID { get; set; }
-        public virtual Usuario_Cliente Usuario_Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

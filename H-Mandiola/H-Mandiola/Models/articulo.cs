@@ -14,13 +14,20 @@ namespace H_Mandiola.Models
     
     public partial class Articulo
     {
-        public string Codigo { get; set; }
-        public string Nombre { get; set; }
-        public int Precio { get; set; }
-        public int Tipo_Articulo { get; set; }
-        public string Reserva { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Articulo()
+        {
+            this.ARTICULOS_RESERVA = new HashSet<ARTICULOS_RESERVA>();
+        }
     
-        public virtual Reserva Reserva1 { get; set; }
+        public int Codigo { get; set; }
+        public string Nombre { get; set; }
+        public int Tipo_Articulo { get; set; }
+        public string Precio { get; set; }
+    
+        public virtual Precio Precio1 { get; set; }
         public virtual Tipo_Articulo Tipo_Articulo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ARTICULOS_RESERVA> ARTICULOS_RESERVA { get; set; }
     }
 }

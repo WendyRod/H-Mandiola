@@ -28,25 +28,27 @@ namespace H_Mandiola.Models
         }
     
         public virtual DbSet<Actividad> Actividad { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<Articulo> Articulo { get; set; }
+        public virtual DbSet<ARTICULOS_RESERVA> ARTICULOS_RESERVA { get; set; }
         public virtual DbSet<Bitacora> Bitacora { get; set; }
         public virtual DbSet<BookingID> BookingID { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Consecutivo> Consecutivo { get; set; }
         public virtual DbSet<Emisor> Emisor { get; set; }
         public virtual DbSet<Error> Error { get; set; }
         public virtual DbSet<Est_Hab> Est_Hab { get; set; }
+        public virtual DbSet<Estado> Estado { get; set; }
         public virtual DbSet<Habitacion> Habitacion { get; set; }
         public virtual DbSet<Historial_Actividad> Historial_Actividad { get; set; }
         public virtual DbSet<Precio> Precio { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tarjeta> Tarjeta { get; set; }
         public virtual DbSet<Tipo_Articulo> Tipo_Articulo { get; set; }
         public virtual DbSet<Tipo_Habitacion> Tipo_Habitacion { get; set; }
-        public virtual DbSet<Usuario_Admin> Usuario_Admin { get; set; }
-        public virtual DbSet<Usuario_Cliente> Usuario_Cliente { get; set; }
+        public virtual DbSet<VIEW_PRECIOS> VIEW_PRECIOS { get; set; }
     
-        public virtual int ACTUALIZA_ACTIVIDAD(string pCodigo, string pNombre, string pDescripcion)
+        public virtual int ACTUALIZA_ACTIVIDAD(string pCodigo, string pNombre, string pDesc)
         {
             var pCodigoParameter = pCodigo != null ?
                 new ObjectParameter("pCodigo", pCodigo) :
@@ -56,422 +58,65 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pNombre", pNombre) :
                 new ObjectParameter("pNombre", typeof(string));
     
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
+            var pDescParameter = pDesc != null ?
+                new ObjectParameter("pDesc", pDesc) :
+                new ObjectParameter("pDesc", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ACTIVIDAD", pCodigoParameter, pNombreParameter, pDescripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ACTIVIDAD", pCodigoParameter, pNombreParameter, pDescParameter);
         }
     
-        public virtual int ACTUALIZA_ARTICULO(Nullable<int> pCodigo, string pNombre, Nullable<int> pPrecio)
+        public virtual int ACTUALIZA_ADMIN_CLAVE(string pUsuario, string pCorreo, string pNuevaClave)
         {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ARTICULO", pCodigoParameter, pNombreParameter, pPrecioParameter);
-        }
-    
-        public virtual int ACTUALIZA_BITACORA(string pCodigo, Nullable<System.DateTime> pFecha_hora, string pTipo, string pDescripcion)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pFecha_horaParameter = pFecha_hora.HasValue ?
-                new ObjectParameter("pFecha_hora", pFecha_hora) :
-                new ObjectParameter("pFecha_hora", typeof(System.DateTime));
-    
-            var pTipoParameter = pTipo != null ?
-                new ObjectParameter("pTipo", pTipo) :
-                new ObjectParameter("pTipo", typeof(string));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_BITACORA", pCodigoParameter, pFecha_horaParameter, pTipoParameter, pDescripcionParameter);
-        }
-    
-        public virtual int ACTUALIZA_HABITACION(string pCodigo, Nullable<int> pNumero, string pDescripcion, Nullable<int> pEstado, Nullable<int> pPrecio)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pNumeroParameter = pNumero.HasValue ?
-                new ObjectParameter("pNumero", pNumero) :
-                new ObjectParameter("pNumero", typeof(int));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_HABITACION", pCodigoParameter, pNumeroParameter, pDescripcionParameter, pEstadoParameter, pPrecioParameter);
-        }
-    
-        public virtual int ACTUALIZA_PRECIO(string pCodigo, Nullable<int> pTipo_habitacion, Nullable<int> pPrecio)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pTipo_habitacionParameter = pTipo_habitacion.HasValue ?
-                new ObjectParameter("pTipo_habitacion", pTipo_habitacion) :
-                new ObjectParameter("pTipo_habitacion", typeof(int));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_PRECIO", pCodigoParameter, pTipo_habitacionParameter, pPrecioParameter);
-        }
-    
-        public virtual int ACTUALIZA_USUARIO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<int> pRol, string pPregunta, string pRespuesta, Nullable<int> pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
+            var pUsuarioParameter = pUsuario != null ?
+                new ObjectParameter("pUsuario", pUsuario) :
+                new ObjectParameter("pUsuario", typeof(string));
     
             var pCorreoParameter = pCorreo != null ?
                 new ObjectParameter("pCorreo", pCorreo) :
                 new ObjectParameter("pCorreo", typeof(string));
     
+            var pNuevaClaveParameter = pNuevaClave != null ?
+                new ObjectParameter("pNuevaClave", pNuevaClave) :
+                new ObjectParameter("pNuevaClave", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ADMIN_CLAVE", pUsuarioParameter, pCorreoParameter, pNuevaClaveParameter);
+        }
+    
+        public virtual int ACTUALIZA_CLIENTE_CLAVE(string pUsuario, string pCorreo, string pNuevaClave)
+        {
             var pUsuarioParameter = pUsuario != null ?
                 new ObjectParameter("pUsuario", pUsuario) :
                 new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pRolParameter = pRol.HasValue ?
-                new ObjectParameter("pRol", pRol) :
-                new ObjectParameter("pRol", typeof(int));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_USUARIO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pRolParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
-        }
-    
-        public virtual int ACTUALIZA_USUARIO_ADMIN(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
     
             var pCorreoParameter = pCorreo != null ?
                 new ObjectParameter("pCorreo", pCorreo) :
                 new ObjectParameter("pCorreo", typeof(string));
     
+            var pNuevaClaveParameter = pNuevaClave != null ?
+                new ObjectParameter("pNuevaClave", pNuevaClave) :
+                new ObjectParameter("pNuevaClave", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_CLIENTE_CLAVE", pUsuarioParameter, pCorreoParameter, pNuevaClaveParameter);
+        }
+    
+        public virtual int ACTUALIZA_CLIENTE_ESTADO(string pUsuario, string pCorreo, string pEstado)
+        {
             var pUsuarioParameter = pUsuario != null ?
                 new ObjectParameter("pUsuario", pUsuario) :
                 new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pAdministradorParameter = pAdministrador.HasValue ?
-                new ObjectParameter("pAdministrador", pAdministrador) :
-                new ObjectParameter("pAdministrador", typeof(bool));
-    
-            var pSeguridadParameter = pSeguridad.HasValue ?
-                new ObjectParameter("pSeguridad", pSeguridad) :
-                new ObjectParameter("pSeguridad", typeof(bool));
-    
-            var pConsecutivoParameter = pConsecutivo.HasValue ?
-                new ObjectParameter("pConsecutivo", pConsecutivo) :
-                new ObjectParameter("pConsecutivo", typeof(bool));
-    
-            var pMantenimientoParameter = pMantenimiento.HasValue ?
-                new ObjectParameter("pMantenimiento", pMantenimiento) :
-                new ObjectParameter("pMantenimiento", typeof(bool));
-    
-            var pConsultaParameter = pConsulta.HasValue ?
-                new ObjectParameter("pConsulta", pConsulta) :
-                new ObjectParameter("pConsulta", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_USUARIO_ADMIN", pCodigoParameter, pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pAdministradorParameter, pSeguridadParameter, pConsecutivoParameter, pMantenimientoParameter, pConsultaParameter);
-        }
-    
-        public virtual int ACTUALIZA_USUARIO_CLIENTE(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, string pPregunta, string pRespuesta, string pEstado)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
     
             var pCorreoParameter = pCorreo != null ?
                 new ObjectParameter("pCorreo", pCorreo) :
                 new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
     
             var pEstadoParameter = pEstado != null ?
                 new ObjectParameter("pEstado", pEstado) :
                 new ObjectParameter("pEstado", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_USUARIO_CLIENTE", pCodigoParameter, pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_CLIENTE_ESTADO", pUsuarioParameter, pCorreoParameter, pEstadoParameter);
         }
     
-        public virtual int CAMBIO_PASS_ADMIN(string pUsername, string pPassword)
-        {
-            var pUsernameParameter = pUsername != null ?
-                new ObjectParameter("pUsername", pUsername) :
-                new ObjectParameter("pUsername", typeof(string));
-    
-            var pPasswordParameter = pPassword != null ?
-                new ObjectParameter("pPassword", pPassword) :
-                new ObjectParameter("pPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAMBIO_PASS_ADMIN", pUsernameParameter, pPasswordParameter);
-        }
-    
-        public virtual int CAMBIO_PASS_CLIENTE(string pUsername, string pPassword)
-        {
-            var pUsernameParameter = pUsername != null ?
-                new ObjectParameter("pUsername", pUsername) :
-                new ObjectParameter("pUsername", typeof(string));
-    
-            var pPasswordParameter = pPassword != null ?
-                new ObjectParameter("pPassword", pPassword) :
-                new ObjectParameter("pPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CAMBIO_PASS_CLIENTE", pUsernameParameter, pPasswordParameter);
-        }
-    
-        public virtual int CLIENTE_REGISTRO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, string pPregunta, string pRespuesta, string pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
-    
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado != null ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CLIENTE_REGISTRO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
-        }
-    
-        public virtual ObjectResult<CONSULTA_ACTIVIDAD_Result> CONSULTA_ACTIVIDAD()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ACTIVIDAD_Result>("CONSULTA_ACTIVIDAD");
-        }
-    
-        public virtual ObjectResult<CONSULTA_ARTICULO_Result> CONSULTA_ARTICULO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ARTICULO_Result>("CONSULTA_ARTICULO");
-        }
-    
-        public virtual ObjectResult<CONSULTA_BITACORA_Result> CONSULTA_BITACORA()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_BITACORA_Result>("CONSULTA_BITACORA");
-        }
-    
-        public virtual ObjectResult<CONSULTA_CONSECUTIVO_Result> CONSULTA_CONSECUTIVO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_CONSECUTIVO_Result>("CONSULTA_CONSECUTIVO");
-        }
-    
-        public virtual ObjectResult<CONSULTA_ERROR_Result> CONSULTA_ERROR()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ERROR_Result>("CONSULTA_ERROR");
-        }
-    
-        public virtual ObjectResult<CONSULTA_HABITACION_Result> CONSULTA_HABITACION()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACION_Result>("CONSULTA_HABITACION");
-        }
-    
-        public virtual ObjectResult<CONSULTA_PRECIO_Result> CONSULTA_PRECIO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRECIO_Result>("CONSULTA_PRECIO");
-        }
-    
-        public virtual ObjectResult<CONSULTA_RESERVA_Result> CONSULTA_RESERVA()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_RESERVA_Result>("CONSULTA_RESERVA");
-        }
-    
-        public virtual int CONSULTA_ROL()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CONSULTA_ROL");
-        }
-    
-        public virtual ObjectResult<CONSULTA_USUARIO_ADMIN_Result> CONSULTA_USUARIO_ADMIN()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_USUARIO_ADMIN_Result>("CONSULTA_USUARIO_ADMIN");
-        }
-    
-        public virtual ObjectResult<CONSULTA_USUARIO_CLIENTE_Result> CONSULTA_USUARIO_CLIENTE()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_USUARIO_CLIENTE_Result>("CONSULTA_USUARIO_CLIENTE");
-        }
-    
-        public virtual int ELIMINA_ACTIVIDAD(string pCodigo, string pNombre, string pDescripcion)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_ACTIVIDAD", pCodigoParameter, pNombreParameter, pDescripcionParameter);
-        }
-    
-        public virtual int ELIMINA_ARTICULO(Nullable<int> pCodigo, string pNombre, Nullable<int> pPrecio, Nullable<int> pTipo_Articulo, string pReservaid)
-        {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            var pTipo_ArticuloParameter = pTipo_Articulo.HasValue ?
-                new ObjectParameter("pTipo_Articulo", pTipo_Articulo) :
-                new ObjectParameter("pTipo_Articulo", typeof(int));
-    
-            var pReservaidParameter = pReservaid != null ?
-                new ObjectParameter("pReservaid", pReservaid) :
-                new ObjectParameter("pReservaid", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_ARTICULO", pCodigoParameter, pNombreParameter, pPrecioParameter, pTipo_ArticuloParameter, pReservaidParameter);
-        }
-    
-        public virtual int ELIMINA_BITACORA(string pCodigo, Nullable<System.DateTime> pFecha_hora, string pTipo, string pDescripcion)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pFecha_horaParameter = pFecha_hora.HasValue ?
-                new ObjectParameter("pFecha_hora", pFecha_hora) :
-                new ObjectParameter("pFecha_hora", typeof(System.DateTime));
-    
-            var pTipoParameter = pTipo != null ?
-                new ObjectParameter("pTipo", pTipo) :
-                new ObjectParameter("pTipo", typeof(string));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_BITACORA", pCodigoParameter, pFecha_horaParameter, pTipoParameter, pDescripcionParameter);
-        }
-    
-        public virtual int ELIMINA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, Nullable<int> pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
+        public virtual int ACTUALIZA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, string pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
         {
             var pCodigoParameter = pCodigo.HasValue ?
                 new ObjectParameter("pCodigo", pCodigo) :
@@ -481,9 +126,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pDescripcion", pDescripcion) :
                 new ObjectParameter("pDescripcion", typeof(string));
     
-            var pConsecutivoParameter = pConsecutivo.HasValue ?
+            var pConsecutivoParameter = pConsecutivo != null ?
                 new ObjectParameter("pConsecutivo", pConsecutivo) :
-                new ObjectParameter("pConsecutivo", typeof(int));
+                new ObjectParameter("pConsecutivo", typeof(string));
     
             var pPoseePrefijoParameter = pPoseePrefijo.HasValue ?
                 new ObjectParameter("pPoseePrefijo", pPoseePrefijo) :
@@ -505,168 +150,236 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pMaximo", pMaximo) :
                 new ObjectParameter("pMaximo", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_CONSECUTIVO", pCodigoParameter, pDescripcionParameter, pConsecutivoParameter, pPoseePrefijoParameter, pPrefijoParameter, pPoseeRangoParameter, pMinimoParameter, pMaximoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_CONSECUTIVO", pCodigoParameter, pDescripcionParameter, pConsecutivoParameter, pPoseePrefijoParameter, pPrefijoParameter, pPoseeRangoParameter, pMinimoParameter, pMaximoParameter);
         }
     
-        public virtual int ELIMINA_ERROR(Nullable<int> pCodigo, Nullable<System.DateTime> pFecha_hora, string pMensaje)
-        {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            var pFecha_horaParameter = pFecha_hora.HasValue ?
-                new ObjectParameter("pFecha_hora", pFecha_hora) :
-                new ObjectParameter("pFecha_hora", typeof(System.DateTime));
-    
-            var pMensajeParameter = pMensaje != null ?
-                new ObjectParameter("pMensaje", pMensaje) :
-                new ObjectParameter("pMensaje", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_ERROR", pCodigoParameter, pFecha_horaParameter, pMensajeParameter);
-        }
-    
-        public virtual int ELIMINA_HABITACION(string pCodigo, Nullable<int> pNumero, string pDescripcion, Nullable<int> pEstado, string pPrecio)
+        public virtual int ACTUALIZA_HABITACION(string pCodigo, string pNumero, string pDesc)
         {
             var pCodigoParameter = pCodigo != null ?
                 new ObjectParameter("pCodigo", pCodigo) :
                 new ObjectParameter("pCodigo", typeof(string));
     
-            var pNumeroParameter = pNumero.HasValue ?
+            var pNumeroParameter = pNumero != null ?
                 new ObjectParameter("pNumero", pNumero) :
-                new ObjectParameter("pNumero", typeof(int));
+                new ObjectParameter("pNumero", typeof(string));
     
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
+            var pDescParameter = pDesc != null ?
+                new ObjectParameter("pDesc", pDesc) :
+                new ObjectParameter("pDesc", typeof(string));
     
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            var pPrecioParameter = pPrecio != null ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_HABITACION", pCodigoParameter, pNumeroParameter, pDescripcionParameter, pEstadoParameter, pPrecioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_HABITACION", pCodigoParameter, pNumeroParameter, pDescParameter);
         }
     
-        public virtual int ELIMINA_PRECIO(string pCodigo, Nullable<int> pTipo_habitacion, Nullable<int> pPrecio)
+        public virtual int ACTUALIZA_ROLES(string pCodigo, string pCorreo, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
         {
             var pCodigoParameter = pCodigo != null ?
                 new ObjectParameter("pCodigo", pCodigo) :
                 new ObjectParameter("pCodigo", typeof(string));
-    
-            var pTipo_habitacionParameter = pTipo_habitacion.HasValue ?
-                new ObjectParameter("pTipo_habitacion", pTipo_habitacion) :
-                new ObjectParameter("pTipo_habitacion", typeof(int));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_PRECIO", pCodigoParameter, pTipo_habitacionParameter, pPrecioParameter);
-        }
-    
-        public virtual int ELIMINA_RESERVA(string pCodigo, Nullable<System.DateTime> pFechaentrada, Nullable<System.DateTime> pFechasalida, Nullable<int> pCantidaddias, string pCodigopromocional, Nullable<int> pCantidadultos, Nullable<int> pCantidadniños, string pMascota, string pMetodopago, Nullable<int> pPrecio, string pUsuario)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            var pFechaentradaParameter = pFechaentrada.HasValue ?
-                new ObjectParameter("pFechaentrada", pFechaentrada) :
-                new ObjectParameter("pFechaentrada", typeof(System.DateTime));
-    
-            var pFechasalidaParameter = pFechasalida.HasValue ?
-                new ObjectParameter("pFechasalida", pFechasalida) :
-                new ObjectParameter("pFechasalida", typeof(System.DateTime));
-    
-            var pCantidaddiasParameter = pCantidaddias.HasValue ?
-                new ObjectParameter("pCantidaddias", pCantidaddias) :
-                new ObjectParameter("pCantidaddias", typeof(int));
-    
-            var pCodigopromocionalParameter = pCodigopromocional != null ?
-                new ObjectParameter("pCodigopromocional", pCodigopromocional) :
-                new ObjectParameter("pCodigopromocional", typeof(string));
-    
-            var pCantidadultosParameter = pCantidadultos.HasValue ?
-                new ObjectParameter("pCantidadultos", pCantidadultos) :
-                new ObjectParameter("pCantidadultos", typeof(int));
-    
-            var pCantidadniñosParameter = pCantidadniños.HasValue ?
-                new ObjectParameter("pCantidadniños", pCantidadniños) :
-                new ObjectParameter("pCantidadniños", typeof(int));
-    
-            var pMascotaParameter = pMascota != null ?
-                new ObjectParameter("pMascota", pMascota) :
-                new ObjectParameter("pMascota", typeof(string));
-    
-            var pMetodopagoParameter = pMetodopago != null ?
-                new ObjectParameter("pMetodopago", pMetodopago) :
-                new ObjectParameter("pMetodopago", typeof(string));
-    
-            var pPrecioParameter = pPrecio.HasValue ?
-                new ObjectParameter("pPrecio", pPrecio) :
-                new ObjectParameter("pPrecio", typeof(int));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_RESERVA", pCodigoParameter, pFechaentradaParameter, pFechasalidaParameter, pCantidaddiasParameter, pCodigopromocionalParameter, pCantidadultosParameter, pCantidadniñosParameter, pMascotaParameter, pMetodopagoParameter, pPrecioParameter, pUsuarioParameter);
-        }
-    
-        public virtual int ELIMINA_USUARIO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<int> pRol, string pPregunta, string pRespuesta, Nullable<int> pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
     
             var pCorreoParameter = pCorreo != null ?
                 new ObjectParameter("pCorreo", pCorreo) :
                 new ObjectParameter("pCorreo", typeof(string));
     
+            var pAdministradorParameter = pAdministrador.HasValue ?
+                new ObjectParameter("pAdministrador", pAdministrador) :
+                new ObjectParameter("pAdministrador", typeof(bool));
+    
+            var pSeguridadParameter = pSeguridad.HasValue ?
+                new ObjectParameter("pSeguridad", pSeguridad) :
+                new ObjectParameter("pSeguridad", typeof(bool));
+    
+            var pConsecutivoParameter = pConsecutivo.HasValue ?
+                new ObjectParameter("pConsecutivo", pConsecutivo) :
+                new ObjectParameter("pConsecutivo", typeof(bool));
+    
+            var pMantenimientoParameter = pMantenimiento.HasValue ?
+                new ObjectParameter("pMantenimiento", pMantenimiento) :
+                new ObjectParameter("pMantenimiento", typeof(bool));
+    
+            var pConsultaParameter = pConsulta.HasValue ?
+                new ObjectParameter("pConsulta", pConsulta) :
+                new ObjectParameter("pConsulta", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ROLES", pCodigoParameter, pCorreoParameter, pAdministradorParameter, pSeguridadParameter, pConsecutivoParameter, pMantenimientoParameter, pConsultaParameter);
+        }
+    
+        public virtual ObjectResult<ADMIN_LOGIN_Result> ADMIN_LOGIN(string pUsuario, string pPassword)
+        {
             var pUsuarioParameter = pUsuario != null ?
                 new ObjectParameter("pUsuario", pUsuario) :
                 new ObjectParameter("pUsuario", typeof(string));
     
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
+            var pPasswordParameter = pPassword != null ?
+                new ObjectParameter("pPassword", pPassword) :
+                new ObjectParameter("pPassword", typeof(string));
     
-            var pRolParameter = pRol.HasValue ?
-                new ObjectParameter("pRol", pRol) :
-                new ObjectParameter("pRol", typeof(int));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_USUARIO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pRolParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ADMIN_LOGIN_Result>("ADMIN_LOGIN", pUsuarioParameter, pPasswordParameter);
         }
     
-        public virtual int ELIMINA_USUARIO_ADMIN(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
+        public virtual ObjectResult<CLIENTE_LOGIN_Result> CLIENTE_LOGIN(string pUsuario, string pPassword)
+        {
+            var pUsuarioParameter = pUsuario != null ?
+                new ObjectParameter("pUsuario", pUsuario) :
+                new ObjectParameter("pUsuario", typeof(string));
+    
+            var pPasswordParameter = pPassword != null ?
+                new ObjectParameter("pPassword", pPassword) :
+                new ObjectParameter("pPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CLIENTE_LOGIN_Result>("CLIENTE_LOGIN", pUsuarioParameter, pPasswordParameter);
+        }
+    
+        public virtual ObjectResult<CONSULTA_BITACORA_Result> CONSULTA_BITACORA()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_BITACORA_Result>("CONSULTA_BITACORA");
+        }
+    
+        public virtual ObjectResult<CONSULTA_CLIENTEACTIVO_Result> CONSULTA_CLIENTEACTIVO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_CLIENTEACTIVO_Result>("CONSULTA_CLIENTEACTIVO");
+        }
+    
+        public virtual ObjectResult<CONSULTA_ERROR_Result> CONSULTA_ERROR()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ERROR_Result>("CONSULTA_ERROR");
+        }
+    
+        public virtual ObjectResult<CONSULTA_HABITACIONESLISTAS_Result> CONSULTA_HABITACIONESLISTAS()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACIONESLISTAS_Result>("CONSULTA_HABITACIONESLISTAS");
+        }
+    
+        public virtual int ELIMINA_ACTIVIDAD(string pCodigo)
         {
             var pCodigoParameter = pCodigo != null ?
                 new ObjectParameter("pCodigo", pCodigo) :
                 new ObjectParameter("pCodigo", typeof(string));
     
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_ACTIVIDAD", pCodigoParameter);
+        }
+    
+        public virtual int ELIMINA_HABITACION(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_HABITACION", pCodigoParameter);
+        }
+    
+        public virtual int ELIMINA_PRECIO(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_PRECIO", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_ACTIVIDAD(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_ACTIVIDAD", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_ADMIN(string pUsuario, string pCorreo)
+        {
+            var pUsuarioParameter = pUsuario != null ?
+                new ObjectParameter("pUsuario", pUsuario) :
+                new ObjectParameter("pUsuario", typeof(string));
+    
+            var pCorreoParameter = pCorreo != null ?
+                new ObjectParameter("pCorreo", pCorreo) :
+                new ObjectParameter("pCorreo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_ADMIN", pUsuarioParameter, pCorreoParameter);
+        }
+    
+        public virtual int EXISTE_ARTICULO(Nullable<int> pCodigo)
+        {
+            var pCodigoParameter = pCodigo.HasValue ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_ARTICULO", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_BOOKINGID(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_BOOKINGID", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_CLIENTE(string pUsuario, string pCorreo)
+        {
+            var pUsuarioParameter = pUsuario != null ?
+                new ObjectParameter("pUsuario", pUsuario) :
+                new ObjectParameter("pUsuario", typeof(string));
+    
+            var pCorreoParameter = pCorreo != null ?
+                new ObjectParameter("pCorreo", pCorreo) :
+                new ObjectParameter("pCorreo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_CLIENTE", pUsuarioParameter, pCorreoParameter);
+        }
+    
+        public virtual int EXISTE_CONSECUTIVO(Nullable<int> pCodigo)
+        {
+            var pCodigoParameter = pCodigo.HasValue ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_CONSECUTIVO", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_HABITACION(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_HABITACION", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_PRECIO(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_PRECIO", pCodigoParameter);
+        }
+    
+        public virtual int EXISTE_RESERVA(string pCodigo)
+        {
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE_RESERVA", pCodigoParameter);
+        }
+    
+        public virtual int INSERTA_ACTIVIDAD(string pNombre, string pDescripcion)
+        {
+            var pNombreParameter = pNombre != null ?
+                new ObjectParameter("pNombre", pNombre) :
+                new ObjectParameter("pNombre", typeof(string));
+    
+            var pDescripcionParameter = pDescripcion != null ?
+                new ObjectParameter("pDescripcion", pDescripcion) :
+                new ObjectParameter("pDescripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ACTIVIDAD", pNombreParameter, pDescripcionParameter);
+        }
+    
+        public virtual int INSERTA_ADMIN(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
+        {
             var pNombreParameter = pNombre != null ?
                 new ObjectParameter("pNombre", pNombre) :
                 new ObjectParameter("pNombre", typeof(string));
@@ -711,15 +424,71 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pConsulta", pConsulta) :
                 new ObjectParameter("pConsulta", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_USUARIO_ADMIN", pCodigoParameter, pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pAdministradorParameter, pSeguridadParameter, pConsecutivoParameter, pMantenimientoParameter, pConsultaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ADMIN", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pAdministradorParameter, pSeguridadParameter, pConsecutivoParameter, pMantenimientoParameter, pConsultaParameter);
         }
     
-        public virtual int ELIMINA_USUARIO_CLIENTE(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, string pPregunta, string pRespuesta, string pEstado)
+        public virtual int INSERTA_ARTICULO(string pNombre, Nullable<int> pTipo, string pPrecio)
         {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
+            var pNombreParameter = pNombre != null ?
+                new ObjectParameter("pNombre", pNombre) :
+                new ObjectParameter("pNombre", typeof(string));
     
+            var pTipoParameter = pTipo.HasValue ?
+                new ObjectParameter("pTipo", pTipo) :
+                new ObjectParameter("pTipo", typeof(int));
+    
+            var pPrecioParameter = pPrecio != null ?
+                new ObjectParameter("pPrecio", pPrecio) :
+                new ObjectParameter("pPrecio", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ARTICULO", pNombreParameter, pTipoParameter, pPrecioParameter);
+        }
+    
+        public virtual int INSERTA_ARTICULOSRESERVA(Nullable<int> pCantidad, Nullable<int> pArticulo, string pReserva)
+        {
+            var pCantidadParameter = pCantidad.HasValue ?
+                new ObjectParameter("pCantidad", pCantidad) :
+                new ObjectParameter("pCantidad", typeof(int));
+    
+            var pArticuloParameter = pArticulo.HasValue ?
+                new ObjectParameter("pArticulo", pArticulo) :
+                new ObjectParameter("pArticulo", typeof(int));
+    
+            var pReservaParameter = pReserva != null ?
+                new ObjectParameter("pReserva", pReserva) :
+                new ObjectParameter("pReserva", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ARTICULOSRESERVA", pCantidadParameter, pArticuloParameter, pReservaParameter);
+        }
+    
+        public virtual int INSERTA_BITACORA(string pTipo, string pDescripcion)
+        {
+            var pTipoParameter = pTipo != null ?
+                new ObjectParameter("pTipo", pTipo) :
+                new ObjectParameter("pTipo", typeof(string));
+    
+            var pDescripcionParameter = pDescripcion != null ?
+                new ObjectParameter("pDescripcion", pDescripcion) :
+                new ObjectParameter("pDescripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_BITACORA", pTipoParameter, pDescripcionParameter);
+        }
+    
+        public virtual int INSERTA_BOOKINGID(string pHabitacion, string pReserva)
+        {
+            var pHabitacionParameter = pHabitacion != null ?
+                new ObjectParameter("pHabitacion", pHabitacion) :
+                new ObjectParameter("pHabitacion", typeof(string));
+    
+            var pReservaParameter = pReserva != null ?
+                new ObjectParameter("pReserva", pReserva) :
+                new ObjectParameter("pReserva", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_BOOKINGID", pHabitacionParameter, pReservaParameter);
+        }
+    
+        public virtual int INSERTA_CLIENTE(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, string pPregunta, string pRespuesta, Nullable<int> pEstado)
+        {
             var pNombreParameter = pNombre != null ?
                 new ObjectParameter("pNombre", pNombre) :
                 new ObjectParameter("pNombre", typeof(string));
@@ -752,46 +521,11 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pRespuesta", pRespuesta) :
                 new ObjectParameter("pRespuesta", typeof(string));
     
-            var pEstadoParameter = pEstado != null ?
+            var pEstadoParameter = pEstado.HasValue ?
                 new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(string));
+                new ObjectParameter("pEstado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_USUARIO_CLIENTE", pCodigoParameter, pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
-        }
-    
-        public virtual int EXISTE(Nullable<int> pCodigo)
-        {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EXISTE", pCodigoParameter);
-        }
-    
-        public virtual int INSERTA_ACTIVIDAD(string pNombre, string pDescripcion)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ACTIVIDAD", pNombreParameter, pDescripcionParameter);
-        }
-    
-        public virtual int INSERTA_BITACORA(string pTipo, string pDescripcion)
-        {
-            var pTipoParameter = pTipo != null ?
-                new ObjectParameter("pTipo", pTipo) :
-                new ObjectParameter("pTipo", typeof(string));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_BITACORA", pTipoParameter, pDescripcionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_CLIENTE", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
         }
     
         public virtual int INSERTA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, string pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
@@ -865,7 +599,16 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter);
         }
     
-        public virtual int INSERTA_RESERVA(Nullable<System.DateTime> pFecha_Entrada, Nullable<System.DateTime> pFecha_Salida, Nullable<int> pCantidad_Dias, string pCodigo_Promocional, Nullable<int> pCantidad_Adultos, Nullable<int> pCantidad_Niños, string pMascota, string pMetodo_Pago, Nullable<int> pPrecio, string pUsuario)
+        public virtual int INSERTA_PRECIO(Nullable<int> pPrecio)
+        {
+            var pPrecioParameter = pPrecio.HasValue ?
+                new ObjectParameter("pPrecio", pPrecio) :
+                new ObjectParameter("pPrecio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_PRECIO", pPrecioParameter);
+        }
+    
+        public virtual int INSERTA_RESERVA(Nullable<System.DateTime> pFecha_Entrada, Nullable<System.DateTime> pFecha_Salida, Nullable<int> pCantidad_Dias, Nullable<bool> pCodigo_Promocional, Nullable<int> pCantidad_Adultos, Nullable<int> pCantidad_Niños, Nullable<bool> pMascota, string pMetodo_Pago, Nullable<int> pPrecio, string pUsuario)
         {
             var pFecha_EntradaParameter = pFecha_Entrada.HasValue ?
                 new ObjectParameter("pFecha_Entrada", pFecha_Entrada) :
@@ -879,9 +622,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pCantidad_Dias", pCantidad_Dias) :
                 new ObjectParameter("pCantidad_Dias", typeof(int));
     
-            var pCodigo_PromocionalParameter = pCodigo_Promocional != null ?
+            var pCodigo_PromocionalParameter = pCodigo_Promocional.HasValue ?
                 new ObjectParameter("pCodigo_Promocional", pCodigo_Promocional) :
-                new ObjectParameter("pCodigo_Promocional", typeof(string));
+                new ObjectParameter("pCodigo_Promocional", typeof(bool));
     
             var pCantidad_AdultosParameter = pCantidad_Adultos.HasValue ?
                 new ObjectParameter("pCantidad_Adultos", pCantidad_Adultos) :
@@ -891,9 +634,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pCantidad_Niños", pCantidad_Niños) :
                 new ObjectParameter("pCantidad_Niños", typeof(int));
     
-            var pMascotaParameter = pMascota != null ?
+            var pMascotaParameter = pMascota.HasValue ?
                 new ObjectParameter("pMascota", pMascota) :
-                new ObjectParameter("pMascota", typeof(string));
+                new ObjectParameter("pMascota", typeof(bool));
     
             var pMetodo_PagoParameter = pMetodo_Pago != null ?
                 new ObjectParameter("pMetodo_Pago", pMetodo_Pago) :
@@ -910,295 +653,13 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_RESERVA", pFecha_EntradaParameter, pFecha_SalidaParameter, pCantidad_DiasParameter, pCodigo_PromocionalParameter, pCantidad_AdultosParameter, pCantidad_NiñosParameter, pMascotaParameter, pMetodo_PagoParameter, pPrecioParameter, pUsuarioParameter);
         }
     
-        public virtual int MODIFICA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, string pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
-        {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            var pDescripcionParameter = pDescripcion != null ?
-                new ObjectParameter("pDescripcion", pDescripcion) :
-                new ObjectParameter("pDescripcion", typeof(string));
-    
-            var pConsecutivoParameter = pConsecutivo != null ?
-                new ObjectParameter("pConsecutivo", pConsecutivo) :
-                new ObjectParameter("pConsecutivo", typeof(string));
-    
-            var pPoseePrefijoParameter = pPoseePrefijo.HasValue ?
-                new ObjectParameter("pPoseePrefijo", pPoseePrefijo) :
-                new ObjectParameter("pPoseePrefijo", typeof(bool));
-    
-            var pPrefijoParameter = pPrefijo != null ?
-                new ObjectParameter("pPrefijo", pPrefijo) :
-                new ObjectParameter("pPrefijo", typeof(string));
-    
-            var pPoseeRangoParameter = pPoseeRango.HasValue ?
-                new ObjectParameter("pPoseeRango", pPoseeRango) :
-                new ObjectParameter("pPoseeRango", typeof(bool));
-    
-            var pMinimoParameter = pMinimo.HasValue ?
-                new ObjectParameter("pMinimo", pMinimo) :
-                new ObjectParameter("pMinimo", typeof(int));
-    
-            var pMaximoParameter = pMaximo.HasValue ?
-                new ObjectParameter("pMaximo", pMaximo) :
-                new ObjectParameter("pMaximo", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICA_CONSECUTIVO", pCodigoParameter, pDescripcionParameter, pConsecutivoParameter, pPoseePrefijoParameter, pPrefijoParameter, pPoseeRangoParameter, pMinimoParameter, pMaximoParameter);
-        }
-    
-        public virtual int MODIFICA_ERROR(Nullable<int> pCodigo, Nullable<System.DateTime> pFecha_hora, string pMensaje)
-        {
-            var pCodigoParameter = pCodigo.HasValue ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(int));
-    
-            var pFecha_horaParameter = pFecha_hora.HasValue ?
-                new ObjectParameter("pFecha_hora", pFecha_hora) :
-                new ObjectParameter("pFecha_hora", typeof(System.DateTime));
-    
-            var pMensajeParameter = pMensaje != null ?
-                new ObjectParameter("pMensaje", pMensaje) :
-                new ObjectParameter("pMensaje", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICA_ERROR", pCodigoParameter, pFecha_horaParameter, pMensajeParameter);
-        }
-    
-        public virtual ObjectResult<ObtenertRoles_Result> ObtenertRoles(string pCodigo)
+        public virtual ObjectResult<OBTENER_ROLES_Result> OBTENER_ROLES(string pCodigo)
         {
             var pCodigoParameter = pCodigo != null ?
                 new ObjectParameter("pCodigo", pCodigo) :
                 new ObjectParameter("pCodigo", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenertRoles_Result>("ObtenertRoles", pCodigoParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<USUARIO_ADMIN_LOGIN_Result> USUARIO_ADMIN_LOGIN(string pUsuario, string pPassword)
-        {
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pPasswordParameter = pPassword != null ?
-                new ObjectParameter("pPassword", pPassword) :
-                new ObjectParameter("pPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USUARIO_ADMIN_LOGIN_Result>("USUARIO_ADMIN_LOGIN", pUsuarioParameter, pPasswordParameter);
-        }
-    
-        public virtual int USUARIO_ADMIN_REGISTRO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
-    
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pAdministradorParameter = pAdministrador.HasValue ?
-                new ObjectParameter("pAdministrador", pAdministrador) :
-                new ObjectParameter("pAdministrador", typeof(bool));
-    
-            var pSeguridadParameter = pSeguridad.HasValue ?
-                new ObjectParameter("pSeguridad", pSeguridad) :
-                new ObjectParameter("pSeguridad", typeof(bool));
-    
-            var pConsecutivoParameter = pConsecutivo.HasValue ?
-                new ObjectParameter("pConsecutivo", pConsecutivo) :
-                new ObjectParameter("pConsecutivo", typeof(bool));
-    
-            var pMantenimientoParameter = pMantenimiento.HasValue ?
-                new ObjectParameter("pMantenimiento", pMantenimiento) :
-                new ObjectParameter("pMantenimiento", typeof(bool));
-    
-            var pConsultaParameter = pConsulta.HasValue ?
-                new ObjectParameter("pConsulta", pConsulta) :
-                new ObjectParameter("pConsulta", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USUARIO_ADMIN_REGISTRO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pAdministradorParameter, pSeguridadParameter, pConsecutivoParameter, pMantenimientoParameter, pConsultaParameter);
-        }
-    
-        public virtual ObjectResult<USUARIO_CLIENTE_LOGIN_Result> USUARIO_CLIENTE_LOGIN(string pUsuario, string pPassword)
-        {
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pPasswordParameter = pPassword != null ?
-                new ObjectParameter("pPassword", pPassword) :
-                new ObjectParameter("pPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<USUARIO_CLIENTE_LOGIN_Result>("USUARIO_CLIENTE_LOGIN", pUsuarioParameter, pPasswordParameter);
-        }
-    
-        public virtual int USUARIO_CLIENTE_REGISTRO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, string pPregunta, string pRespuesta, string pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
-    
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado != null ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USUARIO_CLIENTE_REGISTRO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
-        }
-    
-        public virtual int USUARIO_CONSULTA_ROL(string pCorreo)
-        {
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USUARIO_CONSULTA_ROL", pCorreoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_ROLES_Result>("OBTENER_ROLES", pCodigoParameter);
         }
     }
 }

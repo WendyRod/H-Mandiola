@@ -10,21 +10,10 @@
 namespace H_Mandiola.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Usuario_Admin
+    public partial class ADMIN_LOGIN_Result
     {
-        public string Codigo { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido1 { get; set; }
-        public string Apellido2 { get; set; }
-        public string Email { get; set; }
         public string Usuario { get; set; }
         public string Clave { get; set; }
-        public Nullable<bool> Administrador { get; set; }
-        public Nullable<bool> Seguridad { get; set; }
-        public Nullable<bool> Consecutivo { get; set; }
-        public Nullable<bool> Mantenimiento { get; set; }
-        public Nullable<bool> Consulta { get; set; }
     }
 }

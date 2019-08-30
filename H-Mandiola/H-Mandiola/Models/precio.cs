@@ -17,15 +17,16 @@ namespace H_Mandiola.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Precio()
         {
+            this.Articulo = new HashSet<Articulo>();
             this.Habitacion = new HashSet<Habitacion>();
         }
     
         public string Codigo { get; set; }
-        public int Tipo_Habitacion { get; set; }
-        public Nullable<int> Precio1 { get; set; }
+        public int Precio1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Articulo> Articulo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Habitacion> Habitacion { get; set; }
-        public virtual Tipo_Habitacion Tipo_Habitacion1 { get; set; }
     }
 }

@@ -11,9 +11,10 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class CONSULTA_CLIENTEACTIVO_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string Codigo { get; set; }
+        public string Nombre_Completo { get; set; }
+        public int Numero { get; set; }
     }
 }

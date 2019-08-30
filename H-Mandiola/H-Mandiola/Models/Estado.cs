@@ -10,16 +10,20 @@
 namespace H_Mandiola.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class CONSULTA_CONSECUTIVO_Result
+    public partial class Estado
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Estado()
+        {
+            this.Cliente = new HashSet<Cliente>();
+        }
+    
         public int Codigo { get; set; }
-        public string Descripcion { get; set; }
-        public int Consecutivo { get; set; }
-        public Nullable<bool> PoseePrefijo { get; set; }
-        public string Prefijo { get; set; }
-        public Nullable<bool> PoseeRango { get; set; }
-        public Nullable<int> Minimo { get; set; }
-        public Nullable<int> Maximo { get; set; }
+        public string Tipo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace H_Mandiola.Models
         public string Actividad { get; set; }
     
         public virtual Actividad Actividad1 { get; set; }
-        public virtual Usuario_Cliente Usuario_Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; }
     }
 }

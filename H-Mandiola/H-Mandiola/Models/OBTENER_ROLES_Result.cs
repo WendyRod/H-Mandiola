@@ -11,12 +11,12 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class ObtenertRoles_Result
+    public partial class OBTENER_ROLES_Result
     {
-        public Nullable<bool> Consecutivo { get; set; }
-        public Nullable<bool> Mantenimiento { get; set; }
-        public Nullable<bool> Seguridad { get; set; }
-        public Nullable<bool> Consulta { get; set; }
-        public Nullable<bool> Administrador { get; set; }
+        public bool Consecutivo { get; set; }
+        public bool Mantenimiento { get; set; }
+        public bool Seguridad { get; set; }
+        public bool Consulta { get; set; }
+        public bool Administrador { get; set; }
     }
 }
