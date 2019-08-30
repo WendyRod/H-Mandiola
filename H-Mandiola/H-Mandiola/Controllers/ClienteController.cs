@@ -17,9 +17,34 @@ namespace H_Mandiola.Controllers
             return View();
         }
 
-        public ActionResult CrearCliente()
+        [HttpPost]
+        public ActionResult CrearCliente(H_Mandiola.Models.Cliente c)
         {
-            return View();
+            try
+            {
+                var result = 0;
+                foreach (var item in db.Cliente)
+                {
+                    if(item.Usuario.Equals(c.Usuario) || item.Email.Equals(c.Email))
+                    {
+                        result = 1;
+                    }
+                }
+                if(result == 0)
+                {
+                    db.INSERTA_CLIENTE(c.Nombre, c.Apellido1, c.Apellido2, c.Email, c.Usuario, c.Clave, c.Pregunta, c.Respuesta, c.Estado);
+                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el cliente: {0}", c.Usuario));
+                    return Json(new { success = true, responseText = "Se ha ingresado el cliente correctamente." }, JsonRequestBehavior.AllowGet);  //Mensaje que se va a mostrar al registrar el usuario.
+                }
+                else
+                {
+                    return Json(new { success = false, responseText = "Usuario y/o correo ya existen." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, responseText = "Ha ocurrido un error." }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Reserva()
