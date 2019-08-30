@@ -198,7 +198,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           </Key>
           <Property Name="Codigo Precio" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Precio" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="78" Nullable="false" />
         </EntityType>
         <Association Name="Articulo_Precio_fk">
           <End Role="Precio" Type="Self.Precio" Multiplicity="1" />
@@ -872,7 +872,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           </Key>
           <Property Name="Codigo_Precio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Precio" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="78" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <Association Name="Hist_act_Act_fk">
           <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
