@@ -23,6 +23,13 @@ namespace H_Mandiola.Controllers
             return View(habitacion);
         }
 
+        public async Task<ActionResult> IndexConsultaHabitacion()
+        {
+            var habitacion = db.Database.SqlQuery<Habitacion>("CONSULTA_HABITACION").ToList();
+            //var habitacion = db.Habitacion.Include(h => h.Est_Hab1).Include(h => h.Precio1);
+            return View(habitacion);
+        }
+
         // GET: Habitacion/Details/5
         public async Task<ActionResult> Details(string id)
         {

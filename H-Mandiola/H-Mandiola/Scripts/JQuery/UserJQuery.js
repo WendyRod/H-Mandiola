@@ -74,7 +74,7 @@ function Cancelar() {
 }
 
 function InicioSesion() {
-    window.location.href = "/Usuario/Login"
+    window.location.href = "/Cliente/LoginCliente"
 }
 
 function LoginRegister() {

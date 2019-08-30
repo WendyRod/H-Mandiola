@@ -39,7 +39,6 @@ namespace H_Mandiola.Models
         public virtual DbSet<Historial_Actividad> Historial_Actividad { get; set; }
         public virtual DbSet<Precio> Precio { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tarjeta> Tarjeta { get; set; }
         public virtual DbSet<Tipo_Articulo> Tipo_Articulo { get; set; }
         public virtual DbSet<Tipo_Habitacion> Tipo_Habitacion { get; set; }
@@ -141,51 +140,6 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pPrecio", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_PRECIO", pCodigoParameter, pTipo_habitacionParameter, pPrecioParameter);
-        }
-    
-        public virtual int ACTUALIZA_USUARIO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<int> pRol, string pPregunta, string pRespuesta, Nullable<int> pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
-    
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pRolParameter = pRol.HasValue ?
-                new ObjectParameter("pRol", pRol) :
-                new ObjectParameter("pRol", typeof(int));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_USUARIO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pRolParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
         }
     
         public virtual int ACTUALIZA_USUARIO_ADMIN(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
@@ -616,51 +570,6 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_RESERVA", pCodigoParameter, pFechaentradaParameter, pFechasalidaParameter, pCantidaddiasParameter, pCodigopromocionalParameter, pCantidadultosParameter, pCantidadniñosParameter, pMascotaParameter, pMetodopagoParameter, pPrecioParameter, pUsuarioParameter);
         }
     
-        public virtual int ELIMINA_USUARIO(string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<int> pRol, string pPregunta, string pRespuesta, Nullable<int> pEstado)
-        {
-            var pNombreParameter = pNombre != null ?
-                new ObjectParameter("pNombre", pNombre) :
-                new ObjectParameter("pNombre", typeof(string));
-    
-            var pApellido1Parameter = pApellido1 != null ?
-                new ObjectParameter("pApellido1", pApellido1) :
-                new ObjectParameter("pApellido1", typeof(string));
-    
-            var pApellido2Parameter = pApellido2 != null ?
-                new ObjectParameter("pApellido2", pApellido2) :
-                new ObjectParameter("pApellido2", typeof(string));
-    
-            var pCorreoParameter = pCorreo != null ?
-                new ObjectParameter("pCorreo", pCorreo) :
-                new ObjectParameter("pCorreo", typeof(string));
-    
-            var pUsuarioParameter = pUsuario != null ?
-                new ObjectParameter("pUsuario", pUsuario) :
-                new ObjectParameter("pUsuario", typeof(string));
-    
-            var pClaveParameter = pClave != null ?
-                new ObjectParameter("pClave", pClave) :
-                new ObjectParameter("pClave", typeof(string));
-    
-            var pRolParameter = pRol.HasValue ?
-                new ObjectParameter("pRol", pRol) :
-                new ObjectParameter("pRol", typeof(int));
-    
-            var pPreguntaParameter = pPregunta != null ?
-                new ObjectParameter("pPregunta", pPregunta) :
-                new ObjectParameter("pPregunta", typeof(string));
-    
-            var pRespuestaParameter = pRespuesta != null ?
-                new ObjectParameter("pRespuesta", pRespuesta) :
-                new ObjectParameter("pRespuesta", typeof(string));
-    
-            var pEstadoParameter = pEstado.HasValue ?
-                new ObjectParameter("pEstado", pEstado) :
-                new ObjectParameter("pEstado", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ELIMINA_USUARIO", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pRolParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
-        }
-    
         public virtual int ELIMINA_USUARIO_ADMIN(string pCodigo, string pNombre, string pApellido1, string pApellido2, string pCorreo, string pUsuario, string pClave, Nullable<bool> pAdministrador, Nullable<bool> pSeguridad, Nullable<bool> pConsecutivo, Nullable<bool> pMantenimiento, Nullable<bool> pConsulta)
         {
             var pCodigoParameter = pCodigo != null ?
@@ -865,7 +774,7 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter);
         }
     
-        public virtual int INSERTA_RESERVA(Nullable<System.DateTime> pFecha_Entrada, Nullable<System.DateTime> pFecha_Salida, Nullable<int> pCantidad_Dias, string pCodigo_Promocional, Nullable<int> pCantidad_Adultos, Nullable<int> pCantidad_Niños, string pMascota, string pMetodo_Pago, Nullable<int> pPrecio, string pUsuario)
+        public virtual int INSERTA_RESERVA(Nullable<System.DateTime> pFecha_Entrada, Nullable<System.DateTime> pFecha_Salida, Nullable<int> pCantidad_Dias, Nullable<bool> pCodigo_Promocional, Nullable<int> pCantidad_Adultos, Nullable<int> pCantidad_Niños, Nullable<bool> pMascota, string pMetodo_Pago, Nullable<int> pPrecio, string pUsuario)
         {
             var pFecha_EntradaParameter = pFecha_Entrada.HasValue ?
                 new ObjectParameter("pFecha_Entrada", pFecha_Entrada) :
@@ -879,9 +788,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pCantidad_Dias", pCantidad_Dias) :
                 new ObjectParameter("pCantidad_Dias", typeof(int));
     
-            var pCodigo_PromocionalParameter = pCodigo_Promocional != null ?
+            var pCodigo_PromocionalParameter = pCodigo_Promocional.HasValue ?
                 new ObjectParameter("pCodigo_Promocional", pCodigo_Promocional) :
-                new ObjectParameter("pCodigo_Promocional", typeof(string));
+                new ObjectParameter("pCodigo_Promocional", typeof(bool));
     
             var pCantidad_AdultosParameter = pCantidad_Adultos.HasValue ?
                 new ObjectParameter("pCantidad_Adultos", pCantidad_Adultos) :
@@ -891,9 +800,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pCantidad_Niños", pCantidad_Niños) :
                 new ObjectParameter("pCantidad_Niños", typeof(int));
     
-            var pMascotaParameter = pMascota != null ?
+            var pMascotaParameter = pMascota.HasValue ?
                 new ObjectParameter("pMascota", pMascota) :
-                new ObjectParameter("pMascota", typeof(string));
+                new ObjectParameter("pMascota", typeof(bool));
     
             var pMetodo_PagoParameter = pMetodo_Pago != null ?
                 new ObjectParameter("pMetodo_Pago", pMetodo_Pago) :
@@ -962,118 +871,6 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pMensaje", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MODIFICA_ERROR", pCodigoParameter, pFecha_horaParameter, pMensajeParameter);
-        }
-    
-        public virtual ObjectResult<ObtenertRoles_Result> ObtenertRoles(string pCodigo)
-        {
-            var pCodigoParameter = pCodigo != null ?
-                new ObjectParameter("pCodigo", pCodigo) :
-                new ObjectParameter("pCodigo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenertRoles_Result>("ObtenertRoles", pCodigoParameter);
-        }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
-    
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
-        }
-    
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual ObjectResult<USUARIO_ADMIN_LOGIN_Result> USUARIO_ADMIN_LOGIN(string pUsuario, string pPassword)

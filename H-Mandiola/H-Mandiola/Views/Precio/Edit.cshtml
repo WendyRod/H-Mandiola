@@ -5,47 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<style>
+    body {
+        background-image: url('https://www.starhotelscollezione.com//assets/uploads/Starhotels-Collezione/Savoia-Excelsior-Palace/DESIGN-HISTORY-PHILOSOPHY/four-star-hotel-in-central-trieste-savoia-excelsior-palace-trieste-hall-42.jpg')
+    }
+</style>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Precio</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Codigo)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tipo_Habitacion, "Tipo_Habitacion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Tipo_Habitacion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Tipo_Habitacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-xl-6 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-body">
+                        <center>
+                            <img src="~/Imagenes/H-icono.png" width="60" height="60" />
+                        </center>
+                        <br />
+                        <h5 class="card-title text-center">Editar Precio</h5>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Codigo)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Precio1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Precio1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Precio1, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Tipo_Habitacion, "Tipo_Habitacion", htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-12">
+                                @Html.DropDownList("Tipo_Habitacion", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tipo_Habitacion, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                        <div class="form-group col-md-10">
+                            @Html.LabelFor(model => model.Precio1, htmlAttributes: new { @class = "control-label col-md-6" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Precio1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Precio1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-}
+        
+ }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }

@@ -26,7 +26,7 @@ namespace H_Mandiola.Controllers
         /// Constructor de la pagina Usuario/CrearUsuario
         /// </summary>
         /// <returns>Retorna la pagina.</returns>
-        public ActionResult CrearUsuarioAdmin()
+        public ActionResult CrearUsuario()
         {
             return View();
         }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="341b70746dad4ad79efe8263f221c2ec" Name="Diagram1">
+      <Diagram DiagramId="58c808599c47441b82093953f42da254" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Actividad" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Articulo" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Bitacora" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
@@ -17,11 +17,10 @@
         <EntityTypeShape EntityType="Model.Historial_Actividad" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Precio" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Reserva" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Tarjeta" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Tipo_Articulo" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Tipo_Habitacion" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Usuario_Admin" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Usuario_Admin" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Usuario_Cliente" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="Model.Hist_act_Act_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Model.Articulo_Reserva_fk" ManuallyRouted="false" />

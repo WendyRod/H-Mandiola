@@ -54,12 +54,13 @@ namespace H_Mandiola.Controllers
 
             // var reserva = db.Database.SqlQuery<Reserva>("INSERTA_RESERVA");
             //var datos = db.Reserva.SqlQuery("[dbo].[INSERT_RESERVA]");
-            
+
 
             if (ModelState.IsValid)
             {
-                Usuario_Cliente usuario = (Usuario_Cliente)Session["username"];
-                db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Codigo);
+                string usuario = System.Web.HttpContext.Current.Session["username"].ToString();
+                //Usuario_Cliente usuario = (Usuario_Cliente)Session["username"];
+                db.INSERTA_RESERVA(Convert.ToDateTime(res.Fecha_Entrada), Convert.ToDateTime(res.Fecha_Salida), res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario);
                 db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó una nueva reserva");
                 return RedirectToAction("Index");
