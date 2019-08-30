@@ -146,11 +146,6 @@ namespace H_Mandiola.Controllers
             return View();
         }
 
-        public ActionResult VerUsuarios()
-        {
-            return View();
-        }
-
         public ActionResult Default()
         {
             return View();
@@ -173,6 +168,104 @@ namespace H_Mandiola.Controllers
                 return RedirectToAction("Default", "Usuario");
             }
         }
+
+        public ActionResult VerUsuarios()
+        {
+            Usuario_Admin usuario_Admi = new Usuario_Admin();
+            usuario_Admi.llenarUsuario();
+
+            BLL.Usuario usuario = new BLL.Usuario();
+            List<bool> Roles = usuario.SearchRoles(Usuario_Admin.IDUserAdmi);
+
+            if (Roles.ElementAt(0) || Roles.ElementAt(4))
+            {
+                List<Usuario_Admin> UserList = usuario_Admi.llenarUsuarioString();
+                ViewBag.UserList = new SelectList(UserList, "ID", "Username");
+
+                return View();
+            }
+            else
+            {
+                return View("Default", usuario);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult VerUsuarios(int ID)
+        {
+            Roles roles = new Roles();
+            currentUseRol = ID;
+
+            BLL.Usuario usuario = new BLL.Usuario();
+            List<bool> Roles = usuario.SearchRoles(ID);
+
+            #region conditions
+            if (Roles.ElementAt(0))
+            {
+                roles.Administrador = "y";
+            }
+            else
+            {
+                roles.Administrador = "n";
+            }
+
+            if (Roles.ElementAt(1))
+            {
+                roles.Consecutivo = "y";
+            }
+            else
+            {
+                roles.Consecutivo = "n";
+            }
+
+            if (Roles.ElementAt(2))
+            {
+                roles.Consulta = "y";
+            }
+            else
+            {
+                roles.Consulta = "n";
+            }
+
+            if (Roles.ElementAt(3))
+            {
+                roles.Mantenimiento = "y";
+            }
+            else
+            {
+                roles.Mantenimiento = "n";
+            }
+
+            if (Roles.ElementAt(4))
+            {
+                roles.Seguridad = "y";
+            }
+            else
+            {
+                roles.Seguridad = "n";
+            }
+            #endregion
+
+            Usuario_Admin usuario = new Usuario_Admin();
+            usuario.llenarUsuario();
+
+            return Json(roles, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SaveRoles(bool Conse, bool Consul, bool Mante, bool Admi, bool Segu)
+        {
+
+            BLL.Usuario usuario = new BLL.Usuario();
+            usuario.SaveRoles(Conse, Consul, Mante, Admi, Segu, currentUseRol);
+
+            //bitacora.insertaBitacora(CurrenteUsername, "SaveRoles", "Edit", "Save user´s roles", "Consecutive: " + Conse + " - Query: " + Consul + " - Maintenance: " + Mante + " - Administration: " + Admi + " - Security: " + Segu);
+
+            string result = "ok";
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
     }
 
     public class PassClass

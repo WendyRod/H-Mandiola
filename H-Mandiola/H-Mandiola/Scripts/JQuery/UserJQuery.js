@@ -73,10 +73,6 @@ function Cancelar() {
     window.location.href = "/Usuario/Default"
 }
 
-function InicioSesion() {
-    window.location.href = "/Usuario/Login"
-}
-
 function LoginRegister() {
     window.location.href = "/Usuario/CrearUsuario"
 }
@@ -131,7 +127,13 @@ var LoginAdmin = function () {
     })
 }
 
-function CerrarSesion() {
+function CerrarSesionAdmin() {
+    window.location.href = "/Usuario/Login"
+    $("#btnSalir").hide();
+    $("#btnInicio").show();
+}
+
+function CerrarSesionCliente() {
     window.location.href = "/Usuario/Login"
     $("#btnSalir").hide();
     $("#btnInicio").show();
