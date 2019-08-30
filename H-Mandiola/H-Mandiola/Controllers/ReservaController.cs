@@ -59,7 +59,9 @@ namespace H_Mandiola.Controllers
             if (ModelState.IsValid)
             {
                 Cliente usuario = (Cliente)Session["username"];
-                db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Codigo);
+                DateTime fechaEntrada = Convert.ToDateTime(res.Fecha_Entrada);
+                DateTime fechaSalida = Convert.ToDateTime(res.Fecha_Salida);
+                db.INSERTA_RESERVA(fechaEntrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Codigo);
                 db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó una nueva reserva");
                 return RedirectToAction("Index");
