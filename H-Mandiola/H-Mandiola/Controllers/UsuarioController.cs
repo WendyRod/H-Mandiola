@@ -82,7 +82,7 @@ namespace H_Mandiola.Controllers
         {
             return View();
         }
-        
+
 
         #endregion
 
@@ -93,48 +93,50 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult CambiarClaveUser(string OldPass, string NewPass, string ConfirmPass)
+        public ActionResult CambiarClaveUser(PassClass claves)
         {
-            Usuario_Admin user = new Usuario_Admin();
-            return Json(new { success = true, responseText = "Exito. " + OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-            //if (NewPass.Equals(OldPass)) //Las contraseñas nuevas deben de ser iguales.
-            //{
-            //    string PassActual = string.Empty;
-            //    foreach (var item in db.Usuario)
-            //    {
-            //        if (item.Usuario1.Equals("diegoalru"))
-            //        {
-            //            PassActual = item.Clave;
-            //        }
-            //        else
-            //        {
-            //            /* Continua la busqueda del usuario*/
-            //        }
-            //    }
+            //string OldPass, string NewPass, string ConfirmPass
+            //Usuario_Admin user = new Usuario_Admin();
+            Usuario_Cliente cliente = new Usuario_Cliente();
 
-            //    /*
-            //     * En caso de que no se encuentre el usuario.
-            //     */
-            //    if (PassActual.Equals(string.Empty))
-            //    {
-            //        return Json(new { success = false, responseText = "Error interno." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-            //    }
-            //    else
-            //    {
-            //        if (PassActual.Equals(NewPass))
-            //        {
-            //            return Json(new { success = false, responseText = "La contraseña es igual que la anterior." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-            //        }
-            //        else
-            //        {
-            //            return Json(new { success = true, responseText = "Exito. " + OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    return Json(new { success = false, responseText = "Las contraseñas no coinciden." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-            //}
+            if (claves.NewPass.Equals(claves.OldPass)) //Las contraseñas nuevas deben de ser iguales.
+            {
+                string PassActual = string.Empty;
+                foreach (var item in db.Usuario_Cliente)
+                {
+                    if (item.Usuario.Equals("diegoalru"))
+                    {
+                        PassActual = item.Clave;
+                    }
+                    else
+                    {
+                        /* Continua la busqueda del usuario*/
+                    }
+                }
+
+                /*
+                 * En caso de que no se encuentre el usuario.
+                 */
+                if (PassActual.Equals(string.Empty))
+                {
+                    return Json(new { success = false, responseText = "Error interno." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                }
+                else
+                {
+                    if (PassActual.Equals(claves.NewPass))
+                    {
+                        return Json(new { success = false, responseText = "La contraseña es igual que la anterior." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                    }
+                    else
+                    {
+                        return Json(new { success = true, responseText = "Exito. " + claves.OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                    }
+                }
+            }
+            else
+            {
+                return Json(new { success = false, responseText = "Las contraseñas no coinciden." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+            }
         }
         #endregion
 
@@ -147,20 +149,6 @@ namespace H_Mandiola.Controllers
         public ActionResult Default()
         {
             return View();
-        }
-
-        public class PassClass
-        {
-            public string OldPass { get; set; }
-            public string NewPass { get; set; }
-            public string ConfirmedPass { get; set; }
-
-            public PassClass(string oldPass, string newPass, string confirmedPass)
-            {
-                OldPass = oldPass;
-                NewPass = newPass;
-                ConfirmedPass = confirmedPass;
-            }
         }
 
         [HttpPost]
@@ -278,5 +266,19 @@ namespace H_Mandiola.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+    }
+
+    public class PassClass
+    {
+        public string OldPass { get; set; }
+        public string NewPass { get; set; }
+        public string ConfirmedPass { get; set; }
+
+        public PassClass(string oldPass, string newPass, string confirmedPass)
+        {
+            OldPass = oldPass;
+            NewPass = newPass;
+            ConfirmedPass = confirmedPass;
+        }
     }
 }
