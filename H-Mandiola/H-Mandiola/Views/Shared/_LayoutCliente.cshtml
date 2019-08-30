@@ -112,6 +112,8 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color:rgba(184, 145, 51, 0.61) !important;">
+        
+
 
         <div class="container">
 
@@ -141,7 +143,7 @@
                     </li>*@
                     <a class="nav-link" style="margin: 0 150px 0 5px; color: black;">Bienvenido(a): @Session["username"]</a>
 
-                    <input type="submit" value="Cerrar sesión" onclick="CerrarSesionCliente()" class="btn btn-default" />
+                    <input type="submit" align="center" value="Cerrar sesión" onclick="CerrarSesionCliente()" class="btn btn-default" />
                     <li class="nav-item active" style="margin: 7px; border-color:black">
                     </li>
 
@@ -158,9 +160,19 @@
     </div>
 
     <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-            <div class="container text-center">
-                <small>Copyright &copy; Proyecto Final Diseño Web II</small>
-            </div>
+        <div class="container text-center">
+            <small>Copyright &copy; Proyecto Final Diseño Web II</small>
+        </div>
+
+        <div id="google_translate_element" align="center"></div>
+
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         </footer>
 
 
