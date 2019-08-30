@@ -181,18 +181,20 @@ namespace H_Mandiola.Controllers
             }
         }
 
+        public static int currentUseRol = 0;
+
         public ActionResult VerUsuarios()
         {
-            Usuario_Admin usuario_Admi = new Usuario_Admin();
+            Usuario_Admi usuario_Admi = new Usuario_Admi();
             usuario_Admi.llenarUsuario();
 
             BLL.Usuario usuario = new BLL.Usuario();
-            List<bool> Roles = usuario.SearchRoles(Usuario_Admin.IDUserAdmi);
+            List<bool> Roles = usuario.SearchRoles(BLL.Usuario.Codigo);
 
             if (Roles.ElementAt(0) || Roles.ElementAt(4))
             {
-                List<Usuario_Admin> UserList = usuario_Admi.llenarUsuarioString();
-                ViewBag.UserList = new SelectList(UserList, "ID", "Username");
+                List<Usuario_Admi> UserList = usuario_Admi.llenarUsuarioString();
+                ViewBag.UserList = new SelectList(UserList, "Codigo", "Usuario");
 
                 return View();
             }
@@ -259,8 +261,8 @@ namespace H_Mandiola.Controllers
             }
             #endregion
 
-            Usuario_Admin usuario = new Usuario_Admin();
-            usuario.llenarUsuario();
+            Usuario_Admi usuarioAdmin = new Usuario_Admi();
+            usuarioAdmin.llenarUsuario();
 
             return Json(roles, JsonRequestBehavior.AllowGet);
         }
@@ -270,10 +272,8 @@ namespace H_Mandiola.Controllers
 
             BLL.Usuario usuario = new BLL.Usuario();
             usuario.SaveRoles(Conse, Consul, Mante, Admi, Segu, currentUseRol);
-
-            //bitacora.insertaBitacora(CurrenteUsername, "SaveRoles", "Edit", "Save user´s roles", "Consecutive: " + Conse + " - Query: " + Consul + " - Maintenance: " + Mante + " - Administration: " + Admi + " - Security: " + Segu);
-
-            string result = "ok";
+            
+            string result = "OK";
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

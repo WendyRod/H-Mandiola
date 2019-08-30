@@ -14,6 +14,8 @@ namespace BLL
 
         private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
 
+        public static int Codigo;
+
         private string _nombre;
         private string _apellido1;
         private string _apellido2;
