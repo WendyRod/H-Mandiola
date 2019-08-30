@@ -707,7 +707,8 @@ CREATE OR ALTER PROCEDURE [dbo].[INSERTA_HABITACION]
 	@pNumero			INT, 	
 	@pDescripcion		VARCHAR(250),
 	@pEst_Hab			INT,
-	@pPrecio			VARCHAR(10)
+	@pPrecio			VARCHAR(10),
+	@pTipo				INT
 AS
 BEGIN
 	-- Se le asigna un codigo.
@@ -723,13 +724,15 @@ BEGIN
 			,Numero
 			,Descripcion
 			,Est_Hab
-			,Precio)
+			,Precio
+			,Tipo)
 		VALUES
 			(@pCodigo
 			,@pNumero
 			,@pDescripcion
 			,@pEst_Hab
-			,@pPrecio);
+			,@pPrecio
+			,@pTipo);
 	-- Se actualiza el consecutivo.					
 	UPDATE [dbo].[Consecutivo]
 	SET [Consecutivo] = [Consecutivo] + 1
@@ -1297,8 +1300,8 @@ GO
 	P.Codigo AS [Codigo Precio]
 	,P.Precio
 	,CASE
-		WHEN H.Precio LIKE P.Codigo THEN CONCAT('Habitacion: #', H.Numero)
-		WHEN A.Precio LIKE P.Codigo THEN CONCAT('Articulo: ', A.Nombre)
+		WHEN H.Precio LIKE P.Codigo THEN CONCAT('Habitacion: #', H.Numero, ', Tipo: ', TH.Tipo)
+		WHEN A.Precio LIKE P.Codigo THEN CONCAT('Articulo: ', A.Nombre, ', Tipo: ', TA.Tipo)
 		ELSE ''
 	END AS [Descripcion]
  FROM 
@@ -1306,9 +1309,15 @@ GO
 	LEFT JOIN
 	Habitacion AS H
 	ON (P.Codigo = H.Precio)
+	LEFT JOIN 
+	Tipo_Habitacion AS TH
+	ON(H.Tipo = TH.Codigo)
 	LEFT JOIN
 	Articulo AS A
 	ON (A.Precio = P.Codigo)
+	LEFT JOIN 
+	Tipo_Articulo AS TA
+	ON(A.Tipo_Articulo = TA.Codigo)
 WHERE
 	(H.Precio IS NOT NULL AND A.Precio IS NULL) OR (H.Precio IS NULL AND A.Precio IS NOT NULL);
 GO
