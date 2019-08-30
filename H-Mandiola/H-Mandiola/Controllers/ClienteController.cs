@@ -43,10 +43,10 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginCliente(H_Mandiola.Models.Usuario_Cliente userModel)
+        public ActionResult LoginCliente(H_Mandiola.Models.Cliente userModel)
         {
             //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
-            var userDetails = db.Usuario_Cliente.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
+            var userDetails = db.Cliente.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {
                 TempData["msg"] = "El usuario o la clave no son correctos.";

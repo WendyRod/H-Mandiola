@@ -41,7 +41,7 @@ namespace H_Mandiola.Controllers
             {
                 //Variable que indica si existe o no el usuario.
                 var result = 0; //Valor 0 es que no existe el usuario.
-                foreach (var item in db.Usuario_Admin) //Verificamos la lista.
+                foreach (var item in db.Admin) //Verificamos la lista.
                 {
                     if (item.Usuario.Equals(user.username) || item.Email.Equals(user.email))    //Comparamos los datos con los ya existentes.
                     {
@@ -97,12 +97,12 @@ namespace H_Mandiola.Controllers
         {
             //string OldPass, string NewPass, string ConfirmPass
             //Usuario_Admin user = new Usuario_Admin();
-            Usuario_Cliente cliente = new Usuario_Cliente();
+            Cliente cliente = new Cliente();
 
             if (claves.NewPass.Equals(claves.OldPass)) //Las contraseñas nuevas deben de ser iguales.
             {
                 string PassActual = string.Empty;
-                foreach (var item in db.Usuario_Cliente)
+                foreach (var item in db.Cliente)
                 {
                     if (item.Usuario.Equals("diegoalru"))
                     {
@@ -152,10 +152,10 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginAdmin(H_Mandiola.Models.Usuario_Admin userModel)
+        public ActionResult LoginAdmin(H_Mandiola.Models.Admin userModel)
         {
             //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
-            var userDetails = db.Usuario_Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
+            var userDetails = db.Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {
                 TempData["msg"] = "El usuario o la clave no son correctos.";

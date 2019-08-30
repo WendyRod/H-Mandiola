@@ -40,7 +40,7 @@ namespace H_Mandiola.Controllers
         // GET: Reserva/Create
         public ActionResult Create()
         {
-            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre");
+            ViewBag.Usuario = new SelectList(db.Cliente, "Codigo", "Nombre");
             return View();
         }
 
@@ -58,14 +58,14 @@ namespace H_Mandiola.Controllers
 
             if (ModelState.IsValid)
             {
-                Usuario_Cliente usuario = (Usuario_Cliente)Session["username"];
+                Cliente usuario = (Cliente)Session["username"];
                 db.INSERTA_RESERVA(res.Fecha_Entrada, res.Fecha_Salida, res.Cantidad_Dias, res.Codigo_Promocional, res.Cantidad_Adultos, res.Cantidad_Niños, res.Mascota, res.Metodo_Pago, res.Precio, usuario.Codigo);
                 db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó una nueva reserva");
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", res.Usuario);
+            ViewBag.Usuario = new SelectList(db.Cliente, "Codigo", "Nombre", res.Usuario);
             return View(res);
         }
 
@@ -81,7 +81,7 @@ namespace H_Mandiola.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", reserva.Usuario);
+            ViewBag.Usuario = new SelectList(db.Cliente, "Codigo", "Nombre", reserva.Usuario);
             return View(reserva);
         }
 
@@ -99,7 +99,7 @@ namespace H_Mandiola.Controllers
                 db.INSERTA_BITACORA("Modificar", "Se modificó una reserva");
                 return RedirectToAction("Index");
             }
-            ViewBag.Usuario = new SelectList(db.Usuario_Cliente, "Codigo", "Nombre", reserva.Usuario);
+            ViewBag.Usuario = new SelectList(db.Cliente, "Codigo", "Nombre", reserva.Usuario);
             return View(reserva);
         }
 
