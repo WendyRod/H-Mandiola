@@ -10,18 +10,16 @@
 namespace H_Mandiola.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class CONSULTA_USUARIO_CLIENTE_Result
+    public partial class ARTICULOS_RESERVA
     {
-        public string Codigo { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido1 { get; set; }
-        public string Apellido2 { get; set; }
-        public string Email { get; set; }
-        public string Usuario { get; set; }
-        public string Clave { get; set; }
-        public string Pregunta { get; set; }
-        public string Respuesta { get; set; }
-        public string Estado { get; set; }
+        public int Codigo { get; set; }
+        public int Cantidad { get; set; }
+        public int Articulo { get; set; }
+        public string Reserva { get; set; }
+    
+        public virtual Articulo Articulo1 { get; set; }
+        public virtual Reserva Reserva1 { get; set; }
     }
 }

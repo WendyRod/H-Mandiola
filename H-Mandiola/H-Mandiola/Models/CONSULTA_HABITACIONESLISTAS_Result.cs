@@ -11,9 +11,12 @@ namespace H_Mandiola.Models
 {
     using System;
     
-    public partial class USUARIO_CLIENTE_LOGIN_Result
+    public partial class CONSULTA_HABITACIONESLISTAS_Result
     {
-        public string Usuario { get; set; }
-        public string Clave { get; set; }
+        public string Codigo { get; set; }
+        public string Descripcion { get; set; }
+        public int Numero { get; set; }
+        public int Tipo { get; set; }
+        public int Precio { get; set; }
     }
 }

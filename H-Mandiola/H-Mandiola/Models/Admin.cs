@@ -10,13 +10,21 @@
 namespace H_Mandiola.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class CONSULTA_HABITACION_Result
+    public partial class Admin
     {
         public string Codigo { get; set; }
-        public int Numero { get; set; }
-        public string Descripcion { get; set; }
-        public int Est_Hab { get; set; }
-        public string Precio { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido1 { get; set; }
+        public string Apellido2 { get; set; }
+        public string Email { get; set; }
+        public string Usuario { get; set; }
+        public string Clave { get; set; }
+        public bool Administrador { get; set; }
+        public bool Seguridad { get; set; }
+        public bool Consecutivo { get; set; }
+        public bool Mantenimiento { get; set; }
+        public bool Consulta { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace H_Mandiola.Models
         public string Usuario { get; set; }
         public int Emisor { get; set; }
     
+        public virtual Cliente Cliente { get; set; }
         public virtual Emisor Emisor1 { get; set; }
-        public virtual Usuario_Cliente Usuario_Cliente { get; set; }
     }
 }

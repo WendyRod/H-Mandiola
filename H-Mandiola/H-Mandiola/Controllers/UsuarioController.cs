@@ -41,7 +41,7 @@ namespace H_Mandiola.Controllers
             {
                 //Variable que indica si existe o no el usuario.
                 var result = 0; //Valor 0 es que no existe el usuario.
-                foreach (var item in db.Usuario_Admin) //Verificamos la lista.
+                foreach (var item in db.Admin) //Verificamos la lista.
                 {
                     if (item.Usuario.Equals(user.username) || item.Email.Equals(user.email))    //Comparamos los datos con los ya existentes.
                     {
@@ -97,12 +97,12 @@ namespace H_Mandiola.Controllers
         {
             //string OldPass, string NewPass, string ConfirmPass
             //Usuario_Admin user = new Usuario_Admin();
-            Usuario_Cliente cliente = new Usuario_Cliente();
+            Cliente cliente = new Cliente();
 
             if (claves.NewPass.Equals(claves.OldPass)) //Las contraseñas nuevas deben de ser iguales.
             {
                 string PassActual = string.Empty;
-                foreach (var item in db.Usuario_Cliente)
+                foreach (var item in db.Cliente)
                 {
                     if (item.Usuario.Equals("diegoalru"))
                     {
@@ -152,10 +152,10 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoginAdmin(H_Mandiola.Models.Usuario_Admin userModel)
+        public ActionResult LoginAdmin(H_Mandiola.Models.Admin userModel)
         {
             //var userDetails = userModel.Usuario1.Where(x => x.Usuario1 == userModel.Usuario1 && x.Clave == userModel.Clave).FirstOrDefault();
-            var userDetails = db.Usuario_Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
+            var userDetails = db.Admin.Where(x => x.Usuario == userModel.Usuario && x.Clave == userModel.Clave).FirstOrDefault();
             if (userDetails == null)
             {
                 TempData["msg"] = "El usuario o la clave no son correctos.";
@@ -169,18 +169,20 @@ namespace H_Mandiola.Controllers
             }
         }
 
+        public static int currentUseRol = 0;
+
         public ActionResult VerUsuarios()
         {
-            Usuario_Admin usuario_Admi = new Usuario_Admin();
+            Usuario_Admi usuario_Admi = new Usuario_Admi();
             usuario_Admi.llenarUsuario();
 
             BLL.Usuario usuario = new BLL.Usuario();
-            List<bool> Roles = usuario.SearchRoles(Usuario_Admin.IDUserAdmi);
+            List<bool> Roles = usuario.SearchRoles(BLL.Usuario.Codigo);
 
             if (Roles.ElementAt(0) || Roles.ElementAt(4))
             {
-                List<Usuario_Admin> UserList = usuario_Admi.llenarUsuarioString();
-                ViewBag.UserList = new SelectList(UserList, "ID", "Username");
+                List<Usuario_Admi> UserList = usuario_Admi.llenarUsuarioString();
+                ViewBag.UserList = new SelectList(UserList, "Codigo", "Usuario");
 
                 return View();
             }
@@ -247,8 +249,8 @@ namespace H_Mandiola.Controllers
             }
             #endregion
 
-            Usuario_Admin usuario = new Usuario_Admin();
-            usuario.llenarUsuario();
+            Usuario_Admi usuarioAdmin = new Usuario_Admi();
+            usuarioAdmin.llenarUsuario();
 
             return Json(roles, JsonRequestBehavior.AllowGet);
         }
@@ -258,10 +260,8 @@ namespace H_Mandiola.Controllers
 
             BLL.Usuario usuario = new BLL.Usuario();
             usuario.SaveRoles(Conse, Consul, Mante, Admi, Segu, currentUseRol);
-
-            //bitacora.insertaBitacora(CurrenteUsername, "SaveRoles", "Edit", "Save user´s roles", "Consecutive: " + Conse + " - Query: " + Consul + " - Maintenance: " + Mante + " - Administration: " + Admi + " - Security: " + Segu);
-
-            string result = "ok";
+            
+            string result = "OK";
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

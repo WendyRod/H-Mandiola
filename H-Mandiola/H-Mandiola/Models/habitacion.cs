@@ -25,10 +25,12 @@ namespace H_Mandiola.Models
         public string Descripcion { get; set; }
         public int Est_Hab { get; set; }
         public string Precio { get; set; }
+        public int Tipo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingID> BookingID { get; set; }
         public virtual Est_Hab Est_Hab1 { get; set; }
         public virtual Precio Precio1 { get; set; }
+        public virtual Tipo_Habitacion Tipo_Habitacion { get; set; }
     }
 }
