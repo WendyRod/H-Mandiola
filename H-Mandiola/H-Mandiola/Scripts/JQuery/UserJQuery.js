@@ -44,12 +44,12 @@ function RegisterCliente() {
     values.nombre       = $("#name").val();
     values.apellido1    = $("#surname1").val();
     values.apellido2    = $("#surname2").val();
-    values.email        = $("#email").val();
     values.username     = $("#username").val();
     values.clave        = $("#password").val();
-    values.confirmPass  = $("#confirm_password").val();
-    values.pregunta     = "";
-    values.respuesta    = "";
+    values.confirmPass = $("#confirm_password").val();
+    values.email = $("#email").val();
+    values.pregunta     = "Color" //$("#pregunta").val();
+    values.respuesta    = "Azul" //$("#respuesta").val();
     values.estado       = 1;
 
     if (values.nombre == "" || values.apellido1 == "" || values.apellido2 == "" || values.username == "" || values.clave == "" || values.email == "") {
@@ -61,14 +61,14 @@ function RegisterCliente() {
     else {
         $.ajax({
             type: 'POST',
-            data: JSON.stringify({'Nombre':values.nombre, 'Apellido1':values.apellido1, 'Apellido2':values.apellido2, 'Correo':values.email ,'Usuario':values.username, 'Password':values.clave, 'Pregunta':values.pregunta, 'Respuesta':values.respuesta, 'Estado':values.estado}),
+            data: JSON.stringify( values ),
             contentType: 'application/json',
             dataType: 'json',
             url: "/Cliente/Inserta_Cliente",
             success: function (response) {
                 if (response.success) {
                     //alert(response.responseText);
-                    //window.location.href = "/Cliente/Index";
+                    window.location.href = "/Cliente/LoginCliente";
                 } else {
                     alert(response.responseText);
                 }
@@ -114,8 +114,16 @@ function Cancelar() {
     window.location.href = "/Usuario/Default"
 }
 
+function CancelarClientRegister() {
+    window.location.href = "/Cliente/LoginCliente"
+}
+
 function LoginRegister() {
     window.location.href = "/Usuario/CrearUsuarioAdmin"
+}
+
+function LoginRegisterClient() {
+    window.location.href = "/Cliente/CrearCliente"
 }
 
 function LoginAdminView() {

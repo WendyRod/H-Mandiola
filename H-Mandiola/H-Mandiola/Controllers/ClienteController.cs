@@ -23,22 +23,22 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inserta_Cliente(string Nombre, string Apellido1, string Apellido2, string Correo, string Usuario,string Password,string Pregunta,string Respuesta,int Estado)
+        public ActionResult Inserta_Cliente(BLL.Cliente client)
         {
             try
             {
                 var result = 0;
                 foreach (var item in db.Cliente)
                 {
-                    if(item.Usuario.Equals(Usuario) || item.Email.Equals(Correo))
+                    if(item.Usuario.Equals(client.username) || item.Email.Equals(client.email))
                     {
                         result = 1;
                     }
                 }
                 if(result == 0)
                 {
-                    db.INSERTA_CLIENTE(Nombre, Apellido1, Apellido2, Correo, Usuario, Password, Pregunta, Respuesta, Estado);
-                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el cliente: {0}", Usuario));
+                    client.GuardaCliente();
+                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el cliente: {0}", client.username));
                     return Json(new { success = true, responseText = "Se ha ingresado el cliente correctamente." }, JsonRequestBehavior.AllowGet);  //Mensaje que se va a mostrar al registrar el usuario.
                 }
                 else

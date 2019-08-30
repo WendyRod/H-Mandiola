@@ -137,13 +137,6 @@
 
 
                             <!-- Text input-->
-                            @*<div class="form-label-group">
-                                <input id="cedula" name="ced" type="text" placeholder="Cedula" class="form-control input-md">
-                                <label for="cedula">Cédula</label>
-                            </div>*@
-
-
-                            <!-- Text input-->
                             <div class="form-label-group">
                                 <input id="name" name="name" type="text" placeholder="Nombre" class="form-control input-md" required="">
                                 <label for="name">Nombre</label>
@@ -177,21 +170,37 @@
                             <!-- Text input-->
                             <div class="form-label-group">
                                 <input id="email" name="email" type="email" placeholder="Correo electrónico" class="form-control input-md" required="" />
-                                <label for="email">Email</label>
+                                <label for="email">Correo electrónico</label>
                             </div>
-                        </div>
-                        <!-- Button (Double) -->
-                        <input id="aceptar" type="submit" name="aceptar" class="btn btn-primary" value="Aceptar" onclick="RegisterCliente()" />
-                        <input id="cancelar" type="submit" name="cancelar" class="btn btn-danger" value="Cancelar" />
 
-                        @*<hr>
-                        <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-3"></i>Iniciar sesión con Google</button>
-                        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-3"></i>Iniciar sesión con Facebook</button>*@
-                    </div>
+                            @*<div class="form-label-group">
+                                <input id="pregunta" name="pregunta" type="text" placeholder="Pregunta" class="form-control input-md" required="" />
+                                <label for="preguntaS">Pregunta de seguridad</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input id="respuesta" name="respuesta" type="text" placeholder="Respuesta de seguridad" class="form-control input-md" required="" />
+                                <label for="respuestaS">Respuesta de seguridad</label>
+                            </div>*@
+
+                            <!-- Button (Double) -->
+                            <br />
+                            <br />
+                            <input id="aceptar" type="submit" name="aceptar" class="btn btn-primary" value="Aceptar" onclick="RegisterCliente()" />
+                            <input id="cancelar" type="submit" name="cancelar" class="btn btn-danger" value="Cancelar" onclick="CancelarClientRegister()" />
+
+                            @*<hr>
+        <button id="GoogleButton" class="btn btn-lg btn-google btn-block" style="font-size:17px;" type="submit"><i class="fa fa-google mr-3"></i>Iniciar sesión con Google</button>
+        <button id="FacebookButton" class="btn btn-lg btn-facebook btn-block" style="font-size:17px;" type="submit"><i class="fa fa-facebook mr-3"></i>Iniciar sesión con Facebook</button>*@
+                        </div>
+                        </div>
+            </div>
                 </div>
             </div>
         </div>
-    </div>
+    <br />
+    <br />
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="~/Scripts/JQuery/UserJQuery.js"></script>
 </body>
