@@ -29,6 +29,7 @@ function Register() {
         success: function (response) {
             if (response.success) {
                 alert(response.responseText);
+                window.location.href = "/Usuario/LoginAdmin"
             } else {
                 alert(response.responseText);
             }
@@ -74,7 +75,7 @@ function Cancelar() {
 }
 
 function LoginRegister() {
-    window.location.href = "/Usuario/CrearUsuario"
+    window.location.href = "/Usuario/CrearUsuarioAdmin"
 }
 
 function LoginAdminView() {

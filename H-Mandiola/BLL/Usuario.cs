@@ -22,6 +22,11 @@ namespace BLL
         private string _email;
         private string _username;
         private string _clave;
+        private bool _admin;
+        private bool _segu;
+        private bool _conse;
+        private bool _mante;
+        private bool _consu;
 
         public string nombre
         {
@@ -59,7 +64,37 @@ namespace BLL
             set { _clave = value; }
         }
 
-        
+        public bool admin
+        {
+            get { return _admin; }
+            set { _admin = value; }
+        }
+
+        public bool segu
+        {
+            get { return _segu; }
+            set { _segu = value; }
+        }
+
+        public bool conse
+        {
+            get { return _conse; }
+            set { _conse = value; }
+        }
+
+        public bool mante
+        {
+            get { return _mante; }
+            set { _mante = value; }
+        }
+
+        public bool consu
+        {
+            get { return _consu; }
+            set { _consu = value; }
+        }
+
+
         public void GuardaUsuario()
         {
             bool result = true;
@@ -68,7 +103,7 @@ namespace BLL
             
             try
             {
-                using (SqlCommand comando = new SqlCommand("USUARIO_REGISTRO", objConn))
+                using (SqlCommand comando = new SqlCommand("INSERTA_ADMIN", objConn))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.Add("@pNombre", SqlDbType.VarChar).Value = _nombre;
@@ -77,8 +112,11 @@ namespace BLL
                     comando.Parameters.Add("@pCorreo", SqlDbType.VarChar).Value = _email;
                     comando.Parameters.Add("@pUsuario", SqlDbType.VarChar).Value = _username;
                     comando.Parameters.Add("@pClave", SqlDbType.VarChar).Value = _clave;
-                    comando.Parameters.Add("@pRol", SqlDbType.Int).Value = 4;
-                    comando.Parameters.Add("@pEstado", SqlDbType.Int).Value = 1;
+                    comando.Parameters.Add("@pAdministrador", SqlDbType.Bit).Value = _admin;
+                    comando.Parameters.Add("@pSeguridad", SqlDbType.Bit).Value = _segu;
+                    comando.Parameters.Add("@pConsecutivo", SqlDbType.Bit).Value = _conse;
+                    comando.Parameters.Add("@pMantenimiento", SqlDbType.Bit).Value = _mante;
+                    comando.Parameters.Add("@pConsulta", SqlDbType.Bit).Value = _consu;
                     DataBase.abrirConexion(objConn);
                     comando.ExecuteNonQuery();
                     DataBase.cerrarConexion(objConn);

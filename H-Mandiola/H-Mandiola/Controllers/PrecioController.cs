@@ -18,7 +18,7 @@ namespace H_Mandiola.Controllers
         // GET: Precio
         public async Task<ActionResult> IndexPrecio()
         {
-            var precio = db.Precio.Include(p => p.Tipo_Habitacion1);
+            var precio = db.Precio.Include(p => p.Habitacion);
             return View(await precio.ToListAsync());
         }
 
@@ -59,7 +59,7 @@ namespace H_Mandiola.Controllers
                 return RedirectToAction("IndexPrecio");
             }
 
-            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Habitacion);
             return View(precio);
         }
 
@@ -75,7 +75,7 @@ namespace H_Mandiola.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Habitacion);
             return View(precio);
         }
 
@@ -93,7 +93,7 @@ namespace H_Mandiola.Controllers
                 db.INSERTA_BITACORA("Modificar", "Se modificó un precio");
                 return RedirectToAction("IndexPrecio");
             }
-            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Tipo_Habitacion);
+            ViewBag.Tipo_Habitacion = new SelectList(db.Tipo_Habitacion, "Codigo", "Tipo", precio.Habitacion);
             return View(precio);
         }
 
