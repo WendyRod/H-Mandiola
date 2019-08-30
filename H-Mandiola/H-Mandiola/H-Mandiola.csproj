@@ -188,6 +188,12 @@
     <Compile Include="Models\CONSULTA_HABITACIONESLISTAS_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CONSULTA_HABITACION_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONSULTA_PRECIO_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Emisor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

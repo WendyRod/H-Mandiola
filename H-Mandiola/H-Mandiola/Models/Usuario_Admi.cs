@@ -24,8 +24,8 @@ namespace H_Mandiola.Models
         public bool Consulta { get; set; }
 
 
-        public string Conexion_String = ConfigurationManager.ConnectionStrings["H-Mandiola"].ToString();
-        SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["H-Mandiola"].ToString()); //catalog= bd_demo
+        public string Conexion_String = ConfigurationManager.ConnectionStrings["Mandiola"].ToString();
+        SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["Mandiola"].ToString()); //catalog= bd_demo
 
 
         public void llenarUsuario()
