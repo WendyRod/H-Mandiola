@@ -661,5 +661,15 @@ namespace H_Mandiola.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_ROLES_Result>("OBTENER_ROLES", pCodigoParameter);
         }
+    
+        public virtual ObjectResult<CONSULTA_HABITACION_Result> CONSULTA_HABITACION()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACION_Result>("CONSULTA_HABITACION");
+        }
+    
+        public virtual ObjectResult<CONSULTA_PRECIO_Result> CONSULTA_PRECIO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRECIO_Result>("CONSULTA_PRECIO");
+        }
     }
 }
