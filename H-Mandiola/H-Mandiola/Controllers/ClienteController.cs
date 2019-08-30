@@ -17,23 +17,28 @@ namespace H_Mandiola.Controllers
             return View();
         }
 
+        public ActionResult CrearCliente()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult CrearCliente(H_Mandiola.Models.Cliente c)
+        public ActionResult Inserta_Cliente(string Nombre, string Apellido1, string Apellido2, string Correo, string Usuario,string Password,string Pregunta,string Respuesta,int Estado)
         {
             try
             {
                 var result = 0;
                 foreach (var item in db.Cliente)
                 {
-                    if(item.Usuario.Equals(c.Usuario) || item.Email.Equals(c.Email))
+                    if(item.Usuario.Equals(Usuario) || item.Email.Equals(Correo))
                     {
                         result = 1;
                     }
                 }
                 if(result == 0)
                 {
-                    db.INSERTA_CLIENTE(c.Nombre, c.Apellido1, c.Apellido2, c.Email, c.Usuario, c.Clave, c.Pregunta, c.Respuesta, c.Estado);
-                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el cliente: {0}", c.Usuario));
+                    db.INSERTA_CLIENTE(Nombre, Apellido1, Apellido2, Correo, Usuario, Password, Pregunta, Respuesta, Estado);
+                    db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el cliente: {0}", Usuario));
                     return Json(new { success = true, responseText = "Se ha ingresado el cliente correctamente." }, JsonRequestBehavior.AllowGet);  //Mensaje que se va a mostrar al registrar el usuario.
                 }
                 else
