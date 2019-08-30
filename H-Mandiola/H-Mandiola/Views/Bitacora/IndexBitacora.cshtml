@@ -50,6 +50,7 @@
                     @Html.DisplayNameFor(model => model.Descripcion)
                 </th>
                 <th></th>
+                <th></th>
             </tr>
 
             @foreach (var item in Model)
@@ -65,9 +66,10 @@
                         @Html.DisplayFor(modelItem => item.Descripcion)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Codigo }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Codigo }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Codigo })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Codigo }, new {@class="btn btn-secondary" })
+                        </td>
+                    <td>
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Codigo }, new { @class = "btn btn-danger" })
                         @*@Html.ActionLink("Ver mas", "Delete", new { id = item.Codigo })*@
                     </td>
                 </tr>

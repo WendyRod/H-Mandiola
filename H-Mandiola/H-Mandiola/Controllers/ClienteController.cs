@@ -10,11 +10,22 @@ namespace H_Mandiola.Controllers
     public class ClienteController : Controller
     {
 
-        Entities db = new Entities();
+        public static string pass = string.Empty, user = string.Empty;
+
+        Entities1 db = new Entities1();
 
         public ActionResult Inicio()
         {
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+            pass = "";
+            user = "";
+            return RedirectToAction("LoginCliente", "Cliente");
         }
 
         public ActionResult CrearCliente()

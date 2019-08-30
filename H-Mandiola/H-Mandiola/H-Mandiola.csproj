@@ -212,6 +212,9 @@
     <Compile Include="Models\Historial_Actividad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LLENAR_ADMIN_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoginModelClass.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -425,7 +428,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49680</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49690/</IISUrl>
+          <IISUrl>http://localhost:49691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

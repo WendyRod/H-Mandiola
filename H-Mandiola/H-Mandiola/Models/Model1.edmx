@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actividad">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -390,6 +390,14 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
           <Parameter Name="pNuevaClave" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="ACTUALIZA_ADMIN_ROLES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pAdministrador" Type="bit" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="bit" Mode="In" />
+          <Parameter Name="pConsulta" Type="bit" Mode="In" />
+          <Parameter Name="pMantenimiento" Type="bit" Mode="In" />
+          <Parameter Name="pSeguridad" Type="bit" Mode="In" />
+          <Parameter Name="pCodigo" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="ACTUALIZA_CLIENTE_CLAVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pUsuario" Type="nvarchar" Mode="In" />
           <Parameter Name="pCorreo" Type="nvarchar" Mode="In" />
@@ -525,7 +533,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
         <Function Name="INSERTA_CONSECUTIVO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="int" Mode="In" />
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
-          <Parameter Name="pConsecutivo" Type="varchar" Mode="In" />
+          <Parameter Name="pConsecutivo" Type="int" Mode="In" />
           <Parameter Name="pPoseePrefijo" Type="bit" Mode="In" />
           <Parameter Name="pPrefijo" Type="varchar" Mode="In" />
           <Parameter Name="pPoseeRango" Type="bit" Mode="In" />
@@ -541,6 +549,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
           <Parameter Name="pEst_Hab" Type="int" Mode="In" />
           <Parameter Name="pPrecio" Type="varchar" Mode="In" />
+          <Parameter Name="pTipo" Type="int" Mode="In" />
         </Function>
         <Function Name="INSERTA_PRECIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pPrecio" Type="int" Mode="In" />
@@ -556,6 +565,9 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <Parameter Name="pMetodo_Pago" Type="nvarchar" Mode="In" />
           <Parameter Name="pPrecio" Type="int" Mode="In" />
           <Parameter Name="pUsuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="LLENAR_ADMIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pUsername" Type="varchar" Mode="In" />
         </Function>
         <Function Name="OBTENER_ROLES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pCodigo" Type="varchar" Mode="In" />
@@ -648,7 +660,8 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1055,7 +1068,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" />
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Articulo" EntityType="Self.Articulo" />
@@ -1146,6 +1159,14 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
             <Parameter Name="pCorreo" Mode="In" Type="String" />
             <Parameter Name="pNuevaClave" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ACTUALIZA_ADMIN_ROLES">
+            <Parameter Name="pAdministrador" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Boolean" />
+            <Parameter Name="pConsulta" Mode="In" Type="Boolean" />
+            <Parameter Name="pMantenimiento" Mode="In" Type="Boolean" />
+            <Parameter Name="pSeguridad" Mode="In" Type="Boolean" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="ACTUALIZA_CLIENTE_CLAVE">
             <Parameter Name="pUsuario" Mode="In" Type="String" />
             <Parameter Name="pCorreo" Mode="In" Type="String" />
@@ -1191,44 +1212,46 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <FunctionImport Name="CONSULTA_BITACORA" ReturnType="Collection(Model.CONSULTA_BITACORA_Result)" />
           <FunctionImport Name="CONSULTA_CLIENTEACTIVO" ReturnType="Collection(Model.CONSULTA_CLIENTEACTIVO_Result)" />
           <FunctionImport Name="CONSULTA_ERROR" ReturnType="Collection(Model.CONSULTA_ERROR_Result)" />
+          <FunctionImport Name="CONSULTA_HABITACION" ReturnType="Collection(Model.CONSULTA_HABITACION_Result)" />
           <FunctionImport Name="CONSULTA_HABITACIONESLISTAS" ReturnType="Collection(Model.CONSULTA_HABITACIONESLISTAS_Result)" />
+          <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)" />
           <FunctionImport Name="ELIMINA_ACTIVIDAD">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_HABITACION">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ELIMINA_PRECIO">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_ACTIVIDAD">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_ADMIN">
             <Parameter Name="pUsuario" Mode="In" Type="String" />
             <Parameter Name="pCorreo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_ARTICULO">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_BOOKINGID">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_CLIENTE">
             <Parameter Name="pUsuario" Mode="In" Type="String" />
             <Parameter Name="pCorreo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_CONSECUTIVO">
-          <Parameter Name="pCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="pCodigo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_HABITACION">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_PRECIO">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="EXISTE_RESERVA">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_ACTIVIDAD">
             <Parameter Name="pNombre" Mode="In" Type="String" />
@@ -1279,7 +1302,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <FunctionImport Name="INSERTA_CONSECUTIVO">
             <Parameter Name="pCodigo" Mode="In" Type="Int32" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
-            <Parameter Name="pConsecutivo" Mode="In" Type="String" />
+            <Parameter Name="pConsecutivo" Mode="In" Type="Int32" />
             <Parameter Name="pPoseePrefijo" Mode="In" Type="Boolean" />
             <Parameter Name="pPrefijo" Mode="In" Type="String" />
             <Parameter Name="pPoseeRango" Mode="In" Type="Boolean" />
@@ -1295,9 +1318,10 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
             <Parameter Name="pEst_Hab" Mode="In" Type="Int32" />
             <Parameter Name="pPrecio" Mode="In" Type="String" />
+            <Parameter Name="pTipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_PRECIO">
-          <Parameter Name="pPrecio" Mode="In" Type="Int32" />
+            <Parameter Name="pPrecio" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="INSERTA_RESERVA">
             <Parameter Name="pFecha_Entrada" Mode="In" Type="DateTime" />
@@ -1311,11 +1335,12 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
             <Parameter Name="pPrecio" Mode="In" Type="Int32" />
             <Parameter Name="pUsuario" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="OBTENER_ROLES" ReturnType="Collection(Model.OBTENER_ROLES_Result)">
-          <Parameter Name="pCodigo" Mode="In" Type="String" />
+          <FunctionImport Name="LLENAR_ADMIN" ReturnType="Collection(Model.LLENAR_ADMIN_Result)">
+            <Parameter Name="pUsername" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="CONSULTA_HABITACION" ReturnType="Collection(Model.CONSULTA_HABITACION_Result)" />
-          <FunctionImport Name="CONSULTA_PRECIO" ReturnType="Collection(Model.CONSULTA_PRECIO_Result)" />
+          <FunctionImport Name="OBTENER_ROLES" ReturnType="Collection(Model.OBTENER_ROLES_Result)">
+            <Parameter Name="pCodigo" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ADMIN_LOGIN_Result">
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
@@ -1341,20 +1366,6 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <Property Type="DateTime" Name="Fecha_Hora" Nullable="false" Precision="23" />
           <Property Type="String" Name="Mensaje" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="CONSULTA_HABITACIONESLISTAS_Result">
-          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="Numero" Nullable="false" />
-          <Property Type="Int32" Name="Tipo" Nullable="false" />
-          <Property Type="Int32" Name="Precio" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="OBTENER_ROLES_Result">
-          <Property Type="Boolean" Name="Consecutivo" Nullable="false" />
-          <Property Type="Boolean" Name="Mantenimiento" Nullable="false" />
-          <Property Type="Boolean" Name="Seguridad" Nullable="false" />
-          <Property Type="Boolean" Name="Consulta" Nullable="false" />
-          <Property Type="Boolean" Name="Administrador" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="CONSULTA_HABITACION_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="Numero" Nullable="false" />
@@ -1363,16 +1374,43 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <Property Type="String" Name="Precio" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="Tipo" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="CONSULTA_HABITACIONESLISTAS_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="Numero" Nullable="false" />
+          <Property Type="Int32" Name="Tipo" Nullable="false" />
+          <Property Type="Int32" Name="Precio" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="CONSULTA_PRECIO_Result">
           <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="Precio" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="LLENAR_ADMIN_Result">
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido1" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Apellido2" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Administrador" Nullable="false" />
+          <Property Type="Boolean" Name="Seguridad" Nullable="false" />
+          <Property Type="Boolean" Name="Consecutivo" Nullable="false" />
+          <Property Type="Boolean" Name="Mantenimiento" Nullable="false" />
+          <Property Type="Boolean" Name="Consulta" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="OBTENER_ROLES_Result">
+          <Property Type="Boolean" Name="Consecutivo" Nullable="false" />
+          <Property Type="Boolean" Name="Mantenimiento" Nullable="false" />
+          <Property Type="Boolean" Name="Seguridad" Nullable="false" />
+          <Property Type="Boolean" Name="Consulta" Nullable="false" />
+          <Property Type="Boolean" Name="Administrador" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="Model.Actividad">
               <MappingFragment StoreEntitySet="Actividad">
@@ -1586,6 +1624,7 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ACTUALIZA_ACTIVIDAD" FunctionName="Model.Store.ACTUALIZA_ACTIVIDAD" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_ADMIN_CLAVE" FunctionName="Model.Store.ACTUALIZA_ADMIN_CLAVE" />
+          <FunctionImportMapping FunctionImportName="ACTUALIZA_ADMIN_ROLES" FunctionName="Model.Store.ACTUALIZA_ADMIN_ROLES" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_CLIENTE_CLAVE" FunctionName="Model.Store.ACTUALIZA_CLIENTE_CLAVE" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_CLIENTE_ESTADO" FunctionName="Model.Store.ACTUALIZA_CLIENTE_ESTADO" />
           <FunctionImportMapping FunctionImportName="ACTUALIZA_CONSECUTIVO" FunctionName="Model.Store.ACTUALIZA_CONSECUTIVO" />
@@ -1635,6 +1674,18 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_HABITACION" FunctionName="Model.Store.CONSULTA_HABITACION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_HABITACION_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Est_Hab" ColumnName="Est_Hab" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CONSULTA_HABITACIONESLISTAS" FunctionName="Model.Store.CONSULTA_HABITACIONESLISTAS">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.CONSULTA_HABITACIONESLISTAS_Result">
@@ -1642,6 +1693,14 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CONSULTA_PRECIO" FunctionName="Model.Store.CONSULTA_PRECIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.CONSULTA_PRECIO_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -1670,6 +1729,23 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
           <FunctionImportMapping FunctionImportName="INSERTA_HABITACION" FunctionName="Model.Store.INSERTA_HABITACION" />
           <FunctionImportMapping FunctionImportName="INSERTA_PRECIO" FunctionName="Model.Store.INSERTA_PRECIO" />
           <FunctionImportMapping FunctionImportName="INSERTA_RESERVA" FunctionName="Model.Store.INSERTA_RESERVA" />
+          <FunctionImportMapping FunctionImportName="LLENAR_ADMIN" FunctionName="Model.Store.LLENAR_ADMIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.LLENAR_ADMIN_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+                <ScalarProperty Name="Seguridad" ColumnName="Seguridad" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Mantenimiento" ColumnName="Mantenimiento" />
+                <ScalarProperty Name="Consulta" ColumnName="Consulta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="OBTENER_ROLES" FunctionName="Model.Store.OBTENER_ROLES">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.OBTENER_ROLES_Result">
@@ -1678,26 +1754,6 @@ advertencia 6002: La tabla o vista 'H-Mandiola.dbo.VIEW_PRECIOS' no tiene defini
                 <ScalarProperty Name="Seguridad" ColumnName="Seguridad" />
                 <ScalarProperty Name="Consulta" ColumnName="Consulta" />
                 <ScalarProperty Name="Administrador" ColumnName="Administrador" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTA_HABITACION" FunctionName="Model.Store.CONSULTA_HABITACION">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.CONSULTA_HABITACION_Result">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Est_Hab" ColumnName="Est_Hab" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="CONSULTA_PRECIO" FunctionName="Model.Store.CONSULTA_PRECIO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="Model.CONSULTA_PRECIO_Result">
-                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

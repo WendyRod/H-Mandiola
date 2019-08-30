@@ -22,7 +22,7 @@
             bottom: 0;
             width: 100%;
             margin-top: auto;
-        }
+        }x
 
         .nav li ul {
             display: none;
@@ -137,13 +137,14 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     @*<li class="nav-item active">
-                        <h6 style="margin: 0 150px 0 25px; margin-top: 10px;" href="#">
-                            Usted está en:
-                        </h6>
-                    </li>*@
+            <h6 style="margin: 0 150px 0 25px; margin-top: 10px;" href="#">
+                Usted está en:
+            </h6>
+        </li>*@
                     <a class="nav-link" style="margin: 0 150px 0 5px; color: black;">Bienvenido(a): @Session["username"]</a>
 
-                    <input type="submit" align="center" value="Cerrar sesión" onclick="CerrarSesionCliente()" class="btn btn-default" />
+                    @*<input type="submit" align="center" value="Cerrar sesión" onclick="CerrarSesionCliente()" class="btn btn-default" />*@
+                    @Html.ActionLink("Cerrar Sesión", "Logout", "Cliente", new { @class = "btn btn-default" })
                     <li class="nav-item active" style="margin: 7px; border-color:black">
                     </li>
 

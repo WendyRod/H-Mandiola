@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class PrecioController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Precio
         public async Task<ActionResult> IndexPrecio()

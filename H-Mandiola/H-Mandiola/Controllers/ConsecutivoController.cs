@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class ConsecutivoController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Consecutivo
         public async Task<ActionResult> IndexConsecutivo()
@@ -51,8 +51,11 @@ namespace H_Mandiola.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Consecutivo.Add(consecutivo);
-                await db.SaveChangesAsync();
+                /*db.Consecutivo.Add(consecutivo);
+                await db.SaveChangesAsync();*/
+                db.INSERTA_CONSECUTIVO(consecutivo.Codigo, consecutivo.Descripcion, consecutivo.Consecutivo1, consecutivo.PoseePrefijo,
+                    consecutivo.Prefijo, consecutivo.PoseeRango, consecutivo.Minimo, consecutivo.Maximo);
+                db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó un nuevo consecutivo");
                 return RedirectToAction("IndexConsecutivo");
             }

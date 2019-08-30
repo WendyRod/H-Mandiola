@@ -10,7 +10,7 @@ namespace H_Mandiola.Models
 {
     public class Usuario_Admi
     {
-        public int Codigo { get; set; }
+        public string Codigo { get; set; }
         public string Usuario { get; set; }
         public string Clave { get; set; }
         public string Nombre { get; set; }
@@ -39,23 +39,23 @@ namespace H_Mandiola.Models
             {
                 cn.Open();
 
-                SqlCommand cmd = new SqlCommand("Alvaro_llenarUsuario", cn);
+                SqlCommand cmd = new SqlCommand("LLENAR_ADMIN", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Username", "a");
+                cmd.Parameters.AddWithValue("@pUsername", "a");
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Usuario_Admi item = new Usuario_Admi();
-                    item.Codigo = Convert.ToInt32(reader["ID"]);
-                    item.Usuario = Convert.ToString(reader["Username"]);
-                    item.Clave = Convert.ToString(reader["Password"]);
+                    item.Codigo = Convert.ToString(reader["Codigo"]);
+                    item.Usuario = Convert.ToString(reader["Usuario"]);
+                    item.Clave = Convert.ToString(reader["Clave"]);
                     item.Nombre = Convert.ToString(reader["Nombre"]);
                     item.Apellido1 = Convert.ToString(reader["Apellido1"]);
                     item.Apellido2 = Convert.ToString(reader["Apellido2"]);
-                    item.Email = Convert.ToString(reader["Correo"]);
+                    item.Email = Convert.ToString(reader["Email"]);
                     item.Administrador = Convert.ToBoolean(reader["Administrador"]);
                     item.Seguridad = Convert.ToBoolean(reader["Seguridad"]);
                     item.Consecutivo = Convert.ToBoolean(reader["Consecutivo"]);
@@ -78,23 +78,23 @@ namespace H_Mandiola.Models
             {
                 cn.Open();
 
-                SqlCommand cmd = new SqlCommand("Alvaro_llenarUsuario", cn);
+                SqlCommand cmd = new SqlCommand("LLENAR_ADMIN", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@Username", "a");
+                cmd.Parameters.AddWithValue("@pUsername", "a");
 
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
                     Usuario_Admi item = new Usuario_Admi();
-                    item.Codigo = Convert.ToInt32(reader["ID"]);
+                    item.Codigo = Convert.ToString(reader["Codigo"]);
                     item.Nombre = Convert.ToString(reader["Nombre"]);
                     item.Apellido1 = Convert.ToString(reader["Apellido1"]);
                     item.Apellido2 = Convert.ToString(reader["Apellido2"]);
-                    item.Email = Convert.ToString(reader["Correo"]);
+                    item.Email = Convert.ToString(reader["Email"]);
                     item.Usuario = Convert.ToString(reader["Username"]);
-                    item.Clave = Convert.ToString(reader["Password"]);
+                    item.Clave = Convert.ToString(reader["Clave"]);
                     item.Administrador = Convert.ToBoolean(reader["Administrador"]);
                     item.Seguridad = Convert.ToBoolean(reader["Seguridad"]);
                     item.Consecutivo = Convert.ToBoolean(reader["Consecutivo"]);

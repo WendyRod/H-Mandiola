@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class HabitacionController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Habitacion
         public async Task<ActionResult> IndexHabitacion()
@@ -55,7 +55,7 @@ namespace H_Mandiola.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.INSERTA_HABITACION(habitacion.Numero,habitacion.Descripcion,habitacion.Est_Hab, habitacion.Precio);
+                db.INSERTA_HABITACION(habitacion.Numero,habitacion.Descripcion,habitacion.Est_Hab, habitacion.Precio, habitacion.Tipo);
                 db.SaveChanges();
                 db.INSERTA_BITACORA("Agregar", "Se insertó una nueva habitación");
             }

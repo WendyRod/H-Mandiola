@@ -9,15 +9,19 @@ using System.Data;
 using System.Data.SqlClient;
 using H_Mandiola.Models;
 using System.Configuration;
+using System.Web.Security;
 
 namespace H_Mandiola.Controllers
 {
     public class UsuarioController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
         private static string connStr = ConfigurationManager.ConnectionStrings["Mandiola"].ConnectionString;
         private SqlConnection conn = new SqlConnection(connStr);
         public static string pass = string.Empty, user = string.Empty;
+        Admin admin = new Admin();
+
+        //Session["username"] = 
         //private string Rol_Seguridad = "1,2";
 
         // GET: Usuario
@@ -29,6 +33,15 @@ namespace H_Mandiola.Controllers
         public ActionResult CrearUsuarioAdmin()
         {
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+            pass = "";
+            user = "";
+            return RedirectToAction("LoginAdmin", "Usuario");
         }
         /// <summary>
         /// Metodo para agregar el usuario.
@@ -55,6 +68,7 @@ namespace H_Mandiola.Controllers
 
                 if (result == 0)    //Se verifica que no exista el usuario.
                 {
+                    //db.INSERTA_ADMIN(user.nombre, user.apellido1, user.apellido2, user.email, user.username, user.clave, user.admin, user.segu, user.conse, user.mante, user.consu);
                     user.GuardaUsuario();   //Se inserta el usuario en la base de datos.
                     db.INSERTA_BITACORA("Agregar", string.Format("Se insertó el usuario: {0}", user.username)); //Se agrega el registro el usuario en la base de datos.
                     return Json(new { success = true, responseText = "Se ha ingresado el usuario correctamente." }, JsonRequestBehavior.AllowGet);  //Mensaje que se va a mostrar al registrar el usuario.
@@ -93,51 +107,95 @@ namespace H_Mandiola.Controllers
         }
 
         [HttpPost]
-        public ActionResult CambiarClaveUser(PassClass claves)
+        [ValidateAntiForgeryToken]
+        public ActionResult CambiarPassword(Admin admin, string current_password, string new_password, string confirm_password)
         {
-            //string OldPass, string NewPass, string ConfirmPass
-            //Usuario_Admin user = new Usuario_Admin();
-            Cliente cliente = new Cliente();
-
-            if (claves.NewPass.Equals(claves.OldPass)) //Las contraseñas nuevas deben de ser iguales.
+            ActionResult resultado = View();
+            Admin usuarioSesion = (Admin)Session["username"];
+            if (usuarioSesion == null)
             {
-                string PassActual = string.Empty;
-                foreach (var item in db.Cliente)
-                {
-                    if (item.Usuario.Equals("diegoalru"))
-                    {
-                        PassActual = item.Clave;
-                    }
-                    else
-                    {
-                        /* Continua la busqueda del usuario*/
-                    }
-                }
-
-                /*
-                 * En caso de que no se encuentre el usuario.
-                 */
-                if (PassActual.Equals(string.Empty))
-                {
-                    return Json(new { success = false, responseText = "Error interno." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-                }
-                else
-                {
-                    if (PassActual.Equals(claves.NewPass))
-                    {
-                        return Json(new { success = false, responseText = "La contraseña es igual que la anterior." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-                    }
-                    else
-                    {
-                        return Json(new { success = true, responseText = "Exito. " + claves.OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
-                    }
-                }
+                resultado = RedirectToAction("Index", "Home");
             }
             else
             {
-                return Json(new { success = false, responseText = "Las contraseñas no coinciden." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+                if (usuarioSesion.Clave != current_password)
+                {
+                    ModelState.AddModelError("PASSWORD", "La contraseña actual no coincide");
+                }
+                else
+                {
+                    if (confirm_password != new_password)
+                    {
+                        ModelState.AddModelError("CONFIRM_PASSWORD", "Las contraseñas indicadas no coinciden");
+                    }
+                    else
+                    {
+                        if (current_password == new_password)
+                        {
+                            ModelState.AddModelError("NEW_PASSWORD", "La contraseña nueva no puede ser igual a la actual");
+                        }
+                        else
+                        {
+                            usuarioSesion.Clave = new_password;
+                            Session["Usuario"] = usuarioSesion;
+
+                            db.Entry(usuarioSesion).State = System.Data.Entity.EntityState.Modified;
+                            db.SaveChanges();
+                            TempData["SuccessMessage"] = "La contraseña ha sido cambiada con éxito";
+                            resultado = RedirectToAction("Default", "Usuario");
+                        }
+                    }
+                }
             }
+            return resultado;
         }
+
+        //[HttpPost]
+        //public ActionResult CambiarClaveUser(PassClass claves)
+        //{
+        //    //string OldPass, string NewPass, string ConfirmPass
+        //    //Usuario_Admin user = new Usuario_Admin();
+        //    Cliente cliente = new Cliente();
+
+        //    if (claves.NewPass.Equals(claves.OldPass)) //Las contraseñas nuevas deben de ser iguales.
+        //    {
+        //        string PassActual = string.Empty;
+        //        foreach (var item in db.Cliente)
+        //        {
+        //            if (item.Usuario.Equals("wen"))
+        //            {
+        //                PassActual = item.Clave;
+        //            }
+        //            else
+        //            {
+        //                /* Continua la busqueda del usuario*/
+        //            }
+        //        }
+
+        //        /*
+        //         * En caso de que no se encuentre el usuario.
+        //         */
+        //        if (PassActual.Equals(string.Empty))
+        //        {
+        //            return Json(new { success = false, responseText = "Error interno." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+        //        }
+        //        else
+        //        {
+        //            if (PassActual.Equals(claves.NewPass))
+        //            {
+        //                return Json(new { success = false, responseText = "La contraseña es igual que la anterior." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+        //            }
+        //            else
+        //            {
+        //                return Json(new { success = true, responseText = "Exito. " + claves.OldPass + "." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return Json(new { success = false, responseText = "Las contraseñas no coinciden." }, JsonRequestBehavior.AllowGet); //Mensaje de error mediante Ajax.
+        //    }
+        //}
         #endregion
 
 
@@ -196,7 +254,7 @@ namespace H_Mandiola.Controllers
         [HttpPost]
         public ActionResult VerUsuarios(int ID)
         {
-            Roles roles = new Roles();
+            H_Mandiola.Models.Roles roles = new H_Mandiola.Models.Roles();
             currentUseRol = ID;
 
             BLL.Usuario usuario = new BLL.Usuario();

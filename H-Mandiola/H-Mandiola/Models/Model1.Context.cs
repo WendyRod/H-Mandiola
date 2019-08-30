@@ -15,10 +15,10 @@ namespace H_Mandiola.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class Entities : DbContext
+    public partial class Entities1 : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities1()
+            : base("name=Entities1")
         {
         }
     
@@ -80,6 +80,35 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pNuevaClave", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ADMIN_CLAVE", pUsuarioParameter, pCorreoParameter, pNuevaClaveParameter);
+        }
+    
+        public virtual int ACTUALIZA_ADMIN_ROLES(Nullable<bool> pAdministrador, Nullable<bool> pConsecutivo, Nullable<bool> pConsulta, Nullable<bool> pMantenimiento, Nullable<bool> pSeguridad, string pCodigo)
+        {
+            var pAdministradorParameter = pAdministrador.HasValue ?
+                new ObjectParameter("pAdministrador", pAdministrador) :
+                new ObjectParameter("pAdministrador", typeof(bool));
+    
+            var pConsecutivoParameter = pConsecutivo.HasValue ?
+                new ObjectParameter("pConsecutivo", pConsecutivo) :
+                new ObjectParameter("pConsecutivo", typeof(bool));
+    
+            var pConsultaParameter = pConsulta.HasValue ?
+                new ObjectParameter("pConsulta", pConsulta) :
+                new ObjectParameter("pConsulta", typeof(bool));
+    
+            var pMantenimientoParameter = pMantenimiento.HasValue ?
+                new ObjectParameter("pMantenimiento", pMantenimiento) :
+                new ObjectParameter("pMantenimiento", typeof(bool));
+    
+            var pSeguridadParameter = pSeguridad.HasValue ?
+                new ObjectParameter("pSeguridad", pSeguridad) :
+                new ObjectParameter("pSeguridad", typeof(bool));
+    
+            var pCodigoParameter = pCodigo != null ?
+                new ObjectParameter("pCodigo", pCodigo) :
+                new ObjectParameter("pCodigo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ACTUALIZA_ADMIN_ROLES", pAdministradorParameter, pConsecutivoParameter, pConsultaParameter, pMantenimientoParameter, pSeguridadParameter, pCodigoParameter);
         }
     
         public virtual int ACTUALIZA_CLIENTE_CLAVE(string pUsuario, string pCorreo, string pNuevaClave)
@@ -244,9 +273,19 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_ERROR_Result>("CONSULTA_ERROR");
         }
     
+        public virtual ObjectResult<CONSULTA_HABITACION_Result> CONSULTA_HABITACION()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACION_Result>("CONSULTA_HABITACION");
+        }
+    
         public virtual ObjectResult<CONSULTA_HABITACIONESLISTAS_Result> CONSULTA_HABITACIONESLISTAS()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACIONESLISTAS_Result>("CONSULTA_HABITACIONESLISTAS");
+        }
+    
+        public virtual ObjectResult<CONSULTA_PRECIO_Result> CONSULTA_PRECIO()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRECIO_Result>("CONSULTA_PRECIO");
         }
     
         public virtual int ELIMINA_ACTIVIDAD(string pCodigo)
@@ -528,7 +567,7 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_CLIENTE", pNombreParameter, pApellido1Parameter, pApellido2Parameter, pCorreoParameter, pUsuarioParameter, pClaveParameter, pPreguntaParameter, pRespuestaParameter, pEstadoParameter);
         }
     
-        public virtual int INSERTA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, string pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
+        public virtual int INSERTA_CONSECUTIVO(Nullable<int> pCodigo, string pDescripcion, Nullable<int> pConsecutivo, Nullable<bool> pPoseePrefijo, string pPrefijo, Nullable<bool> pPoseeRango, Nullable<int> pMinimo, Nullable<int> pMaximo)
         {
             var pCodigoParameter = pCodigo.HasValue ?
                 new ObjectParameter("pCodigo", pCodigo) :
@@ -538,9 +577,9 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pDescripcion", pDescripcion) :
                 new ObjectParameter("pDescripcion", typeof(string));
     
-            var pConsecutivoParameter = pConsecutivo != null ?
+            var pConsecutivoParameter = pConsecutivo.HasValue ?
                 new ObjectParameter("pConsecutivo", pConsecutivo) :
-                new ObjectParameter("pConsecutivo", typeof(string));
+                new ObjectParameter("pConsecutivo", typeof(int));
     
             var pPoseePrefijoParameter = pPoseePrefijo.HasValue ?
                 new ObjectParameter("pPoseePrefijo", pPoseePrefijo) :
@@ -578,7 +617,7 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_ERROR", pFecha_horaParameter, pMensajeParameter);
         }
     
-        public virtual int INSERTA_HABITACION(Nullable<int> pNumero, string pDescripcion, Nullable<int> pEst_Hab, string pPrecio)
+        public virtual int INSERTA_HABITACION(Nullable<int> pNumero, string pDescripcion, Nullable<int> pEst_Hab, string pPrecio, Nullable<int> pTipo)
         {
             var pNumeroParameter = pNumero.HasValue ?
                 new ObjectParameter("pNumero", pNumero) :
@@ -596,7 +635,11 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pPrecio", pPrecio) :
                 new ObjectParameter("pPrecio", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter);
+            var pTipoParameter = pTipo.HasValue ?
+                new ObjectParameter("pTipo", pTipo) :
+                new ObjectParameter("pTipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_HABITACION", pNumeroParameter, pDescripcionParameter, pEst_HabParameter, pPrecioParameter, pTipoParameter);
         }
     
         public virtual int INSERTA_PRECIO(Nullable<int> pPrecio)
@@ -653,6 +696,15 @@ namespace H_Mandiola.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERTA_RESERVA", pFecha_EntradaParameter, pFecha_SalidaParameter, pCantidad_DiasParameter, pCodigo_PromocionalParameter, pCantidad_AdultosParameter, pCantidad_NiñosParameter, pMascotaParameter, pMetodo_PagoParameter, pPrecioParameter, pUsuarioParameter);
         }
     
+        public virtual ObjectResult<LLENAR_ADMIN_Result> LLENAR_ADMIN(string pUsername)
+        {
+            var pUsernameParameter = pUsername != null ?
+                new ObjectParameter("pUsername", pUsername) :
+                new ObjectParameter("pUsername", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LLENAR_ADMIN_Result>("LLENAR_ADMIN", pUsernameParameter);
+        }
+    
         public virtual ObjectResult<OBTENER_ROLES_Result> OBTENER_ROLES(string pCodigo)
         {
             var pCodigoParameter = pCodigo != null ?
@@ -660,16 +712,6 @@ namespace H_Mandiola.Models
                 new ObjectParameter("pCodigo", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OBTENER_ROLES_Result>("OBTENER_ROLES", pCodigoParameter);
-        }
-    
-        public virtual ObjectResult<CONSULTA_HABITACION_Result> CONSULTA_HABITACION()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_HABITACION_Result>("CONSULTA_HABITACION");
-        }
-    
-        public virtual ObjectResult<CONSULTA_PRECIO_Result> CONSULTA_PRECIO()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CONSULTA_PRECIO_Result>("CONSULTA_PRECIO");
         }
     }
 }

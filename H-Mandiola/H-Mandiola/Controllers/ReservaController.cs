@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class ReservaController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Reserva
         public async Task<ActionResult> Index()

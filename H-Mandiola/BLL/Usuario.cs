@@ -112,11 +112,11 @@ namespace BLL
                     comando.Parameters.Add("@pCorreo", SqlDbType.VarChar).Value = _email;
                     comando.Parameters.Add("@pUsuario", SqlDbType.VarChar).Value = _username;
                     comando.Parameters.Add("@pClave", SqlDbType.VarChar).Value = _clave;
-                    comando.Parameters.Add("@pAdministrador", SqlDbType.Bit).Value = _admin;
-                    comando.Parameters.Add("@pSeguridad", SqlDbType.Bit).Value = _segu;
-                    comando.Parameters.Add("@pConsecutivo", SqlDbType.Bit).Value = _conse;
-                    comando.Parameters.Add("@pMantenimiento", SqlDbType.Bit).Value = _mante;
-                    comando.Parameters.Add("@pConsulta", SqlDbType.Bit).Value = _consu;
+                    comando.Parameters.Add("@pAdministrador", SqlDbType.Bit).Value = 1;
+                    comando.Parameters.Add("@pSeguridad", SqlDbType.Bit).Value = 1;
+                    comando.Parameters.Add("@pConsecutivo", SqlDbType.Bit).Value = 1;
+                    comando.Parameters.Add("@pMantenimiento", SqlDbType.Bit).Value = 1;
+                    comando.Parameters.Add("@pConsulta", SqlDbType.Bit).Value = 1;
                     DataBase.abrirConexion(objConn);
                     comando.ExecuteNonQuery();
                     DataBase.cerrarConexion(objConn);
@@ -145,7 +145,7 @@ namespace BLL
 
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("ObtenertRoles", conn);
+                SqlCommand cmd = new SqlCommand("OBTENER_ROLES", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@pCodigo", Codigo);
@@ -178,21 +178,18 @@ namespace BLL
 
             com = conn.CreateCommand();
 
-            com.CommandText = "Execute usp_modifica_usuario_admi  @Administrador, @Consecutivo, @Consulta,@Mantenimiento, @Seguridad, @ID";
-            com.Parameters.Add("@Administrador", SqlDbType.Bit).Value = Admi;
-            com.Parameters.Add("@Consecutivo", SqlDbType.Bit).Value = Conse;
-            com.Parameters.Add("@Consulta", SqlDbType.Bit).Value = Consul;
-            com.Parameters.Add("@Mantenimiento", SqlDbType.Bit).Value = Mante;
-            com.Parameters.Add("@Seguridad", SqlDbType.Bit).Value = Segu;
-            com.Parameters.Add("@ID", SqlDbType.Int).Value = currentUseRol;
+            com.CommandText = "Execute ACTUALIZA_ADMIN_ROLES  @pAdministrador, @pConsecutivo, @pConsulta,@pMantenimiento, @pSeguridad, @pCodigo";
+            com.Parameters.Add("@pAdministrador", SqlDbType.Bit).Value = Admi;
+            com.Parameters.Add("@pConsecutivo", SqlDbType.Bit).Value = Conse;
+            com.Parameters.Add("@pConsulta", SqlDbType.Bit).Value = Consul;
+            com.Parameters.Add("@pMantenimiento", SqlDbType.Bit).Value = Mante;
+            com.Parameters.Add("@pSeguridad", SqlDbType.Bit).Value = Segu;
+            com.Parameters.Add("@pCodigo", SqlDbType.VarChar).Value = currentUseRol;
 
             conn.Open();
             com.ExecuteNonQuery();
 
             conn.Close();
-
-
-
         }
 
     }

@@ -34,7 +34,7 @@ function Register() {
             }
         },
         error: function (response) {
-            alert("error!");
+            alert("Error!");
         }
     })
 }

@@ -13,7 +13,7 @@ namespace H_Mandiola.Controllers
 {
     public class ErrorController : Controller
     {
-        private Entities db = new Entities();
+        private Entities1 db = new Entities1();
 
         // GET: Error
         public async Task<ActionResult> IndexError()

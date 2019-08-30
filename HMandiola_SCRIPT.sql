@@ -297,6 +297,9 @@ GO
 DROP PROCEDURE IF EXISTS [dbo].[CLIENTE_LOGIN];
 GO
 
+DROP PROCEDURE IF EXISTS [dbo].[LLENAR_ADMIN];
+GO
+
 DROP PROCEDURE IF EXISTS [dbo].[EXISTE_CLIENTE];
 GO
 
@@ -387,6 +390,9 @@ GO
 DROP PROCEDURE IF EXISTS [dbo].[ACTUALIZA_ADMIN_CLAVE];
 GO
 
+DROP PROCEDURE IF EXISTS [dbo].[ACTUALIZA_ADMIN_ROLES];
+GO
+
 DROP PROCEDURE IF EXISTS [dbo].[ACTUALIZA_CLIENTE_ESTADO];
 GO
 
@@ -402,8 +408,6 @@ GO
 DROP PROCEDURE IF EXISTS [dbo].[ACTUALIZA_HABITACION];
 GO
 
-DROP PROCEDURE IF EXISTS [dbo].[ObtenertRoles];
-GO
 
 /*************************************************
  * OTROS * OTROS * OTROS * OTROS * OTROS * OTROS *
@@ -443,6 +447,27 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 	SELECT Usuario, Clave FROM [dbo].[Cliente] WHERE  Usuario=@pUsuario AND Clave=@pPassword; 
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[LLENAR_ADMIN]    Script Date: 30/08/2019 10:33:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE or ALTER PROCEDURE [dbo].[LLENAR_ADMIN]
+@pUsername	varchar(30)
+AS
+
+
+
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT Codigo, Usuario, Clave, Apellido1, Apellido2, Email, Administrador, Seguridad, Consecutivo, Mantenimiento, Consulta
+	FROM Admin
+
+
 END
 GO
 
@@ -1123,6 +1148,39 @@ BEGIN
 			RETURN 0;
 		END
 END 
+GO
+
+/****** Object:  StoredProcedure [dbo].[ACTUALIZA_ADMIN_ROLES]    Script Date: 30/08/2019 10:33:25 ******/
+SET ANSI_NULLS OFF
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+CREATE or ALTER PROCEDURE [dbo].[ACTUALIZA_ADMIN_ROLES]
+(
+  @pAdministrador   BIT,
+  @pConsecutivo  BIT,
+  @pConsulta BIT,
+  @pMantenimiento  BIT,
+  @pSeguridad BIT,
+  @pCodigo VARCHAR(10)
+)
+
+AS
+
+
+Update Admin
+SET
+		Administrador = @pAdministrador,
+		Consecutivo = @pConsecutivo,
+		Consulta = @pConsulta,
+		Mantenimiento = @pMantenimiento,
+		Seguridad = @pSeguridad
+
+Where Codigo = @pCodigo
+
+
 GO
 
 CREATE OR ALTER PROCEDURE [dbo].[ACTUALIZA_CLIENTE_ESTADO]
